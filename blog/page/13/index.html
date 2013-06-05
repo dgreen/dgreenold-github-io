@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="First Law of Software Development Matt Blodgett&#8217;s says A development process that involves any amount of tedium will eventually be
+done poorly &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io/blog/page/13">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/11/first-law-of-software-development/">First Law of Software Development</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-11T00:00:00-05:00" pubdate data-updated="true">May 11<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/05/11/first-law-of-software-development/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.mattblodgett.com/2008/02/matt-blodgett-first-law-of-software.html">First Law of Software Development</a></p>
+
+<blockquote><p>Matt Blodgett&#8217;s says</p>
+
+<p>A development process that involves any amount of tedium will eventually be
+done poorly or not at all.</p></blockquote>
+
+<p> This probably applies equally well to other domains including <a href="http://ifacethoughts.net/2008/05/11/task-management-using-vim/" title="time management">time
+management</a>, budgeting, etc.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/21/mail-clients/">Mail Clients</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-21T00:00:00-05:00" pubdate data-updated="true">Apr 21<span>st</span>, 2008</time>
+        
+         | <a href="/blog/2008/04/21/mail-clients/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Boy, the trade-offs in Mac Mail clients can drive you crazy.  The Mail.app has
+appealing features like templates, AOL presence detection, use of files to
+store mail so backups can be incremental and access to ToDo&rsquo;s both on a IMAP
+server and just in iCal.  Easier synchronization between multiple Macs.</p>
+
+<p>However, Mail.app 3.0 can get confused.  When you are offline and take
+actions, often you will get repeated mails on next connection.  Worse, and
+perhaps Microsoft Exchange 2003 is also to blame, I have had cases where
+messages on the Exchange Server just don&rsquo;t show up for a while even though
+later messages do.  I don&rsquo;t know if it has happened often but I had a case
+where missing some replies to a conversation was painful.  Mail and Exchange
+also seem to have a bit of trouble with Drafts where mail saves drafts often
+and Mail tags the older copies at deleted (but does not expunge them) and
+therefore the number of messages in the draft folder is off.</p>
+
+<p>Entourage in Office 2008 is a strong program, integrating with Microsoft
+Exchange, appearing to handle off-line operation very well, and has good
+editing ability of text messages.  It uses WEBDAV and is able to work on
+connections that fade in and out.</p>
+
+<p>The problems with Entourage include weak interoperability with the Apple
+datastores for iCal and Addressbook. One could do without it at Entourage 2004
+but there is no longer a separate connector for Entourage.   Entourage insists
+on exporting text files with the old (pre-OS X) line ending convention (sigh).
+Entourage uses a large database for the primary mail store so incremental
+backups like SuperDuper! and TimeMachine don&rsquo;t work well.  TimeMachine must be
+set up to ignore it or the many duplicates that it creates will eat the
+available disk space.   Entourage also stores the connections relating
+messages and other items locally so they are lost if you work with another
+machine regardless of what software you use.  They can also be lost on various
+&ldquo;events&rdquo; that have occurred between Exchange and Entourage in the past.</p>
+
+<p>Tonight, I am using Entourage 2008 on my main machine which I carry around
+everywhere and use Exchange OWA for the odd cases for mail that are on other
+machines.  I also am looking at moving more and more &ldquo;personal&rdquo; mail to GMAIL.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/03/re-setting-spotlight/">Re-setting Spotlight</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-03T00:00:00-06:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/03/re-setting-spotlight/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I found an Apple reference that suggested that dragging the Hard Disk and the
+Filevault folder into (and later out of) the &ldquo;exclude&rdquo; from Spotlight window
+(in System Preferences) would cause Spotlight to rebuild its indexes.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/03/mailapp-notes-in-exchange-2003-at-least/">Mail.app Notes in Exchange 2003 (at Least)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-03T00:00:00-06:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/03/mailapp-notes-in-exchange-2003-at-least/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I started trying to use the new Notes feature in Mail.app, I was having
+trouble with them <em>not</em> being stored on the Exchange server.  I found that I
+needed to make a Make a top level folder:  Apple Mail To Do&#8221;  and cause a
+resync of the mail subsystem.  To cause the resync, I renamed ~/Library/Mail
+to Mail-to-delete .</p>
+
+<p>Note that later I had a bit of fun when deleting &ldquo;Mail-to-delete&rdquo; with
+Spotlight but reseting that worked as well.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/27/feed-the-google-ie7-png-jpg-mime-confusion/">Feed the Google: Ie7 Png Jpg MIME Confusion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-27T00:00:00-05:00" pubdate data-updated="true">Sep 27<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/09/27/feed-the-google-ie7-png-jpg-mime-confusion/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So DavidB and I are working on a new bug in OUMgt &ndash;> folks can&rsquo;t upload .jpg
+and .png files into our RAILS app. This used to work.</p>
+
+<p>After a bit of exploring (much more for the PNG issue than the jpg issue, and
+actually the help of gracious Internet developer), we have found:</p>
+
+<p>IE7 marks x.jpg with the Mime type of image/pjpeg and marks the file x.png
+with the Mime type of image/x-png .</p>
+
+<p>Sigh.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/28/testing-legacy-rails-apps--slideshare/">Testing Legacy Rails Apps » SlideShare</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-28T00:00:00-05:00" pubdate data-updated="true">May 28<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/05/28/testing-legacy-rails-apps--slideshare/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.slideshare.net/rabble/testing-legacy-rails-apps">Testing Legacy Rails Apps » SlideShare</a></p>
+
+<blockquote><p>Wow, another web 2.0 too &#8212; SlideShare. Looks like getting the
+transcript with the slides may be some work.</p></blockquote>
+
+<p>Looks like there are free accounts for doing this.</p>
+
+<p>The lead-in to free accounts say you can upload ppt, pps, odp, pdf, and
+keynote and share the link or embed in your blog.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/13/oh-my-darling-clementine-from-a-proud-grandpa/">Oh My Darling Clementine (From a Proud Grandpa)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-13T00:00:00-05:00" pubdate data-updated="true">May 13<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/05/13/oh-my-darling-clementine-from-a-proud-grandpa/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/tumblr_files/1879012_500.jpg" alt="" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/18/dilberts-glimmer-of-hope/">Dilbert&#8217;s Glimmer of Hope</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-18T00:00:00-05:00" pubdate data-updated="true">Apr 18<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/04/18/dilberts-glimmer-of-hope/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.dilbert.com/comics/dilbert/archive/dilbert-20070418.html">Dilberts Glimmer of Hope</a></p>
+
+<blockquote><p>Given the site&#8217;s name, I decided while it was close to on topic for
+here :).</p></blockquote>
+
+<p>Dilbert&rsquo;s archive does not go back that far, googling, one can find <a href="http://www.geek.nl/pics/dilbert-arch/dilbert-20070418.gif">this</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/09/all-about-agile-agile-principle-7-done-means-done/">All About Agile: Agile Principle #7: &#8220;Done&#8221; Means &#8220;DONE!&#8221;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-09T00:00:00-05:00" pubdate data-updated="true">Apr 9<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/04/09/all-about-agile-agile-principle-7-done-means-done/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://kw-agiledevelopment.blogspot.com/2007/04/agile-principle-7-done-means-done.html">all about agile: Agile Principle #7: &ldquo;done&rdquo; means &ldquo;DONE!&rdquo;</a></p>
+
+<blockquote><p>As it says in the article later&#8230; &#8220;DONE!&#8221; should mean
+<em>shippable<em>.</p></blockquote>
+
+<p><strong>Be sure to check out the Tech Support Video at the end of the article for an
+off-topic laugh</strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/08/congratulations-on-bringing-light-into-the-dark-room/">Congratulations on Bringing Light Into the Dark-room!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-08T00:00:00-05:00" pubdate data-updated="true">Apr 8<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/04/08/congratulations-on-bringing-light-into-the-dark-room/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>Congratulations on bringing light into the Dark-room!</p></blockquote>
+
+<p>&mdash;Colossal Cave Adventure by William Crowther</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/12/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

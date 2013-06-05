@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="The path is an environmental variable that tells the command line (shell)
+processor where to look for programs (commands) to run when they are &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io/blog/page/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/21/adjusting-the-mac-os-x-path/">Adjusting the Mac OS X Path</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-21T00:00:00-06:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/01/21/adjusting-the-mac-os-x-path/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <strong>path</strong> is an environmental variable that tells the command line (shell)
+processor where to look for programs (commands) to run when they are entered
+on the command line without any directory information. The shell will look for
+the command in all the directories listed in the path variable.</p>
+
+<p>In OS X, the active path can be shown when in the terminal window by typing
+<code>echo $PATH</code> command on the command line (where <code>[user@system ~]$</code> is the
+command line prompt and the text right before the &ldquo;]&rdquo; is the present working
+directory (pwd). If it is &ldquo;~&rdquo; then it is the home directory of the user,
+typically something like /Users/user (for a user named user).</p>
+
+<pre><code> [user@system ~]$ echo $PATH
+</code></pre>
+
+<p>The path in OS X is maintained in several places:</p>
+
+<ul>
+<li>.bash_profile</li>
+<li>.bashrc</li>
+<li>system versions of the above</li>
+<li>.MacOSX/environment.plist</li>
+</ul>
+
+
+<p>There a lot of references for the first three since this is roughly the same
+as Linux/Unix assuming both systems are using the bash terminal shell. An
+example is in <a href="http://www.tech-recipes.com/rx/2621/os_x_change_path_environment_variable/">Tech-Recipes</a>.</p>
+
+<p>.MacOSX/environment.plist is obviously specialized to OS X, and this path
+modification is seen by the GUI as well as command line programs run in the
+terminal window. If the directory does not exist, you can make it at the
+terminal prompt:</p>
+
+<pre><code>[user@system ~]$ mkdir .MacOSX
+</code></pre>
+
+<p>Today, the file, if it exists, may be stored in binary rather than in text
+form:</p>
+
+<pre><code>[user@system ~]$ cd .MacOSX
+[user@system .MacOSX]$ more environment.plist
+"environment.plist" may be a binary file.  See it anyway?
+</code></pre>
+
+<p>is indicative of the file being binary. The command <code>plutil</code> can convert this
+binary file to text oriented:</p>
+
+<pre><code>[user@system .MacOSX]$ plutil -convert xml1 environment.plist
+</code></pre>
+
+<p>at this point, you can edit it carefully to contain your path. It must be a
+complete collection where each path is separated by a &ldquo;:&rdquo; and the file must
+obey XML rules. Mine looks like:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;PATH&lt;/key&gt;
+    &lt;string&gt;/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+
+<p>You can either edit the file by hand with your favorite text editor, or if you
+have Xcode installed, there is a tool to edit the file in a structured manner.
+The tool may be able to work without conversion from binary to xml.</p>
+
+<p>After editing the file, you may wish to convert it back to binary (although I
+don&rsquo;t think it is necessary) by</p>
+
+<pre><code>[user@system .MacOSX]$ plutil -convert binary1 environment.plist
+</code></pre>
+
+<p>After changing this file, you will have to either logout or reboot so that all
+the OS X parts associated with your login will use this new path.</p>
+
+<hr />
+
+<h3>Short note for other OSes</h3>
+
+<p>The JAVA folks offer this <a href="http://java.com/en/download/help/path.xml">short article</a> for other operating systems such
+as various versions of Windows, Linux, and Unix.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup---forbes/">Dropbox: The Inside Story of Tech&#8217;s Hottest Startup - Forbes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-28T00:00:00-06:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup---forbes/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.forbes.com/sites/victoriabarret/2011/10/18/dropbox-the-inside-story-of-techs-hottest-startup/">Dropbox: The Inside Story Of Techs Hottest Startup &ndash; Forbes</a></p>
+
+<p>Interesting positive story about Dropbox&#8217;s beginnings. Seems a lot
+less antagonistic than many. Evidently 68 accounts got exposed when the
+password glitch happened.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/">iCal Does Not Delete Old Events Cleanly IMO</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-01T00:00:00-06:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time>
+        
+         | <a href="/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I turned on (for a few minutes) deletions of iCal events. Some of my calendars
+are hosted in Exchange and some on Google. Some of these events are group
+meetings with group scheduling in place. My calendar appointments with other
+individuals are both inside the &ldquo;Exchange&rdquo; and/or &ldquo;Google&rdquo; space and outside.</p>
+
+<p>iCal is notifying all these individuals of the deleted group meetings (from 2
+or more years ago since I said delete after 730 days) that the meeting has
+been canceled. Of course, it happened long ago &mdash; it was not cancelled. Alas,
+all of these individuals are getting e-mail announcing these cancelations from
+me (via automated iCal behavior).</p>
+
+<p>Broke, broke, broke!</p>
+
+<p>(bug report submitted to Apple, there are discussions in the Apple Forum on
+this issue.)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/">How Google&#8217;s Self-Driving Car Works - IEEE Spectrum</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-22T00:00:00-05:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time>
+        
+         | <a href="/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://m.spectrum.ieee.org/automaton/robotics/artificial-intelligence/how-google-self-driving-car-works">How Googles Self-Driving Car Works &ndash; IEEE Spectrum</a></p>
+
+<p>If you missed this, checkout this interesting article with VERY
+interesting videos.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/02/complex-code-not-recommended/">Complex Code (Not Recommended!)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-02T00:00:00-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
+        
+         | <a href="/blog/2011/10/02/complex-code-not-recommended/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From a Twitter post on 9/28/11 12:04 PM</p>
+
+<p><a href="https://twitter.com/johnregehr/status/119095238882111488">https://twitter.com/johnregehr/status/119095238882111488</a></p>
+
+<p>Real line of code from gzip:</p>
+
+<p><code>n -= (e = (e = WSIZE - ((d &amp;= WSIZE-1) &gt; w ? d : w)) &gt; n ? n : e);</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/12/there-is-security-and-then-there-is-security/">There Is Security and Then There Is Security&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/12/there-is-security-and-then-there-is-security/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Back in an <a href="/2011/06/22/dropbox-accidentally-unlocked-all-accounts-for-4-hours.html">earlier post</a>, I lamented about some of the errors made by
+DropBox that (greatly) reduced the security on data and how I was looking at
+SpiderOak.</p>
+
+<p>I am now reporting that the experiment with SpiderOak is now complete. I have
+had three occasions where it has lost (many) items during it&rsquo;s syncing. I
+forgave the first one as I had changed things on it real quick and SpiderOak
+is slow to sync (in 10-15 minute range). The second situation occurred when
+networking went very unreliable during a storm. I don&rsquo;t really know (nor care)
+what the third cause was. I am to the point that I am greatly afraid I won&rsquo;t
+notice a loss till it has happened in the too distant past.</p>
+
+<p>On these losses, I have both Time Machine and (probably) SpiderOak retrievals
+of the lost data so I hopefully am able to recover all the data without a
+great deal of pain (i.e. regenerating it).</p>
+
+<p>However, it is tremendously less security from loss than with DropBox even
+though it is, by architecture, less likely to expose my information to third
+parties.</p>
+
+<p>Where to next? I will be splitting my data between Dropbox and non-replicated
+data that needs to stay private as well as terminating my SpiderOak account.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/08/gmail-its-cooler-in-the-cloud---official-gmail-blog/">Gmail: It’s Cooler in the Cloud - Official Gmail Blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-08T00:00:00-05:00" pubdate data-updated="true">Sep 8<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/08/gmail-its-cooler-in-the-cloud---official-gmail-blog/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://gmailblog.blogspot.com/2011/09/gmail-its-cooler-in-cloud.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+OfficialGmailBlog+%28Gmail+Blog%29">Gmail: It’s cooler in the cloud &ndash; Official Gmail Blog</a></p>
+
+<p>Google argues that Google apps consume less energy than locally hosted
+solutions.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/07/standards-ieee-standards-education-e-magazine-32-why-standards-matter/">Standards: IEEE Standards Education e-Magazine (3.2 Why Standards Matter)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-07T00:00:00-05:00" pubdate data-updated="true">Sep 7<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/07/standards-ieee-standards-education-e-magazine-32-why-standards-matter/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://ieee-elearning.org/outreach/mod/book/view.php?id=315&amp;chapterid=21">Standards: IEEE Standards Education e-Magazine (3.2 Why Standards Matter)</a></p>
+
+<p>Short piece on standards and their impact.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/28/redcar/">Redcar</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-28T00:00:00-05:00" pubdate data-updated="true">Aug 28<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/08/28/redcar/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://redcareditor.com/">Redcar</a></p>
+
+<p>This is a open source development to watch. It uses JRUBY (on JAVA VM) to
+provide cross platform operation and uses TextMate concepts (as well as
+TextMate themes, snippets, and perhaps some bundles).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/06/schubertit-pdf-browser-plugin/">Schubert|it PDF Browser Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-06T00:00:00-05:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/08/06/schubertit-pdf-browser-plugin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.schubert-it.com/pluginpdf/">Schubert|it PDF Browser Plugin</a></p>
+
+<p>It&#8217;s back (and just in time). This plug-in makes EMBEDed PDF files
+in Safari 5+ and Firefox work!</p>
+
+<p>Update 1/21/2012: While this saved me from no reading of PDF files, it did not
+work correctly for some pdf files that were embedded within a larger page.
+Eventually Apple fixed their stuff and Safari worked again with this plugin.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

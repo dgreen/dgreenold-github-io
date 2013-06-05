@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Glimmer]]></title>
+  <link href="http://dgreen.github.io/atom.xml" rel="self"/>
+  <link href="http://dgreen.github.io/"/>
+  <updated>2013-06-05T16:28:51-05:00</updated>
+  <id>http://dgreen.github.io/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Adding to a non-privileged users path in Windows 7]]></title>
+    <link href="http://dgreen.github.io/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
+    <updated>2013-06-05T15:35:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
+    <content type="html"><![CDATA[<p>Does it have to be this hard?</p>
+
+<p>Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
+search path for command line usage, the command <code>setx</code> is what you are
+looking for.  While it can be used to modify the system search path, users
+don&rsquo;t have permission to do that in many enterprise deployments.
+The paths specified by the user are at the end of the system paths.</p>
+
+<p>To see the existing path</p>
+
+<pre><code>    echo %path%
+
+    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
+</code></pre>
+
+<p>To put C:\Users\dgreen\bin on the path, use</p>
+
+<pre><code>    setx path C:\Users\dgreen\bin
+</code></pre>
+
+<p>Once you start a new CMD session, you can see the impact of your changes.</p>
+
+<pre><code>    echo %path%
+
+    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Users\dgreen\bin
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tumbling out!]]></title>
+    <link href="http://dgreen.github.io/blog/2013/05/27/Tumbling-out/"/>
+    <updated>2013-05-27T18:02:45-05:00</updated>
+    <id>http://dgreen.github.io/blog/2013/05/27/Tumbling-out</id>
+    <content type="html"><![CDATA[<p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
+been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
+focusing on the format.  I also had a student tell me he could not access the
+Tumblr website at work due to its other content.  Tumblr was/is an easy to use
+site but my purposes and those of other users don&rsquo;t seem to match.  I had been
+looking at Jekyll for a while and considering what to try when I discovered
+that GitHub supported web hosting with some support for Jekyll.  Finding the
+<a href="http://jekyllrb.com/docs/migrations/">Jekyll importer</a> that would do most of the heavy lifting for
+moving the site, I took the plunge.</p>
+
+<p>Over about 4 hours, I was able to do fixups of the files that the importer
+brought over.  I also changed Jekyll to use Kramdown instead of Maruku based
+on  this <a href="http://natedickson.com/blog/2013/04/09/mostly-multimarkdown-blogging-in-octopress/">hint</a> originally from <a href="http://brettterpstra.com">Brett Terpstra</a>.</p>
+
+<p>After a bit more exploring, I discovered Octopress which wraps Jekyll with
+additional conveniences (even though it uses an older version of Jekyll).  I
+was able to copy the raw Jekyll work into the <a href="http://octopress.org/" title="Octopress">Octopress</a> copy.</p>
+
+<p>After trying things out, I also made the decision to host against my Github
+Account rather than a project (although both Jekyll and Octopress can handle
+either approach.)  This was a bit hard to retreat to.  I had to</p>
+
+<ol>
+<li> Re-run scripts</li>
+<li> Edit .git/config</li>
+<li> Edit Rakefile</li>
+<li> Edit _config</li>
+</ol>
+
+
+<p>but I think I got it.</p>
+
+<p>Most &ldquo;irritating thing&rdquo; is to put <code>bundle exec</code> in front of all rake commands
+as Octopress is not using more current code.  I have not generally had to
+worry about that in the past but I know many others have.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Safe Boot is back (in OS X10.8.3) with FileVault]]></title>
+    <link href="http://dgreen.github.io/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/"/>
+    <updated>2013-04-14T02:01:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault</id>
+    <content type="html"><![CDATA[<p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
+
+<p>On my old Mac Mini, things are pretty slow in Safe Boot.  It  must be disk intensive as my SSD-based MacBook Pro is much faster.</p>
+
+<p>Since safe boot is the safe way to fix some things like</p>
+
+<pre><code>Sandboxd: ... mdworker(..) deny mach-lookup com.apple.ls.boxd
+</code></pre>
+
+<p>It is great to have this working again.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Exploring stately for Ruby]]></title>
+    <link href="http://dgreen.github.io/blog/2013/01/19/exploring-stately-for-ruby/"/>
+    <updated>2013-01-19T01:24:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2013/01/19/exploring-stately-for-ruby</id>
+    <content type="html"><![CDATA[<p>As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation.</p>
+
+<p>I recently found a new ruby gem <a href="https://github.com/rtwomey/stately">stately</a> which seemed interesting.  Like many packages, the documentation initially seemed confusing so a bit of exploring seemed appropriate.  This note documents the little exploring that I did (mostly so I can return to it should I want to use this gem in an application.  The two examples left when the dust settled are given in this <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074">gist</a>.</p>
+
+<p>My first attempt was to build a counter.  I had a bit of problem getting the syntax right and when I retreated to the document&rsquo;s examples,  I found they were incomplete.  My first successful attempt (from a syntax point of view was stately_demo_bad (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_bad-rb">gist</a>).</p>
+
+<p>It did not work because the method associated with defining all the details of the state machine appears to change the scope of some of the code into other internally defined classes yielding very unexpected behavior.</p>
+
+<p>Moving everything to method (messages) inside the state machine seems to be the expected (and allowable) approach yielding stately_demo_good (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_good-rb">gist</a>).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Trading Memory for Functionality (Enough Performance)]]></title>
+    <link href="http://dgreen.github.io/blog/2012/07/24/trading-memory-for-functionality-enough-performance/"/>
+    <updated>2012-07-24T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2012/07/24/trading-memory-for-functionality-enough-performance</id>
+    <content type="html"><![CDATA[<p>I was working on a the last note and wanted to check things out under a fresh
+install. I decided to make a new Mac User to accomplish this. I used GitHub
+for the Mac, Safari on the Assembla site and the Tumblr site, and the command
+line. When I finsihed my work, I idlely was thinking about keeping this user
+account around for the next effort or deleting it. One of the consideration
+was how much space was in use by the account. I was shocked to see that the
+home directory took 330MB!</p>
+
+<p>Looking into it, I found the bit space was 300MB in Preferences. The other two
+large directories was Caches (30MB) and Applications Support (12MB). Inside
+preferences was a folder SMDHelpData that was the space user. This folder
+evidently has the help file information: info, caches, and indexes for finding
+things for all the applications on the system (not just those that had been
+used). I am guessing there is a distinct copy per user since in theory at
+least, one could through security settings block different users from various
+components. There may also be some personalization (highlighting, last
+location, etc.) capability.</p>
+
+<p>I was very surprised at how much space was taken but I decided my lesson was
+to also trade space for functionality (enough performance) and leave the user
+configured so I would not spend time repeating the building of this space.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GitHub with Assembla]]></title>
+    <link href="http://dgreen.github.io/blog/2012/07/21/github-with-assembla/"/>
+    <updated>2012-07-21T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2012/07/21/github-with-assembla</id>
+    <content type="html"><![CDATA[<p><a href="http://github.com">GitHub</a> has now made a nice simple GUI tool for both <a href="http://mac.github.com">OS X</a> and
+<a href="http://windows.github.com">Windows</a>. They have made them freely available for download. They seem to
+have made careful choices about what to support and not support in order to
+keep tool as simple as possible. They do support using GitHub<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> against
+other git repositories such as Assembla or a homegrown one. They don&rsquo;t support
+multiple remote repositories for a specific local repository but you are free
+to use GitHub.com for one project<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and Assembla (for example) for
+another. The two limitations that I have seen that &ldquo;hurt&rdquo; sometimes are</p>
+
+<ol>
+<li> There is no graphical view of the change tree (while confusing, if you need it, alternatives are even more confusing)</li>
+<li> The Windows and Mac Clients look different and behave a bit different.</li>
+<li> Github really knows you by the name/email you list in it&rsquo;s configuration and does not like/support your having a separate identity on a per project basis.</li>
+</ol>
+
+
+<p>These limitations are not fundamental and Github.com may work on them in the
+future. There have been frequent updates thus far to Github &mdash; perhaps they
+will continue.</p>
+
+<h2>Using GitHub with an existing project hosted in Assembla</h2>
+
+<p>If this is your first use of Assembla (but assuming you already have an
+account), then you will need to update your Assembla profile with your public
+ssh key. This file may exist on your system <code>~/.ssh/pub.rsa</code> where <code>~</code> refers
+to your home directory. You probably generated this as part of your git
+install but if not (and after you possibily install ssh), use</p>
+
+<pre><code>ssh-keygen -C "demo@example.com" -t rsa
+</code></pre>
+
+<p>substituing your email address. Take the defaults (hit return) on everything
+unless there is an offer to overwrite the pub.rsa file AND you need the pre-
+existing one! You will now a the file you need. Go to your profile in
+Assembla, select manage keys and upload this file to assembla.</p>
+
+<p>If there is no local repository associated with the existing project, you will
+need to clone it using the command line. Assembla gives the step by step
+instructions personalized for the repository (see the &ldquo;git clone&rdquo; information
+near the top of the Source/Git tab). Be sure to use the &ldquo;clone/push URL&rdquo; if
+you are planning to push back to Assembla in the future.</p>
+
+<p>After you have a local repository (start here if you already had one), merely
+start up GitHub, and use the menu to select <code>File | Add Local Repository</code>
+option selecting the directory containing the project repository.</p>
+
+<h2>Starting a new project with GitHub and Assembla</h2>
+
+<p>Make your Assembla Space in Assembla selecting an option that includes
+Source/Git repository. After it is made, you will be on a page that contains
+very useful &ldquo;Getting started with Git&rdquo; instructions. For this note, I assume
+you have installed git and configured it with your name and email.</p>
+
+<p>If you are starting the project, create your repository folder as you would
+any folder, perhaps</p>
+
+<pre><code> mkdir demo
+</code></pre>
+
+<p>Attach a terminal window to this new directory (new project) or the existing
+directory corresponding to the top of your existing project.</p>
+
+<pre><code> cd demo
+</code></pre>
+
+<p>Then, assuming you have not been using git and a local respository only,
+initialize git</p>
+
+<pre><code> git init
+</code></pre>
+
+<p>If you have a new project, you need at least one file. Create one &mdash; prehaps a
+readme.txt file.</p>
+
+<pre><code> echo "" &gt; readme.txt
+</code></pre>
+
+<p>Out of scope for this note but if it is an existing project not yet in git,
+you may wish to <a href="https://help.github.com/articles/ignoring-files">set up a .gitignore file</a> to keep certain files (or file
+types) from being tracked. We will assume we are tracking everything for
+simplicity here.</p>
+
+<p>Now, we need to add all new (or changed files)_for tracking and commit the
+present state of the files to the local repository. We will use &ldquo;First commit&rdquo;
+as the message about this commit. Adjust as desired but limit yourself to one
+line of information unless you know how to do multiple lines as one command in
+your terminal (command) program.</p>
+
+<pre><code>git add .  
+git commit -m "First commit"
+</code></pre>
+
+<p>Now configure the repository to know where the remote repository is in
+Assembla. Be sure to use the customized one on your Assembla instructions.</p>
+
+<pre><code>git remote add origin git@git.assembla.com:demo.git
+</code></pre>
+
+<p>where demo is the name of the remote repository as known to Assembla.</p>
+
+<p>Finally, send your first commit up to the remote repository.</p>
+
+<pre><code>git push origin master
+</code></pre>
+
+<p>Success. You can now switch to Github as noted for an existing git reponsitory
+above.</p>
+
+<hr />
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>I will use &ldquo;GitHub&rdquo; to refer to the program and &ldquo;GitHub.com&rdquo; to refer to the site or company for the remainder of this note.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Don&rsquo;t forget to create your Github.com account and tell GitHub about this!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CoffeeScript with Select2 library]]></title>
+    <link href="http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library/"/>
+    <updated>2012-07-10T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library</id>
+    <content type="html"><![CDATA[<p>I had two demons: a new library and a language I was not really familiar with.
+A formula for puzzles. I did not find quickly the right example to do the
+jQuery/Select2 JavaScript to CoffeeScript mapping but I did find a <a href="http://js2cs.nodejitsu.com/">reverse
+compiler</a> which helped.</p>
+
+<p>In case it helps, I was trying to convert a working Javascript solution
+(derived from the <a href="http://ivaynberg.github.com/select2/">Select2 documentation</a>):</p>
+
+<hr />
+
+<pre><code>function personFormatResult(person) {
+    var markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
+    if (person.email !== undefined ) {
+        markup += "&lt;td&gt;" + person.email + "&lt;/td&gt;";
+    }
+    if (person.name != undefined ) {
+        markup += "&lt;td&gt;" + person.name + "&lt;/td&gt;";
+    }
+    markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+    return markup;
+}
+
+function personFormatSelection(person) {
+    var t = person.name;
+    if ( person.email != "" ) {
+      t += " &amp;lt;" + person.email + "&amp;gt;";
+    }
+    return t;
+}
+
+// presently hacked in section_id of 1
+
+$(document).ready(function() {
+    $("#demo1").select2({
+        placeholder: {name: "Search for attendee by email", email: ""},
+        minimumInputLength: 1,
+        ajax: {
+            processData: true,
+            data: function (term, page) {
+                return {
+                    email: term,
+                    section_id: 1
+                };
+            },
+            url: "/attendees/match",
+            dataType: json,
+            results: function (data, page) {
+                return {results: data};
+            }
+        },
+        formatResult: personFormatResult,
+        formatSelection:personFormatSelection
+})});
+</code></pre>
+
+<hr />
+
+<p>to CoffeeScript. One translation is</p>
+
+<hr />
+
+<pre><code>personFormatResult = (person) -&gt;
+  markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
+  markup += "&lt;td&gt;#{person.email}&lt;/td&gt;" if person.email != undefined
+  markup += "&lt;td&gt;#{person.name}&lt;/td&gt;" if person.name != undefined
+  markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+
+personFormatSelection = (person) -&gt;
+  markup = person.name
+  markup +=  " &amp;lt;" + person.email + "&amp;gt;" if person.email != ""
+
+# And with the help of http://js2cs.nodejitsu.com/ (blank lines optional):
+
+$(document).ready -&gt;
+  $("#demo1").select2
+    placeholder:
+      name: "Search for attendee by email"
+      email: ""
+
+    minimumInputLength: 1
+
+    ajax:
+      processData: true
+
+      data: (term, page) -&gt;
+        email: term
+        section_id: 1
+
+      url: "/attendees/match"
+
+      dataType: "json"
+
+      results: (data, page) -&gt;
+        results: data
+
+    formatResult: personFormatResult
+    formatSelection: personFormatSelection
+</code></pre>
+
+<hr />
+
+<p>Hope this is useful to someone else.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The simple stuff can get you...]]></title>
+    <link href="http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you/"/>
+    <updated>2012-06-09T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
+    <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
+make a cover page in the tool as well as a collection. I then filled out the
+metadata including author information (David Green <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x75;&#115;&#x65;&#114;&#105;&#x64;&#x40;&#x73;&#105;&#x74;&#101;&#46;&#99;&#111;&#x6d;">&#x75;&#115;&#x65;&#x72;&#105;&#x64;&#64;&#x73;&#x69;&#x74;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>) and then
+saved with an .epub extension.</p>
+
+<p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
+told it was an invalid format. Alas, googling did not help me (it has to
+happen every once in a while).</p>
+
+<p>After a goodly bit of exploring, the problem was the e-mail address in angle
+brackets as part of the author information. I removed them and things were
+good to go.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ten Things You Didn't Know Rails Could Do - James Edward Gray II - RailsConf 2012]]></title>
+    <link href="http://dgreen.github.io/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do---james-edward-gray-ii---railsconf-2012/"/>
+    <updated>2012-05-21T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do&#8212;james-edward-gray-ii&#8212;railsconf-2012</id>
+    <content type="html"><![CDATA[<p><a href="http://confreaks.com/videos/889-railsconf2012-ten-things-you-didn-t-know-rails-could-do">Ten Things You Didnt Know Rails Could Do &ndash; James Edward Gray II &ndash; RailsConf 2012</a></p>
+
+<p>One of several good videos from the RailsConf 2012 conference. Thanks to
+the organizers and sponsors for making this available on-line for those of us
+who could not attend.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Typography Prezi]]></title>
+    <link href="http://dgreen.github.io/blog/2012/05/20/a-typography-prezi/"/>
+    <updated>2012-05-20T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2012/05/20/a-typography-prezi</id>
+    <content type="html"><![CDATA[<p><a href="http://prezi.com/ufnrer-swszq/typography/">A Typography Prezi</a></p>
+
+<blockquote><p><p>A nice Prezi that gives inside into some of the parameters for
+typography.<p></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Adjusting the Mac OS X path]]></title>
+    <link href="http://dgreen.github.io/blog/2012/01/21/adjusting-the-mac-os-x-path/"/>
+    <updated>2012-01-21T00:00:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2012/01/21/adjusting-the-mac-os-x-path</id>
+    <content type="html"><![CDATA[<p>The <strong>path</strong> is an environmental variable that tells the command line (shell)
+processor where to look for programs (commands) to run when they are entered
+on the command line without any directory information. The shell will look for
+the command in all the directories listed in the path variable.</p>
+
+<p>In OS X, the active path can be shown when in the terminal window by typing
+<code>echo $PATH</code> command on the command line (where <code>[user@system ~]$</code> is the
+command line prompt and the text right before the &ldquo;]&rdquo; is the present working
+directory (pwd). If it is &ldquo;~&rdquo; then it is the home directory of the user,
+typically something like /Users/user (for a user named user).</p>
+
+<pre><code> [user@system ~]$ echo $PATH
+</code></pre>
+
+<p>The path in OS X is maintained in several places:</p>
+
+<ul>
+<li>.bash_profile</li>
+<li>.bashrc</li>
+<li>system versions of the above</li>
+<li>.MacOSX/environment.plist</li>
+</ul>
+
+
+<p>There a lot of references for the first three since this is roughly the same
+as Linux/Unix assuming both systems are using the bash terminal shell. An
+example is in <a href="http://www.tech-recipes.com/rx/2621/os_x_change_path_environment_variable/">Tech-Recipes</a>.</p>
+
+<p>.MacOSX/environment.plist is obviously specialized to OS X, and this path
+modification is seen by the GUI as well as command line programs run in the
+terminal window. If the directory does not exist, you can make it at the
+terminal prompt:</p>
+
+<pre><code>[user@system ~]$ mkdir .MacOSX
+</code></pre>
+
+<p>Today, the file, if it exists, may be stored in binary rather than in text
+form:</p>
+
+<pre><code>[user@system ~]$ cd .MacOSX
+[user@system .MacOSX]$ more environment.plist
+"environment.plist" may be a binary file.  See it anyway?
+</code></pre>
+
+<p>is indicative of the file being binary. The command <code>plutil</code> can convert this
+binary file to text oriented:</p>
+
+<pre><code>[user@system .MacOSX]$ plutil -convert xml1 environment.plist
+</code></pre>
+
+<p>at this point, you can edit it carefully to contain your path. It must be a
+complete collection where each path is separated by a &ldquo;:&rdquo; and the file must
+obey XML rules. Mine looks like:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;PATH&lt;/key&gt;
+    &lt;string&gt;/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+
+<p>You can either edit the file by hand with your favorite text editor, or if you
+have Xcode installed, there is a tool to edit the file in a structured manner.
+The tool may be able to work without conversion from binary to xml.</p>
+
+<p>After editing the file, you may wish to convert it back to binary (although I
+don&rsquo;t think it is necessary) by</p>
+
+<pre><code>[user@system .MacOSX]$ plutil -convert binary1 environment.plist
+</code></pre>
+
+<p>After changing this file, you will have to either logout or reboot so that all
+the OS X parts associated with your login will use this new path.</p>
+
+<hr />
+
+<h3>Short note for other OSes</h3>
+
+<p>The JAVA folks offer this <a href="http://java.com/en/download/help/path.xml">short article</a> for other operating systems such
+as various versions of Windows, Linux, and Unix.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dropbox: The Inside Story Of Tech's Hottest Startup - Forbes]]></title>
+    <link href="http://dgreen.github.io/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup---forbes/"/>
+    <updated>2011-12-28T00:00:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup&#8212;forbes</id>
+    <content type="html"><![CDATA[<p><a href="http://www.forbes.com/sites/victoriabarret/2011/10/18/dropbox-the-inside-story-of-techs-hottest-startup/">Dropbox: The Inside Story Of Techs Hottest Startup &ndash; Forbes</a></p>
+
+<p>Interesting positive story about Dropbox&#8217;s beginnings. Seems a lot
+less antagonistic than many. Evidently 68 accounts got exposed when the
+password glitch happened.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iCal does not delete old events cleanly IMO]]></title>
+    <link href="http://dgreen.github.io/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/"/>
+    <updated>2011-12-01T00:00:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo</id>
+    <content type="html"><![CDATA[<p>I turned on (for a few minutes) deletions of iCal events. Some of my calendars
+are hosted in Exchange and some on Google. Some of these events are group
+meetings with group scheduling in place. My calendar appointments with other
+individuals are both inside the &ldquo;Exchange&rdquo; and/or &ldquo;Google&rdquo; space and outside.</p>
+
+<p>iCal is notifying all these individuals of the deleted group meetings (from 2
+or more years ago since I said delete after 730 days) that the meeting has
+been canceled. Of course, it happened long ago &mdash; it was not cancelled. Alas,
+all of these individuals are getting e-mail announcing these cancelations from
+me (via automated iCal behavior).</p>
+
+<p>Broke, broke, broke!</p>
+
+<p>(bug report submitted to Apple, there are discussions in the Apple Forum on
+this issue.)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How Google's Self-Driving Car Works - IEEE Spectrum]]></title>
+    <link href="http://dgreen.github.io/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/"/>
+    <updated>2011-10-22T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/10/22/how-googles-self-driving-car-works&#8212;ieee-spectrum</id>
+    <content type="html"><![CDATA[<p><a href="http://m.spectrum.ieee.org/automaton/robotics/artificial-intelligence/how-google-self-driving-car-works">How Googles Self-Driving Car Works &ndash; IEEE Spectrum</a></p>
+
+<p>If you missed this, checkout this interesting article with VERY
+interesting videos.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Complex code (not recommended!)]]></title>
+    <link href="http://dgreen.github.io/blog/2011/10/02/complex-code-not-recommended/"/>
+    <updated>2011-10-02T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/10/02/complex-code-not-recommended</id>
+    <content type="html"><![CDATA[<p>From a Twitter post on 9/28/11 12:04 PM</p>
+
+<p><a href="https://twitter.com/johnregehr/status/119095238882111488">https://twitter.com/johnregehr/status/119095238882111488</a></p>
+
+<p>Real line of code from gzip:</p>
+
+<p><code>n -= (e = (e = WSIZE - ((d &amp;= WSIZE-1) &gt; w ? d : w)) &gt; n ? n : e);</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[There is security and then there is security...]]></title>
+    <link href="http://dgreen.github.io/blog/2011/09/12/there-is-security-and-then-there-is-security/"/>
+    <updated>2011-09-12T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/09/12/there-is-security-and-then-there-is-security</id>
+    <content type="html"><![CDATA[<p>Back in an <a href="http://dgreen.github.io/2011/06/22/dropbox-accidentally-unlocked-all-accounts-for-4-hours.html">earlier post</a>, I lamented about some of the errors made by
+DropBox that (greatly) reduced the security on data and how I was looking at
+SpiderOak.</p>
+
+<p>I am now reporting that the experiment with SpiderOak is now complete. I have
+had three occasions where it has lost (many) items during it&rsquo;s syncing. I
+forgave the first one as I had changed things on it real quick and SpiderOak
+is slow to sync (in 10-15 minute range). The second situation occurred when
+networking went very unreliable during a storm. I don&rsquo;t really know (nor care)
+what the third cause was. I am to the point that I am greatly afraid I won&rsquo;t
+notice a loss till it has happened in the too distant past.</p>
+
+<p>On these losses, I have both Time Machine and (probably) SpiderOak retrievals
+of the lost data so I hopefully am able to recover all the data without a
+great deal of pain (i.e. regenerating it).</p>
+
+<p>However, it is tremendously less security from loss than with DropBox even
+though it is, by architecture, less likely to expose my information to third
+parties.</p>
+
+<p>Where to next? I will be splitting my data between Dropbox and non-replicated
+data that needs to stay private as well as terminating my SpiderOak account.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Gmail: It’s cooler in the cloud - Official Gmail Blog]]></title>
+    <link href="http://dgreen.github.io/blog/2011/09/08/gmail-its-cooler-in-the-cloud---official-gmail-blog/"/>
+    <updated>2011-09-08T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/09/08/gmail-its-cooler-in-the-cloud&#8212;official-gmail-blog</id>
+    <content type="html"><![CDATA[<p><a href="http://gmailblog.blogspot.com/2011/09/gmail-its-cooler-in-cloud.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+OfficialGmailBlog+%28Gmail+Blog%29">Gmail: It’s cooler in the cloud &ndash; Official Gmail Blog</a></p>
+
+<p>Google argues that Google apps consume less energy than locally hosted
+solutions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Standards: IEEE Standards Education e-Magazine (3.2 Why Standards Matter)]]></title>
+    <link href="http://dgreen.github.io/blog/2011/09/07/standards-ieee-standards-education-e-magazine-32-why-standards-matter/"/>
+    <updated>2011-09-07T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/09/07/standards-ieee-standards-education-e-magazine-32-why-standards-matter</id>
+    <content type="html"><![CDATA[<p><a href="http://ieee-elearning.org/outreach/mod/book/view.php?id=315&amp;chapterid=21">Standards: IEEE Standards Education e-Magazine (3.2 Why Standards Matter)</a></p>
+
+<p>Short piece on standards and their impact.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Redcar]]></title>
+    <link href="http://dgreen.github.io/blog/2011/08/28/redcar/"/>
+    <updated>2011-08-28T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/08/28/redcar</id>
+    <content type="html"><![CDATA[<p><a href="http://redcareditor.com/">Redcar</a></p>
+
+<p>This is a open source development to watch. It uses JRUBY (on JAVA VM) to
+provide cross platform operation and uses TextMate concepts (as well as
+TextMate themes, snippets, and perhaps some bundles).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Schubert|it PDF Browser Plugin]]></title>
+    <link href="http://dgreen.github.io/blog/2011/08/06/schubertit-pdf-browser-plugin/"/>
+    <updated>2011-08-06T00:00:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2011/08/06/schubertit-pdf-browser-plugin</id>
+    <content type="html"><![CDATA[<p><a href="http://www.schubert-it.com/pluginpdf/">Schubert|it PDF Browser Plugin</a></p>
+
+<p>It&#8217;s back (and just in time). This plug-in makes EMBEDed PDF files
+in Safari 5+ and Firefox work!</p>
+
+<p>Update 1/21/2012: While this saved me from no reading of PDF files, it did not
+work correctly for some pdf files that were embedded within a larger page.
+Eventually Apple fixed their stuff and Safari worked again with this plugin.</p>
+]]></content>
+  </entry>
+  
+</feed>

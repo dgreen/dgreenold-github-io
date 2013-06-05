@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CoffeeScript with Select2 library - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="I had two demons: a new library and a language I was not really familiar with.
+A formula for puzzles. I did not find quickly the right example to do &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CoffeeScript With Select2 Library</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-10T00:00:00-05:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I had two demons: a new library and a language I was not really familiar with.
+A formula for puzzles. I did not find quickly the right example to do the
+jQuery/Select2 JavaScript to CoffeeScript mapping but I did find a <a href="http://js2cs.nodejitsu.com/">reverse
+compiler</a> which helped.</p>
+
+<p>In case it helps, I was trying to convert a working Javascript solution
+(derived from the <a href="http://ivaynberg.github.com/select2/">Select2 documentation</a>):</p>
+
+<hr />
+
+<pre><code>function personFormatResult(person) {
+    var markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
+    if (person.email !== undefined ) {
+        markup += "&lt;td&gt;" + person.email + "&lt;/td&gt;";
+    }
+    if (person.name != undefined ) {
+        markup += "&lt;td&gt;" + person.name + "&lt;/td&gt;";
+    }
+    markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+    return markup;
+}
+
+function personFormatSelection(person) {
+    var t = person.name;
+    if ( person.email != "" ) {
+      t += " &amp;lt;" + person.email + "&amp;gt;";
+    }
+    return t;
+}
+
+// presently hacked in section_id of 1
+
+$(document).ready(function() {
+    $("#demo1").select2({
+        placeholder: {name: "Search for attendee by email", email: ""},
+        minimumInputLength: 1,
+        ajax: {
+            processData: true,
+            data: function (term, page) {
+                return {
+                    email: term,
+                    section_id: 1
+                };
+            },
+            url: "/attendees/match",
+            dataType: json,
+            results: function (data, page) {
+                return {results: data};
+            }
+        },
+        formatResult: personFormatResult,
+        formatSelection:personFormatSelection
+})});
+</code></pre>
+
+<hr />
+
+<p>to CoffeeScript. One translation is</p>
+
+<hr />
+
+<pre><code>personFormatResult = (person) -&gt;
+  markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
+  markup += "&lt;td&gt;#{person.email}&lt;/td&gt;" if person.email != undefined
+  markup += "&lt;td&gt;#{person.name}&lt;/td&gt;" if person.name != undefined
+  markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+
+personFormatSelection = (person) -&gt;
+  markup = person.name
+  markup +=  " &amp;lt;" + person.email + "&amp;gt;" if person.email != ""
+
+# And with the help of http://js2cs.nodejitsu.com/ (blank lines optional):
+
+$(document).ready -&gt;
+  $("#demo1").select2
+    placeholder:
+      name: "Search for attendee by email"
+      email: ""
+
+    minimumInputLength: 1
+
+    ajax:
+      processData: true
+
+      data: (term, page) -&gt;
+        email: term
+        section_id: 1
+
+      url: "/attendees/match"
+
+      dataType: "json"
+
+      results: (data, page) -&gt;
+        results: data
+
+    formatResult: personFormatResult
+    formatSelection: personFormatSelection
+</code></pre>
+
+<hr />
+
+<p>Hope this is useful to someone else.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-10T00:00:00-05:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/09/the-simple-stuff-can-get-you/" title="Previous Post: The simple stuff can get you...">&laquo; The simple stuff can get you...</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/07/21/github-with-assembla/" title="Next Post: GitHub with Assembla">GitHub with Assembla &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,1 +1,898 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="Does it have to be this hard? Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
+search path for command line usage, the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-05T15:35:00-05:00" pubdate data-updated="true">Jun 5<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Does it have to be this hard?</p>
+
+<p>Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
+search path for command line usage, the command <code>setx</code> is what you are
+looking for.  While it can be used to modify the system search path, users
+don&rsquo;t have permission to do that in many enterprise deployments.
+The paths specified by the user are at the end of the system paths.</p>
+
+<p>To see the existing path</p>
+
+<pre><code>    echo %path%
+
+    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
+</code></pre>
+
+<p>To put C:\Users\dgreen\bin on the path, use</p>
+
+<pre><code>    setx path C:\Users\dgreen\bin
+</code></pre>
+
+<p>Once you start a new CMD session, you can see the impact of your changes.</p>
+
+<pre><code>    echo %path%
+
+    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Users\dgreen\bin
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T18:02:45-05:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/27/Tumbling-out/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
+been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
+focusing on the format.  I also had a student tell me he could not access the
+Tumblr website at work due to its other content.  Tumblr was/is an easy to use
+site but my purposes and those of other users don&rsquo;t seem to match.  I had been
+looking at Jekyll for a while and considering what to try when I discovered
+that GitHub supported web hosting with some support for Jekyll.  Finding the
+<a href="http://jekyllrb.com/docs/migrations/">Jekyll importer</a> that would do most of the heavy lifting for
+moving the site, I took the plunge.</p>
+
+<p>Over about 4 hours, I was able to do fixups of the files that the importer
+brought over.  I also changed Jekyll to use Kramdown instead of Maruku based
+on  this <a href="http://natedickson.com/blog/2013/04/09/mostly-multimarkdown-blogging-in-octopress/">hint</a> originally from <a href="http://brettterpstra.com">Brett Terpstra</a>.</p>
+
+<p>After a bit more exploring, I discovered Octopress which wraps Jekyll with
+additional conveniences (even though it uses an older version of Jekyll).  I
+was able to copy the raw Jekyll work into the <a href="http://octopress.org/" title="Octopress">Octopress</a> copy.</p>
+
+<p>After trying things out, I also made the decision to host against my Github
+Account rather than a project (although both Jekyll and Octopress can handle
+either approach.)  This was a bit hard to retreat to.  I had to</p>
+
+<ol>
+<li> Re-run scripts</li>
+<li> Edit .git/config</li>
+<li> Edit Rakefile</li>
+<li> Edit _config</li>
+</ol>
+
+
+<p>but I think I got it.</p>
+
+<p>Most &ldquo;irritating thing&rdquo; is to put <code>bundle exec</code> in front of all rake commands
+as Octopress is not using more current code.  I have not generally had to
+worry about that in the past but I know many others have.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-14T02:01:00-05:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
+
+<p>On my old Mac Mini, things are pretty slow in Safe Boot.  It  must be disk intensive as my SSD-based MacBook Pro is much faster.</p>
+
+<p>Since safe boot is the safe way to fix some things like</p>
+
+<pre><code>Sandboxd: ... mdworker(..) deny mach-lookup com.apple.ls.boxd
+</code></pre>
+
+<p>It is great to have this working again.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-19T01:24:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/19/exploring-stately-for-ruby/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation.</p>
+
+<p>I recently found a new ruby gem <a href="https://github.com/rtwomey/stately">stately</a> which seemed interesting.  Like many packages, the documentation initially seemed confusing so a bit of exploring seemed appropriate.  This note documents the little exploring that I did (mostly so I can return to it should I want to use this gem in an application.  The two examples left when the dust settled are given in this <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074">gist</a>.</p>
+
+<p>My first attempt was to build a counter.  I had a bit of problem getting the syntax right and when I retreated to the document&rsquo;s examples,  I found they were incomplete.  My first successful attempt (from a syntax point of view was stately_demo_bad (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_bad-rb">gist</a>).</p>
+
+<p>It did not work because the method associated with defining all the details of the state machine appears to change the scope of some of the code into other internally defined classes yielding very unexpected behavior.</p>
+
+<p>Moving everything to method (messages) inside the state machine seems to be the expected (and allowable) approach yielding stately_demo_good (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_good-rb">gist</a>).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-24T00:00:00-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was working on a the last note and wanted to check things out under a fresh
+install. I decided to make a new Mac User to accomplish this. I used GitHub
+for the Mac, Safari on the Assembla site and the Tumblr site, and the command
+line. When I finsihed my work, I idlely was thinking about keeping this user
+account around for the next effort or deleting it. One of the consideration
+was how much space was in use by the account. I was shocked to see that the
+home directory took 330MB!</p>
+
+<p>Looking into it, I found the bit space was 300MB in Preferences. The other two
+large directories was Caches (30MB) and Applications Support (12MB). Inside
+preferences was a folder SMDHelpData that was the space user. This folder
+evidently has the help file information: info, caches, and indexes for finding
+things for all the applications on the system (not just those that had been
+used). I am guessing there is a distinct copy per user since in theory at
+least, one could through security settings block different users from various
+components. There may also be some personalization (highlighting, last
+location, etc.) capability.</p>
+
+<p>I was very surprised at how much space was taken but I decided my lesson was
+to also trade space for functionality (enough performance) and leave the user
+configured so I would not spend time repeating the building of this space.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/21/github-with-assembla/">GitHub With Assembla</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-21T00:00:00-05:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/07/21/github-with-assembla/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://github.com">GitHub</a> has now made a nice simple GUI tool for both <a href="http://mac.github.com">OS X</a> and
+<a href="http://windows.github.com">Windows</a>. They have made them freely available for download. They seem to
+have made careful choices about what to support and not support in order to
+keep tool as simple as possible. They do support using GitHub<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> against
+other git repositories such as Assembla or a homegrown one. They don&rsquo;t support
+multiple remote repositories for a specific local repository but you are free
+to use GitHub.com for one project<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and Assembla (for example) for
+another. The two limitations that I have seen that &ldquo;hurt&rdquo; sometimes are</p>
+
+<ol>
+<li> There is no graphical view of the change tree (while confusing, if you need it, alternatives are even more confusing)</li>
+<li> The Windows and Mac Clients look different and behave a bit different.</li>
+<li> Github really knows you by the name/email you list in it&rsquo;s configuration and does not like/support your having a separate identity on a per project basis.</li>
+</ol>
+
+
+<p>These limitations are not fundamental and Github.com may work on them in the
+future. There have been frequent updates thus far to Github &mdash; perhaps they
+will continue.</p>
+
+<h2>Using GitHub with an existing project hosted in Assembla</h2>
+
+<p>If this is your first use of Assembla (but assuming you already have an
+account), then you will need to update your Assembla profile with your public
+ssh key. This file may exist on your system <code>~/.ssh/pub.rsa</code> where <code>~</code> refers
+to your home directory. You probably generated this as part of your git
+install but if not (and after you possibily install ssh), use</p>
+
+<pre><code>ssh-keygen -C "demo@example.com" -t rsa
+</code></pre>
+
+<p>substituing your email address. Take the defaults (hit return) on everything
+unless there is an offer to overwrite the pub.rsa file AND you need the pre-
+existing one! You will now a the file you need. Go to your profile in
+Assembla, select manage keys and upload this file to assembla.</p>
+
+<p>If there is no local repository associated with the existing project, you will
+need to clone it using the command line. Assembla gives the step by step
+instructions personalized for the repository (see the &ldquo;git clone&rdquo; information
+near the top of the Source/Git tab). Be sure to use the &ldquo;clone/push URL&rdquo; if
+you are planning to push back to Assembla in the future.</p>
+
+<p>After you have a local repository (start here if you already had one), merely
+start up GitHub, and use the menu to select <code>File | Add Local Repository</code>
+option selecting the directory containing the project repository.</p>
+
+<h2>Starting a new project with GitHub and Assembla</h2>
+
+<p>Make your Assembla Space in Assembla selecting an option that includes
+Source/Git repository. After it is made, you will be on a page that contains
+very useful &ldquo;Getting started with Git&rdquo; instructions. For this note, I assume
+you have installed git and configured it with your name and email.</p>
+
+<p>If you are starting the project, create your repository folder as you would
+any folder, perhaps</p>
+
+<pre><code> mkdir demo
+</code></pre>
+
+<p>Attach a terminal window to this new directory (new project) or the existing
+directory corresponding to the top of your existing project.</p>
+
+<pre><code> cd demo
+</code></pre>
+
+<p>Then, assuming you have not been using git and a local respository only,
+initialize git</p>
+
+<pre><code> git init
+</code></pre>
+
+<p>If you have a new project, you need at least one file. Create one &mdash; prehaps a
+readme.txt file.</p>
+
+<pre><code> echo "" &gt; readme.txt
+</code></pre>
+
+<p>Out of scope for this note but if it is an existing project not yet in git,
+you may wish to <a href="https://help.github.com/articles/ignoring-files">set up a .gitignore file</a> to keep certain files (or file
+types) from being tracked. We will assume we are tracking everything for
+simplicity here.</p>
+
+<p>Now, we need to add all new (or changed files)_for tracking and commit the
+present state of the files to the local repository. We will use &ldquo;First commit&rdquo;
+as the message about this commit. Adjust as desired but limit yourself to one
+line of information unless you know how to do multiple lines as one command in
+your terminal (command) program.</p>
+
+<pre><code>git add .  
+git commit -m "First commit"
+</code></pre>
+
+<p>Now configure the repository to know where the remote repository is in
+Assembla. Be sure to use the customized one on your Assembla instructions.</p>
+
+<pre><code>git remote add origin git@git.assembla.com:demo.git
+</code></pre>
+
+<p>where demo is the name of the remote repository as known to Assembla.</p>
+
+<p>Finally, send your first commit up to the remote repository.</p>
+
+<pre><code>git push origin master
+</code></pre>
+
+<p>Success. You can now switch to Github as noted for an existing git reponsitory
+above.</p>
+
+<hr />
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>I will use &ldquo;GitHub&rdquo; to refer to the program and &ldquo;GitHub.com&rdquo; to refer to the site or company for the remainder of this note.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Don&rsquo;t forget to create your Github.com account and tell GitHub about this!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/10/coffeescript-with-select2-library/">CoffeeScript With Select2 Library</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-10T00:00:00-05:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/07/10/coffeescript-with-select2-library/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I had two demons: a new library and a language I was not really familiar with.
+A formula for puzzles. I did not find quickly the right example to do the
+jQuery/Select2 JavaScript to CoffeeScript mapping but I did find a <a href="http://js2cs.nodejitsu.com/">reverse
+compiler</a> which helped.</p>
+
+<p>In case it helps, I was trying to convert a working Javascript solution
+(derived from the <a href="http://ivaynberg.github.com/select2/">Select2 documentation</a>):</p>
+
+<hr />
+
+<pre><code>function personFormatResult(person) {
+    var markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
+    if (person.email !== undefined ) {
+        markup += "&lt;td&gt;" + person.email + "&lt;/td&gt;";
+    }
+    if (person.name != undefined ) {
+        markup += "&lt;td&gt;" + person.name + "&lt;/td&gt;";
+    }
+    markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+    return markup;
+}
+
+function personFormatSelection(person) {
+    var t = person.name;
+    if ( person.email != "" ) {
+      t += " &amp;lt;" + person.email + "&amp;gt;";
+    }
+    return t;
+}
+
+// presently hacked in section_id of 1
+
+$(document).ready(function() {
+    $("#demo1").select2({
+        placeholder: {name: "Search for attendee by email", email: ""},
+        minimumInputLength: 1,
+        ajax: {
+            processData: true,
+            data: function (term, page) {
+                return {
+                    email: term,
+                    section_id: 1
+                };
+            },
+            url: "/attendees/match",
+            dataType: json,
+            results: function (data, page) {
+                return {results: data};
+            }
+        },
+        formatResult: personFormatResult,
+        formatSelection:personFormatSelection
+})});
+</code></pre>
+
+<hr />
+
+<p>to CoffeeScript. One translation is</p>
+
+<hr />
+
+<pre><code>personFormatResult = (person) -&gt;
+  markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
+  markup += "&lt;td&gt;#{person.email}&lt;/td&gt;" if person.email != undefined
+  markup += "&lt;td&gt;#{person.name}&lt;/td&gt;" if person.name != undefined
+  markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+
+personFormatSelection = (person) -&gt;
+  markup = person.name
+  markup +=  " &amp;lt;" + person.email + "&amp;gt;" if person.email != ""
+
+# And with the help of http://js2cs.nodejitsu.com/ (blank lines optional):
+
+$(document).ready -&gt;
+  $("#demo1").select2
+    placeholder:
+      name: "Search for attendee by email"
+      email: ""
+
+    minimumInputLength: 1
+
+    ajax:
+      processData: true
+
+      data: (term, page) -&gt;
+        email: term
+        section_id: 1
+
+      url: "/attendees/match"
+
+      dataType: "json"
+
+      results: (data, page) -&gt;
+        results: data
+
+    formatResult: personFormatResult
+    formatSelection: personFormatSelection
+</code></pre>
+
+<hr />
+
+<p>Hope this is useful to someone else.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/09/the-simple-stuff-can-get-you/">The Simple Stuff Can Get You&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-09T00:00:00-05:00" pubdate data-updated="true">Jun 9<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/06/09/the-simple-stuff-can-get-you/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
+make a cover page in the tool as well as a collection. I then filled out the
+metadata including author information (David Green <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x75;&#115;&#x65;&#114;&#105;&#x64;&#x40;&#x73;&#105;&#x74;&#101;&#46;&#99;&#111;&#x6d;">&#x75;&#115;&#x65;&#x72;&#105;&#x64;&#64;&#x73;&#x69;&#x74;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>) and then
+saved with an .epub extension.</p>
+
+<p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
+told it was an invalid format. Alas, googling did not help me (it has to
+happen every once in a while).</p>
+
+<p>After a goodly bit of exploring, the problem was the e-mail address in angle
+brackets as part of the author information. I removed them and things were
+good to go.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do---james-edward-gray-ii---railsconf-2012/">Ten Things You Didn&#8217;t Know Rails Could Do - James Edward Gray II - RailsConf 2012</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-21T00:00:00-05:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do---james-edward-gray-ii---railsconf-2012/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://confreaks.com/videos/889-railsconf2012-ten-things-you-didn-t-know-rails-could-do">Ten Things You Didnt Know Rails Could Do &ndash; James Edward Gray II &ndash; RailsConf 2012</a></p>
+
+<p>One of several good videos from the RailsConf 2012 conference. Thanks to
+the organizers and sponsors for making this available on-line for those of us
+who could not attend.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/20/a-typography-prezi/">A Typography Prezi</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T00:00:00-05:00" pubdate data-updated="true">May 20<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/05/20/a-typography-prezi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://prezi.com/ufnrer-swszq/typography/">A Typography Prezi</a></p>
+
+<blockquote><p><p>A nice Prezi that gives inside into some of the parameters for
+typography.<p></p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

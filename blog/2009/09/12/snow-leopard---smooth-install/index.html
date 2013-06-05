@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Snow Leopard - smooth install - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="I have now installed Snow Leopard on 3 machines (1 more to
+go plus a server). I had waited about a week and between the effort the vendors put in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io/blog/2009/09/12/snow-leopard---smooth-install">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Snow Leopard - Smooth Install</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="http://images.apple.com/macosx/images/buystrip_snow_box_20090824.jpg" alt="Snow Leopard" />I have now installed Snow Leopard on 3 machines (1 more to
+go plus a server).</p>
+
+<p>I had waited about a week and between the effort the vendors put in before the
+release and the updates that came out a bit later, only a few issues arose
+during the upgrade process.</p>
+
+<p>I am able to use the built-in CISCO VPN support and after I fixed the
+<a href="http://www.macosxhints.com/article.php?story=2009082703155512&amp;query=ipsec%2Bpassword">keychain access issue</a>, I did not have to supply my password every
+connection.  I also learned that one can use CMD+SHIFT+G to change a browse
+window to another directory including the ones that are not easily browsable
+by the Apple GUI.</p>
+
+<p>I&rsquo;ll talk about conversion of e-mail from IMAP to Exchange servers to the new
+Apple-Exchange 2007 Web Services approach in another post.</p>
+
+<p>I did have to specifically upgrade Microsoft&rsquo;s Remote Desktop connection
+product as it had not auto-updated (or informed me) to its <a href="http://support.microsoft.com/kb/974283">recent
+release</a>.  It may be it just needed a &ldquo;re-install&rdquo; to insert special bits
+somewhere.</p>
+
+<p>Like <a href="http://aloiroberto.wordpress.com/2009/08/29/snow-leopard-system-events-app-resolved/">others</a>, on one machine wanted to know where System Events.app was.
+I was presented a GUI to browse to the file (and found it it in
+System/Library/CoreServices.)</p>
+
+<p>A few of the Mail.app plug-ins have not been upgraded yet.  These were
+automatically disabled.</p>
+
+<p>The DVD includes the latest Xcode (3.2) which I installed and Rosetta which is
+an option item which I did not do yet.  I am going to try to do without the
+old programs that only work natively on the PowerPC.  We will see.</p>
+
+<p>Thank goodness Quicksilver still works.  That would be a loss even though
+there is a new Google tool that is similar.  I modified it to search
+/Developer for type com.apple.application to pick up those tools on one
+machine &mdash; evidently I had already done it on my other development machine.</p>
+
+<p>I turned Time Machine off on the one machine I use it on during the update and
+for a couple days in case of the need to retreat.  I have restarted Time
+Machine, but as one would expect, it is taking a while to catch up to such
+massive changes to the disk.  Another approach would have been to flush the
+past and just start the drive over.</p>
+
+<p>Like others, I use applications hosted in Oracle.  Those applications are not
+yet certified for Java 1.6 and one of them did not work with Safari at a
+critical point in the application.  I found that if I set Safari to run in
+32bit mode (most of my machines are Intel Duo Core 2 and thus 64 bit capable
+to one degree or another), that the application worked as it did before the
+upgrade. To choose 32bit mode, select the application in Finder, and then &ldquo;Get
+Info&rdquo;.  On the pane, there is check box to run in 32 bit mode.</p>
+
+<p>I have verified I can do SMB connections to printers and servers as well.</p>
+
+<p>On one machine I had to fix my MacTeX installation in a minor way as
+<a href="http://www.tug.org/mactex/faq/#qm10">described by the MacTeX folks at Tug</a>.</p>
+
+<p>I&rsquo;ll update this post if I remember (or encounter other things) in a bit.</p>
+
+<p>All in all, much less traumatic than the move to Leopard and we will stay away
+from discussion migrations in other OS&rsquo;s.</p>
+
+<p><strong>Update 9/16/09:</strong> There seems to be a new 32b version of Java 1.6 in Snow
+Leopard and there is no other version.  So while I had the experience reported
+above, it seems I don&rsquo;t have an understanding of &ldquo;why&rdquo; and at this point,
+after 10.6.1 patch (if that matters), my Oracle application is working in both
+32bit and 64bit modes of Safari.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2009/09/12/snow-leopard---smooth-install/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2009/09/12/snow-leopard---smooth-install/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/09/12/snow-leopard---mailapp/" title="Previous Post: Snow Leopard - Mail.app">&laquo; Snow Leopard - Mail.app</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/09/12/the-four-finger-swipe/" title="Next Post: The four-finger swipe">The four-finger swipe &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

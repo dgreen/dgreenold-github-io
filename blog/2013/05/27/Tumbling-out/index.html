@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Tumbling out! - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="In a long overdue action, I have moved the glimmer blog out of Tumblr. I had
+been wanting to use (Multi-)Markdown more in blogging to continue my &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io/blog/2013/05/27/Tumbling-out">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Tumbling Out!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T18:02:45-05:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
+been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
+focusing on the format.  I also had a student tell me he could not access the
+Tumblr website at work due to its other content.  Tumblr was/is an easy to use
+site but my purposes and those of other users don&rsquo;t seem to match.  I had been
+looking at Jekyll for a while and considering what to try when I discovered
+that GitHub supported web hosting with some support for Jekyll.  Finding the
+<a href="http://jekyllrb.com/docs/migrations/">Jekyll importer</a> that would do most of the heavy lifting for
+moving the site, I took the plunge.</p>
+
+<p>Over about 4 hours, I was able to do fixups of the files that the importer
+brought over.  I also changed Jekyll to use Kramdown instead of Maruku based
+on  this <a href="http://natedickson.com/blog/2013/04/09/mostly-multimarkdown-blogging-in-octopress/">hint</a> originally from <a href="http://brettterpstra.com">Brett Terpstra</a>.</p>
+
+<p>After a bit more exploring, I discovered Octopress which wraps Jekyll with
+additional conveniences (even though it uses an older version of Jekyll).  I
+was able to copy the raw Jekyll work into the <a href="http://octopress.org/" title="Octopress">Octopress</a> copy.</p>
+
+<p>After trying things out, I also made the decision to host against my Github
+Account rather than a project (although both Jekyll and Octopress can handle
+either approach.)  This was a bit hard to retreat to.  I had to</p>
+
+<ol>
+<li> Re-run scripts</li>
+<li> Edit .git/config</li>
+<li> Edit Rakefile</li>
+<li> Edit _config</li>
+</ol>
+
+
+<p>but I think I got it.</p>
+
+<p>Most &ldquo;irritating thing&rdquo; is to put <code>bundle exec</code> in front of all rake commands
+as Octopress is not using more current code.  I have not generally had to
+worry about that in the past but I know many others have.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T18:02:45-05:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/update/'>update</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2013/05/27/Tumbling-out/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2013/05/27/Tumbling-out/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/" title="Previous Post: Safe Boot is back (in OS X10.8.3) with FileVault">&laquo; Safe Boot is back (in OS X10.8.3) with FileVault</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/" title="Next Post: Adding to a non-privileged users path in Windows 7">Adding to a non-privileged users path in Windows 7 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
