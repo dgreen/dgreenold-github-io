@@ -41,13 +41,15 @@ I make it by following roughly the following procedure:
 
 ## Install the base machine on student computer ##
 
-OS X/Linux commands are given here, make appropriate changes for Windows.
+OS X/Linux commands are given here, change the direction of the `/` (to `\`) for Windows.
 
+  1. Install Virtualbox
+  1. Install Vagrant
   1. Create a vms directory for your development use `mkdir vms`
   1. Create a machine1 directory `mkdir vms/machine1`  It will be accessible to both
      Linux and your operating system.
   1. `cd vms/machine1`
-  1. `vagrant init rails3r2e13.box https://dl.dropboxusercontent.com/u/4214925/vms/rails3r2e13.box`
+  1. `vagrant init rails3r2e13.box url_to_image`
   1. uncomment `config.vm.network :private_network, ip: "192.168.33.10"` in Vagrantfile
   1. `vagrant up`              # first time will download the vm machine
   1. `vagrant ssh`             # if this fails, you need to put SSH on the path
