@@ -4,7 +4,7 @@
   <title><![CDATA[Category: developer | Glimmer]]></title>
   <link href="http://dgreen.github.io/blog/categories/developer/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-06-06T15:32:02-05:00</updated>
+  <updated>2013-06-06T15:35:46-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -62,7 +62,7 @@ machine is brought up.</p>
 
 <h2>Install the base machine on student computer</h2>
 
-<p>OS X/Linux commands are given here, change the direction of the / (to &lsquo;\&rsquo;) for Windows.</p>
+<p>OS X/Linux commands are given here, change the direction of the <code>/</code> (to <code>\</code>) for Windows.</p>
 
 <ol>
 <li> Install Virtualbox</li>
