@@ -4,7 +4,7 @@
   <title><![CDATA[Category: developer | Glimmer]]></title>
   <link href="http://dgreen.github.io/blog/categories/developer/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-06-06T09:54:20-05:00</updated>
+  <updated>2013-06-06T15:29:31-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -62,9 +62,11 @@ machine is brought up.</p>
 
 <h2>Install the base machine on student computer</h2>
 
-<p>OS X/Linux commands are given here, make appropriate changes for Windows.</p>
+<p>OS X/Linux commands are given here, change the direction of the / (to ) for Windows.</p>
 
 <ol>
+<li> Install Virtualbox</li>
+<li> Install Vagrant</li>
 <li> Create a vms directory for your development use <code>mkdir vms</code></li>
 <li> Create a machine1 directory <code>mkdir vms/machine1</code>  It will be accessible to both
  Linux and your operating system.</li>
