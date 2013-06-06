@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-06-05T16:28:51-05:00</updated>
+  <updated>2013-06-06T09:47:03-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,209 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Bitnami's Rubystack on VirtualBox Linux with Vagrant]]></title>
+    <link href="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/"/>
+    <updated>2013-06-06T01:36:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant</id>
+    <content type="html"><![CDATA[<p>In my Software Engineering Projects class, we are going to do a RAILS-based
+project.  Based on feedback from last year&rsquo;s class, I am furnishing students
+with an almost configured RAILS system for development.  The system is based on</p>
+
+<ul>
+<li><a href="http://bitnami.com/stack/ruby" title="Ruby Stack Cloud Hosting, Installers and Virtual Machines. - BitNami">Bitnami&rsquo;s Rubystack for 32 bit Linux</a></li>
+<li><a href="https://www.virtualbox.org/" title="Oracle VM VirtualBox">VirtualBox 4.2.12</a> as the VM</li>
+<li><a href="http://www.vagrantup.com/" title="Vagrant">Vagrant 1.22</a> to help manage the install</li>
+<li><a href="http://releases.ubuntu.com/precise/" title="Ubuntu 12.04.2 LTS (Precise Pangolin) - Ubuntu Releases">Ubuntu precise32</a> Linux</li>
+</ul>
+
+
+<h2>Create the base machine</h2>
+
+<p>The <code>Vagrantfile</code> is configured to support networking from the host machine
+and to run a configuration script (<code>script.sh</code>) as part of the provisioning.
+There is a small bit of logic to avoid re-provisioning things each time the
+machine is brought up.</p>
+
+<p>I make it by following roughly the following procedure:</p>
+
+<ol>
+<li> Install Virtualbox</li>
+<li> Install Vagrant</li>
+<li> Create a directory to place files add in
+
+<ul>
+<li>The bitnami linux installer file</li>
+<li><code>Vagrantfile</code></li>
+<li><code>script.sh</code></li>
+</ul>
+</li>
+<li> Do an install:  <code>vagrant up</code></li>
+<li> SSH into the running host:  <code>vagrant ssh</code></li>
+<li> Use Linux as needed</li>
+<li> Exit back to the host OS:  <code>exit</code></li>
+<li> Shutdown the virtual machine (saving the contents):  <code>vagrant halt</code></li>
+<li><p> Package the machine post configuration with <code>vagrant package default --output rails3r2e13.box</code></p></li>
+<li><p> Restart the machine and continue work:  <code>vagrant up</code></p></li>
+</ol>
+
+
+<h2>Install the base machine on student computer</h2>
+
+<p>OS X/Linux commands are given here, make appropriate changes for Windows.</p>
+
+<ol>
+<li> Create a vms directory for your development use <code>mkdir vms</code></li>
+<li> Create a machine1 directory <code>mkdir vms/machine1</code>  It will be accessible to both
+ Linux and your operating system.</li>
+<li> <code>cd vms/machine1</code></li>
+<li> <code>vagrant init rails3r2e13.box https://dl.dropboxusercontent.com/u/4214925/vms/rails3r2e13.box</code></li>
+<li> uncomment <code>config.vm.network :private_network, ip: "192.168.33.10"</code> in Vagrantfile</li>
+<li> <code>vagrant up</code>              # first time will download the vm machine</li>
+<li> <code>vagrant ssh</code>             # if this fails, you need to put SSH on the path</li>
+</ol>
+
+
+<h2>SSH for Windows</h2>
+
+<p>Windows does not include SSH by default.  Two options are to 1) install Git locally and then use it&rsquo;s SSH implementation and 2) <a href="http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html">install PuTTY</a>.</p>
+
+<h2>Limitations</h2>
+
+<p>The file <code>.bashrc</code> has a line at the end of it that maps the rails commands onto
+the path along with library linkage as well.  This messes up some local commands
+<code>nano</code> and others.  One solution is to comment out the line and re-log into the
+VM.</p>
+
+<h2>Other vagrant commands</h2>
+
+<ul>
+<li><code>vagrant destroy</code>  eliminate the virtual machine so next time it will be rebuilt</li>
+<li><code>vagrant reload</code>  combination of of halt then up</li>
+<li><code>vagrant suspend</code> pause machine copying state to disk, resume with `vagrant resule&#8220;</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>Vagrantfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="o">-*-</span> <span class="ss">mode</span><span class="p">:</span> <span class="n">ruby</span> <span class="o">-*-</span>
+</span><span class='line'><span class="c1"># vi: set ft=ruby :</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Every Vagrant virtual environment requires a box to build off of.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;precise32&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise32.box&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Create a private network, which allows host-only access to the machine</span>
+</span><span class='line'>  <span class="c1"># using a specific IP.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="ss">:private_network</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">&quot;192.168.33.10&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Share an additional folder to the guest VM. The first argument is</span>
+</span><span class='line'>  <span class="c1"># the path on the host to the actual folder. The second argument is</span>
+</span><span class='line'>  <span class="c1"># the path on the guest to mount the folder. And the optional third</span>
+</span><span class='line'>  <span class="c1"># argument is a set of non-required options.</span>
+</span><span class='line'>  <span class="c1"># config.vm.synced_folder &quot;../data&quot;, &quot;/vagrant_data&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Provider-specific configuration so you can fine-tune various</span>
+</span><span class='line'>  <span class="c1"># backing providers for Vagrant. These expose provider-specific options.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:shell</span><span class="p">,</span> <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s2">&quot;script.sh&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>script.sh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">set</span> -e      <span class="c"># Exit script on error</span>
+</span><span class='line'><span class="nb">set</span> -x      <span class="c"># Print commands and arguments</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Starting configuration script&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Abort provisioning if rubystack is already installed.</span>
+</span><span class='line'><span class="nb">test</span> -d /opt/rubystack-1.9.3-10 <span class="o">&amp;&amp;</span>
+</span><span class='line'><span class="o">{</span> <span class="nb">echo</span> <span class="s2">&quot;rubystack already installed.&quot;</span>; <span class="nb">exit </span>0; <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Provisioning rubystack from bitnami&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Install bitnami</span>
+</span><span class='line'>/vagrant/bitnami-rubystack-1.9.3-10-linux-installer.run --mode unattended <span class="se">\</span>
+</span><span class='line'>                                  --disable-components varnish,phpmyadmin,rvm
+</span><span class='line'>
+</span><span class='line'><span class="c"># install the quiet_assets gem</span>
+</span><span class='line'>gem install quiet_assets -f --install-dir /opt/rubystack-1.9.3-10/ruby/lib/ruby/gems/1.9.1
+</span><span class='line'>
+</span><span class='line'><span class="c"># make vagrant user owner of the install</span>
+</span><span class='line'>chown -R vagrant.vagrant /opt/rubystack-1.9.3-10
+</span><span class='line'>
+</span><span class='line'><span class="c"># install a symbolic link to rubystack directory</span>
+</span><span class='line'>ln -s /opt/rubystack-1.9.3-10 /home/vagrant/rubystack
+</span><span class='line'>
+</span><span class='line'><span class="c"># put ruby / rails code on path</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;. /opt/rubystack-1.9.3-10/scripts/setenv.sh&quot;</span> &gt;&gt; /home/vagrant/.bashrc
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Provisioning complete.&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Adding to a non-privileged users path in Windows 7]]></title>
@@ -398,7 +601,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x75;&#115;&#x65;&#114;&#105;&#x64;&#x40;&#x73;&#105;&#x74;&#101;&#46;&#99;&#111;&#x6d;">&#x75;&#115;&#x65;&#x72;&#105;&#x64;&#64;&#x73;&#x69;&#x74;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>) and then
+metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x75;&#115;&#x65;&#x72;&#105;&#x64;&#x40;&#x73;&#105;&#116;&#x65;&#46;&#x63;&#111;&#109;">&#117;&#115;&#x65;&#x72;&#105;&#x64;&#x40;&#115;&#x69;&#116;&#x65;&#46;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -653,22 +856,6 @@ solutions.</p>
 <p>This is a open source development to watch. It uses JRUBY (on JAVA VM) to
 provide cross platform operation and uses TextMate concepts (as well as
 TextMate themes, snippets, and perhaps some bundles).</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Schubert|it PDF Browser Plugin]]></title>
-    <link href="http://dgreen.github.io/blog/2011/08/06/schubertit-pdf-browser-plugin/"/>
-    <updated>2011-08-06T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2011/08/06/schubertit-pdf-browser-plugin</id>
-    <content type="html"><![CDATA[<p><a href="http://www.schubert-it.com/pluginpdf/">Schubert|it PDF Browser Plugin</a></p>
-
-<p>It&#8217;s back (and just in time). This plug-in makes EMBEDed PDF files
-in Safari 5+ and Firefox work!</p>
-
-<p>Update 1/21/2012: While this saved me from no reading of PDF files, it did not
-work correctly for some pdf files that were embedded within a larger page.
-Eventually Apple fixed their stuff and Safari worked again with this plugin.</p>
 ]]></content>
   </entry>
   

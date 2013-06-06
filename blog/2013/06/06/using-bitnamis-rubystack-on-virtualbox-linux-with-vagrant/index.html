@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using Bitnami's Rubystack on VirtualBox Linux with Vagrant - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="In my Software Engineering Projects class, we are going to do a RAILS-based
+project. Based on feedback from last year&rsquo;s class, I am furnishing &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the world of automation</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dgreen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using Bitnami's Rubystack on VirtualBox Linux With Vagrant</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T01:36:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In my Software Engineering Projects class, we are going to do a RAILS-based
+project.  Based on feedback from last year&rsquo;s class, I am furnishing students
+with an almost configured RAILS system for development.  The system is based on</p>
+
+<ul>
+<li><a href="http://bitnami.com/stack/ruby" title="Ruby Stack Cloud Hosting, Installers and Virtual Machines. - BitNami">Bitnami&rsquo;s Rubystack for 32 bit Linux</a></li>
+<li><a href="https://www.virtualbox.org/" title="Oracle VM VirtualBox">VirtualBox 4.2.12</a> as the VM</li>
+<li><a href="http://www.vagrantup.com/" title="Vagrant">Vagrant 1.22</a> to help manage the install</li>
+<li><a href="http://releases.ubuntu.com/precise/" title="Ubuntu 12.04.2 LTS (Precise Pangolin) - Ubuntu Releases">Ubuntu precise32</a> Linux</li>
+</ul>
+
+
+<h2>Create the base machine</h2>
+
+<p>The <code>Vagrantfile</code> is configured to support networking from the host machine
+and to run a configuration script (<code>script.sh</code>) as part of the provisioning.
+There is a small bit of logic to avoid re-provisioning things each time the
+machine is brought up.</p>
+
+<p>I make it by following roughly the following procedure:</p>
+
+<ol>
+<li> Install Virtualbox</li>
+<li> Install Vagrant</li>
+<li> Create a directory to place files add in
+
+<ul>
+<li>The bitnami linux installer file</li>
+<li><code>Vagrantfile</code></li>
+<li><code>script.sh</code></li>
+</ul>
+</li>
+<li> Do an install:  <code>vagrant up</code></li>
+<li> SSH into the running host:  <code>vagrant ssh</code></li>
+<li> Use Linux as needed</li>
+<li> Exit back to the host OS:  <code>exit</code></li>
+<li> Shutdown the virtual machine (saving the contents):  <code>vagrant halt</code></li>
+<li><p> Package the machine post configuration with <code>vagrant package default --output rails3r2e13.box</code></p></li>
+<li><p> Restart the machine and continue work:  <code>vagrant up</code></p></li>
+</ol>
+
+
+<h2>Install the base machine on student computer</h2>
+
+<p>OS X/Linux commands are given here, make appropriate changes for Windows.</p>
+
+<ol>
+<li> Create a vms directory for your development use <code>mkdir vms</code></li>
+<li> Create a machine1 directory <code>mkdir vms/machine1</code>  It will be accessible to both
+ Linux and your operating system.</li>
+<li> <code>cd vms/machine1</code></li>
+<li> <code>vagrant init rails3r2e13.box https://dl.dropboxusercontent.com/u/4214925/vms/rails3r2e13.box</code></li>
+<li> uncomment <code>config.vm.network :private_network, ip: "192.168.33.10"</code> in Vagrantfile</li>
+<li> <code>vagrant up</code>              # first time will download the vm machine</li>
+<li> <code>vagrant ssh</code>             # if this fails, you need to put SSH on the path</li>
+</ol>
+
+
+<h2>SSH for Windows</h2>
+
+<p>Windows does not include SSH by default.  Two options are to 1) install Git locally and then use it&rsquo;s SSH implementation and 2) <a href="http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html">install PuTTY</a>.</p>
+
+<h2>Limitations</h2>
+
+<p>The file <code>.bashrc</code> has a line at the end of it that maps the rails commands onto
+the path along with library linkage as well.  This messes up some local commands
+<code>nano</code> and others.  One solution is to comment out the line and re-log into the
+VM.</p>
+
+<h2>Other vagrant commands</h2>
+
+<ul>
+<li><code>vagrant destroy</code>  eliminate the virtual machine so next time it will be rebuilt</li>
+<li><code>vagrant reload</code>  combination of of halt then up</li>
+<li><code>vagrant suspend</code> pause machine copying state to disk, resume with `vagrant resule&#8220;</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>Vagrantfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="o">-*-</span> <span class="ss">mode</span><span class="p">:</span> <span class="n">ruby</span> <span class="o">-*-</span>
+</span><span class='line'><span class="c1"># vi: set ft=ruby :</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Every Vagrant virtual environment requires a box to build off of.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;precise32&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise32.box&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Create a private network, which allows host-only access to the machine</span>
+</span><span class='line'>  <span class="c1"># using a specific IP.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="ss">:private_network</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">&quot;192.168.33.10&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Share an additional folder to the guest VM. The first argument is</span>
+</span><span class='line'>  <span class="c1"># the path on the host to the actual folder. The second argument is</span>
+</span><span class='line'>  <span class="c1"># the path on the guest to mount the folder. And the optional third</span>
+</span><span class='line'>  <span class="c1"># argument is a set of non-required options.</span>
+</span><span class='line'>  <span class="c1"># config.vm.synced_folder &quot;../data&quot;, &quot;/vagrant_data&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Provider-specific configuration so you can fine-tune various</span>
+</span><span class='line'>  <span class="c1"># backing providers for Vagrant. These expose provider-specific options.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:shell</span><span class="p">,</span> <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s2">&quot;script.sh&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>script.sh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">set</span> -e      <span class="c"># Exit script on error</span>
+</span><span class='line'><span class="nb">set</span> -x      <span class="c"># Print commands and arguments</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Starting configuration script&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Abort provisioning if rubystack is already installed.</span>
+</span><span class='line'><span class="nb">test</span> -d /opt/rubystack-1.9.3-10 <span class="o">&amp;&amp;</span>
+</span><span class='line'><span class="o">{</span> <span class="nb">echo</span> <span class="s2">&quot;rubystack already installed.&quot;</span>; <span class="nb">exit </span>0; <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Provisioning rubystack from bitnami&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Install bitnami</span>
+</span><span class='line'>/vagrant/bitnami-rubystack-1.9.3-10-linux-installer.run --mode unattended <span class="se">\</span>
+</span><span class='line'>                                  --disable-components varnish,phpmyadmin,rvm
+</span><span class='line'>
+</span><span class='line'><span class="c"># install the quiet_assets gem</span>
+</span><span class='line'>gem install quiet_assets -f --install-dir /opt/rubystack-1.9.3-10/ruby/lib/ruby/gems/1.9.1
+</span><span class='line'>
+</span><span class='line'><span class="c"># make vagrant user owner of the install</span>
+</span><span class='line'>chown -R vagrant.vagrant /opt/rubystack-1.9.3-10
+</span><span class='line'>
+</span><span class='line'><span class="c"># install a symbolic link to rubystack directory</span>
+</span><span class='line'>ln -s /opt/rubystack-1.9.3-10 /home/vagrant/rubystack
+</span><span class='line'>
+</span><span class='line'><span class="c"># put ruby / rails code on path</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;. /opt/rubystack-1.9.3-10/scripts/setenv.sh&quot;</span> &gt;&gt; /home/vagrant/.bashrc
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Provisioning complete.&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T01:36:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/developer/'>developer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/" title="Previous Post: Adding to a non-privileged users path in Windows 7">&laquo; Adding to a non-privileged users path in Windows 7</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Using Bitnami's Rubystack on VirtualBox Linux With Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dgreen';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/';
+        var disqus_url = 'http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
