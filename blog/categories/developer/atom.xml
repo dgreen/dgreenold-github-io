@@ -4,7 +4,7 @@
   <title><![CDATA[Category: developer | Glimmer]]></title>
   <link href="http://dgreen.github.io/blog/categories/developer/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-06-06T09:47:03-05:00</updated>
+  <updated>2013-06-06T09:54:20-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -69,7 +69,7 @@ machine is brought up.</p>
 <li> Create a machine1 directory <code>mkdir vms/machine1</code>  It will be accessible to both
  Linux and your operating system.</li>
 <li> <code>cd vms/machine1</code></li>
-<li> <code>vagrant init rails3r2e13.box https://dl.dropboxusercontent.com/u/4214925/vms/rails3r2e13.box</code></li>
+<li> <code>vagrant init rails3r2e13.box url_to_image</code></li>
 <li> uncomment <code>config.vm.network :private_network, ip: "192.168.33.10"</code> in Vagrantfile</li>
 <li> <code>vagrant up</code>              # first time will download the vm machine</li>
 <li> <code>vagrant ssh</code>             # if this fails, you need to put SSH on the path</li>
