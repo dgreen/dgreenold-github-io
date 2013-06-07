@@ -110,7 +110,7 @@ App by the following process:</p>
    git config --global user.name "Your Name"
 </code></pre></li>
 <li><p>Change to the directory that is shared between the guest OS and the host OS <code>cd /vagrant</code></p></li>
-<li>Create a new Rails application <em>without</em> running bundler <code>rails s appname --skip-bundle</code></li>
+<li>Create a new Rails application <em>without</em> running bundler <code>rails new appname --skip-bundle</code></li>
 <li>Install git&rsquo;s tracking repository <code>git init appname</code></li>
 <li>Change to the application directory <code>cd appname</code></li>
 <li>Update <code>.gitignore</code> to skip tracking <code>database.yml</code> <strong>You can edit this on the host side rather than the OS side if you like your local editor better but use one that likes Unix line endings (i.e. NOT Notepad).</strong></li>
@@ -158,7 +158,7 @@ App by the following process:</p>
 
 <ul>
 <li>Move the code to check in to the staging area <code>git add .</code></li>
-<li>Commit the code the repository <code>git commit -m "Initial commit after ignoring database.yml</code></li>
+<li>Commit the code the repository <code>git commit -m "Initial commit after ignoring database.yml"</code></li>
 <li>Make a copy of database.yml for archival <code>cp config/database.yml config/database-example.yml</code></li>
 <li>Modify the Gemfile to include thin, theracer, and quiet_assets gems.</li>
 </ul>
@@ -258,6 +258,10 @@ App by the following process:</p>
 <li>On the host side, point the browser to <code>http://192.168.33.10:3000</code> and ensure that the base Rails &ldquo;Welcome aboard&rdquo; is visible.</li>
 </ul>
 
+
+<hr />
+
+<p>Updated 7 June 2013 after presentation to class &mdash; correcting two typos.</p>
 </div>
   
   
@@ -1112,7 +1116,7 @@ $(document).ready -&gt;
 
   <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#117;&#x73;&#101;&#114;&#x69;&#x64;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#111;&#109;">&#x75;&#x73;&#x65;&#114;&#x69;&#x64;&#64;&#x73;&#105;&#x74;&#101;&#x2e;&#x63;&#111;&#109;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#117;&#x73;&#101;&#114;&#x69;&#100;&#64;&#115;&#105;&#116;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#101;&#114;&#x69;&#x64;&#x40;&#115;&#105;&#116;&#101;&#46;&#99;&#x6f;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
