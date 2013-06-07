@@ -18,7 +18,7 @@ App by the following process:
            git config --global user.name "Your Name"
 
   * Change to the directory that is shared between the guest OS and the host OS `cd /vagrant`
-  * Create a new Rails application *without* running bundler `rails s appname --skip-bundle`
+  * Create a new Rails application *without* running bundler `rails new appname --skip-bundle`
   * Install git's tracking repository `git init appname`
   * Change to the application directory `cd appname`
   * Update `.gitignore` to skip tracking `database.yml` **You can edit this on the host side rather than the OS side if you like your local editor better but use one that likes Unix line endings (i.e. NOT Notepad).**
@@ -45,7 +45,7 @@ App by the following process:
   {% endcodeblock %}
 
   * Move the code to check in to the staging area `git add .`
-  * Commit the code the repository `git commit -m "Initial commit after ignoring database.yml`
+  * Commit the code the repository `git commit -m "Initial commit after ignoring database.yml"`
   * Make a copy of database.yml for archival `cp config/database.yml config/database-example.yml`
   * Modify the Gemfile to include thin, theracer, and quiet_assets gems.
 
@@ -96,5 +96,9 @@ gem 'jquery-rails'
 * Run bundle to lock in the gemfiles using the local version of the gems `bundle install --local`
 * Start up the Rails app `rails s`
 * On the host side, point the browser to `http://192.168.33.10:3000` and ensure that the base Rails "Welcome aboard" is visible.
+
+-----
+
+Updated 7 June 2013 after presentation to class -- correcting two typos.
 
 [install]: /blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/
