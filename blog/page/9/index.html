@@ -9,8 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Herding Cats: Quote of the Day: Well Done is Better Than Well Said
-">
+  <meta name="description" content="The details are given in Thiam Teck&rsquo;s Blog. Basically, the command javap -verbose ClassName is given and the extensive dump is mined for the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/02/determining-version-of-jvm-used-to-build-class-file/">Determining Version of JVM Used to Build Class File</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-02T00:00:00-05:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2009</time>
+        
+         | <a href="/blog/2009/09/02/determining-version-of-jvm-used-to-build-class-file/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The details are given in <a href="http://thiamteck.blogspot.com/2007/11/determine-java-class-file-version.html">Thiam Teck&rsquo;s Blog</a>.</p>
+
+<p>Basically, the command</p>
+
+<pre><code>javap -verbose ClassName
+</code></pre>
+
+<p>is given and the extensive dump is mined for the major version and minor
+version of java used. The cited blog gives a table of major/minor pairs that
+go from 1.0 through 1.6.</p>
+
+<p>Another way (if you have binary dump program) is to look at the first 8 bytes
+of the .class file as discussed in <a href="http://www.rgagnon.com/javadetails/java-0544.html">Real&rsquo;s How To</a>. For my <a href="http://www-ece.eng.uab.edu/DGreen/java_ex/SimpleClient/SClient0.class">example
+file</a>, the first bytes are:</p>
+
+<pre><code>CA FE BA BE 00 03 00 2D
+</code></pre>
+
+<p>The first four bytes <code>CA FE BA BE</code> are a signature for a .CLASS file, while
+the next two bytes are the minor version (3) and the major version (2D or 45
+base 10). The cited article (and the JVM documentation) will match this up to
+JVM 1.1 for the example file. Version 1.5 of the JVM runs this class file with
+no problem.  Real&rsquo;s How To also gives a sample program for those who have a
+binary editor.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -558,47 +618,6 @@ having done so).</p></blockquote>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/02/19/google-helping-with-victorian-bushfires-using-google-map/">Google Helping With Victorian Bushfires Using Google Map</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-19T00:00:00-06:00" pubdate data-updated="true">Feb 19<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/02/19/google-helping-with-victorian-bushfires-using-google-map/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://techielobang.com/blog/2009/02/12/google-helping-with-victorian-bushfires-using-google-map/">Google Helping With Victorian Bushfires Using Google Map</a></p>
-
-<blockquote><p>An example of computer and software engineering  (via the Google company)
-helping out.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -616,6 +635,10 @@ helping out.</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/">Make a New Rails 3.2 App in the VM Environment</a>
       </li>
     
@@ -629,10 +652,6 @@ helping out.</p></blockquote>
     
       <li class="post">
         <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a>
       </li>
     
   </ul>

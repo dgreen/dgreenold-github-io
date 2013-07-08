@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Apple deprecating Java in 10.7 - Glimmer</title>
+  <title>Using MySQL with Bitnami on Vagrant VM - Glimmer</title>
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="In Apple Trying to Ditch Java from Mac OS X, But Why? by Cory Bohon on
-Mac|Life the author reviews Apple&rsquo;s recent announcement and his take on &hellip;">
+  <meta name="description" content="The Bitnami install doccumented earlier is a bit broken relative to MySQL.
+Evidently, when Bitnami installs in the VM situation and moves itself to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ Mac|Life the author reviews Apple&rsquo;s recent announcement and his take on &h
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://dgreen.github.io/blog/2010/11/02/apple-deprecating-java-in-107">
+  <link rel="canonical" href="http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
@@ -69,7 +69,7 @@ Mac|Life the author reviews Apple&rsquo;s recent announcement and his take on &h
   
   <header>
     
-      <h1 class="entry-title">Apple Deprecating Java in 10.7</h1>
+      <h1 class="entry-title">Using MySQL With Bitnami on Vagrant VM</h1>
     
     
       <p class="meta">
@@ -85,7 +85,7 @@ Mac|Life the author reviews Apple&rsquo;s recent announcement and his take on &h
   
 
 
-<time datetime="2010-11-02T00:00:00-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2010</time>
+<time datetime="2013-07-08T17:52:00-05:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -94,29 +94,59 @@ Mac|Life the author reviews Apple&rsquo;s recent announcement and his take on &h
   </header>
 
 
-<div class="entry-content"><p>In <a href="http://www.maclife.com/article/news/apple_trying_ditch_java_mac_os_x_why">Apple Trying to Ditch Java from Mac OS X, But Why? by Cory Bohon on
-Mac|Life</a> the author reviews Apple&rsquo;s recent announcement and his take on
-the situation. Worth reading and thinking about.</p>
+<div class="entry-content"><p>The <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
+Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
+directory, it expects to be a slightly more traditional install and use the userid mysql for
+running the MySQL server.  However, the built databases are secured to the vagrant user account
+(at least in my release).  This is relatively easy to confirm, try starting the server</p>
 
-<p>List me as disappointed in this Apple decision. I understand that Java is now
-considered one of those technologies that are the source of security risks on
-platforms. This is chiefly because the update approach is such that platforms
-do not stay current. It would seem that eliminating Java from the browser
-makes sense, eliminating it from servers does not, and eliminating it from the
-desktop is the topic under discussion by security folks. I understand Apple
-has to invest resources to keep the tool current and it must be prioritized
-against other needs.</p>
+<pre><code> sudo ~/rubystack/ctlscript.sh start mysql
+</code></pre>
 
-<p>Apple adds significant platform value to Java in making Java work better with
-Cocoa (and both 32 bit and 64 bit). Many developers feel that the Mac is a
-good development platform for that reason. The ability to have software that
-with low effort can exist on multiple platforms is valuable and a lot of
-progress has been made on this. Tools like OpenProj, XMind, NetBeans, Eclipse,
-MoneyDance and OpenOffice are great examples of the merits of this approach.
-Additionally, there are other Mac applications that are Java-based or
-partially java-based including OmniPlan (the MPX conversion), OpenProj, XMind,
-parts of Acorn, CocoaMySQL, Locomotive (old Rails Tool), MatLab, NoteTaker,
-Plot, Screenium, SEEdit Maxi II, and Service Scrubber.</p>
+<p>and not that it fails (after a bit).  One can look at the <code>mysqld.log</code> in <code>~/rubystack/mysql/data</code>
+directory and see access errors.</p>
+
+<p>The fix is to give the mysql user access to the MySQL data directory:</p>
+
+<pre><code>cd ~/rubystack/mysql  
+chown -R mysql.vagrant data
+</code></pre>
+
+<p>After this is done, the startup command should work.</p>
+
+<h2>To start MySQL</h2>
+
+<pre><code>cd rubystack  
+sudo ./ctlscript.sh start mysql
+</code></pre>
+
+<h2>To stop MySQL</h2>
+
+<pre><code>cd rubystack  
+sudo ./ctlscript.sh stop mysql
+</code></pre>
+
+<h2>Create MySQL databases for dev, test, production</h2>
+
+<p>The following sequence setups the development, test, and production databases for the
+Rails project <em>tbd4students</em>.</p>
+
+<pre><code>tbd4students&gt; mysql -u root
+CREATE DATABASE tbd4students_development DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_development.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE tbd4students_test DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_test.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE tbd4students_production DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_production.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+EXIT;
+</code></pre>
+
+<p>In this example, the username <code>vagrant</code> (default in the VM) with a password of
+&lsquo;<code>password</code>&rsquo; is used to access the server.  There is also a presumption that
+the root password to the MySQL server is blank.  This configuration, of
+course, is NO security and is only useful when on a closed system.  One should
+research how to configure things more  securely for anything that will be
+Internet (or even LAN) visible.</p>
 </div>
 
 
@@ -139,7 +169,7 @@ Plot, Screenium, SEEdit Maxi II, and Service Scrubber.</p>
   
 
 
-<time datetime="2010-11-02T00:00:00-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2010</time>
+<time datetime="2013-07-08T17:52:00-05:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
       
 
 
@@ -147,7 +177,7 @@ Plot, Screenium, SEEdit Maxi II, and Service Scrubber.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2010/11/02/apple-deprecating-java-in-107/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2010/11/02/apple-deprecating-java-in-107/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/" >Tweet</a>
   
   
   
@@ -156,14 +186,18 @@ Plot, Screenium, SEEdit Maxi II, and Service Scrubber.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2010/10/28/apple-itunes-shopping-experience-snafu/" title="Previous Post: Apple iTunes Shopping Experience Snafu">&laquo; Apple iTunes Shopping Experience Snafu</a>
+        <a class="basic-alignment left" href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/" title="Previous Post: Make a new rails 3.2 app in the VM Environment">&laquo; Make a new rails 3.2 app in the VM Environment</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2010/11/02/googling/" title="Next Post: Googling...">Googling... &raquo;</a>
       
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -245,7 +279,10 @@ Plot, Screenium, SEEdit Maxi II, and Service Scrubber.</p>
       var disqus_shortname = 'faintinsights';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/';
+        var disqus_url = 'http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

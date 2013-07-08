@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-06-12T20:03:13-05:00</updated>
+  <updated>2013-07-08T18:13:52-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using MySQL with Bitnami on Vagrant VM]]></title>
+    <link href="http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/"/>
+    <updated>2013-07-08T17:52:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm</id>
+    <content type="html"><![CDATA[<p>The <a href="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
+Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
+directory, it expects to be a slightly more traditional install and use the userid mysql for
+running the MySQL server.  However, the built databases are secured to the vagrant user account
+(at least in my release).  This is relatively easy to confirm, try starting the server</p>
+
+<pre><code> sudo ~/rubystack/ctlscript.sh start mysql
+</code></pre>
+
+<p>and not that it fails (after a bit).  One can look at the <code>mysqld.log</code> in <code>~/rubystack/mysql/data</code>
+directory and see access errors.</p>
+
+<p>The fix is to give the mysql user access to the MySQL data directory:</p>
+
+<pre><code>cd ~/rubystack/mysql  
+chown -R mysql.vagrant data
+</code></pre>
+
+<p>After this is done, the startup command should work.</p>
+
+<h2>To start MySQL</h2>
+
+<pre><code>cd rubystack  
+sudo ./ctlscript.sh start mysql
+</code></pre>
+
+<h2>To stop MySQL</h2>
+
+<pre><code>cd rubystack  
+sudo ./ctlscript.sh stop mysql
+</code></pre>
+
+<h2>Create MySQL databases for dev, test, production</h2>
+
+<p>The following sequence setups the development, test, and production databases for the
+Rails project <em>tbd4students</em>.</p>
+
+<pre><code>tbd4students&gt; mysql -u root
+CREATE DATABASE tbd4students_development DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_development.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE tbd4students_test DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_test.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE tbd4students_production DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_production.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+EXIT;
+</code></pre>
+
+<p>In this example, the username <code>vagrant</code> (default in the VM) with a password of
+&lsquo;<code>password</code>&rsquo; is used to access the server.  There is also a presumption that
+the root password to the MySQL server is blank.  This configuration, of
+course, is NO security and is only useful when on a closed system.  One should
+research how to configure things more  securely for anything that will be
+Internet (or even LAN) visible.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Make a new rails 3.2 app in the VM Environment]]></title>
@@ -776,7 +837,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x75;&#115;&#x65;&#114;&#x69;&#100;&#64;&#115;&#x69;&#116;&#101;&#x2e;&#99;&#x6f;&#109;">&#117;&#x73;&#x65;&#114;&#105;&#100;&#64;&#x73;&#105;&#116;&#x65;&#46;&#99;&#111;&#109;</a>) and then
+metadata including author information (David Green <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#117;&#115;&#x65;&#x72;&#x69;&#x64;&#x40;&#x73;&#105;&#x74;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#117;&#115;&#101;&#x72;&#105;&#x64;&#64;&#x73;&#105;&#x74;&#101;&#46;&#x63;&#111;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -1007,17 +1068,6 @@ data that needs to stay private as well as terminating my SpiderOak account.</p>
 
 <p>Google argues that Google apps consume less energy than locally hosted
 solutions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Standards: IEEE Standards Education e-Magazine (3.2 Why Standards Matter)]]></title>
-    <link href="http://dgreen.github.io/blog/2011/09/07/standards-ieee-standards-education-e-magazine-32-why-standards-matter/"/>
-    <updated>2011-09-07T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2011/09/07/standards-ieee-standards-education-e-magazine-32-why-standards-matter</id>
-    <content type="html"><![CDATA[<p><a href="http://ieee-elearning.org/outreach/mod/book/view.php?id=315&amp;chapterid=21">Standards: IEEE Standards Education e-Magazine (3.2 Why Standards Matter)</a></p>
-
-<p>Short piece on standards and their impact.</p>
 ]]></content>
   </entry>
   
