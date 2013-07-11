@@ -3,7 +3,7 @@ layout: post
 title: "Using MySQL with Bitnami on Vagrant VM"
 date: 2013-07-08 17:52
 comments: true
-categories: 
+categories: developer
 ---
 
 The [Bitnami install doccumented earlier][install] is a bit broken relative to MySQL.
@@ -20,7 +20,7 @@ directory and see access errors.
 The fix is to give the mysql user access to the MySQL data directory:
 
     cd ~/rubystack/mysql  
-    chown -R mysql.vagrant data
+    sudo chown -R mysql.vagrant data
 
 After this is done, the startup command should work.
 

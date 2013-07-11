@@ -3,7 +3,7 @@ layout: post
 title: "Make a new rails 3.2 app in the VM Environment"
 date: 2013-06-06 15:38
 comments: true
-categories: 
+categories: developer
 ---
 
 After [installing the VM on the computer][install], one can make a new Rails
