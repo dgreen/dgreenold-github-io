@@ -9,7 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="email is the cockroach of communication mediums: you just can&rsquo;t kill it. &mdash; &ldquo;Despite my misgivings, email is the cockroach of &hellip;">
+  <meta name="description" content="Looking at Wordpress for a variety of reasons since IEEE&rsquo;s EWH effort has
+decided to go with it. Bitnami has a Wordpress application for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/13/wordpress-using-bitnamis-os-x-stack---fixing-permalinks/">WordPress Using Bitnami&#8217;s OS X Stack - Fixing Permalinks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-13T00:00:00-05:00" pubdate data-updated="true">May 13<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/05/13/wordpress-using-bitnamis-os-x-stack---fixing-permalinks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Looking at Wordpress for a variety of reasons since IEEE&rsquo;s EWH effort has
+decided to go with it.</p>
+
+<p><a href="http://bitnami.org/stack/wordpress">Bitnami has a Wordpress application</a> for installing OS X that I chose for
+easy evaluation (or so I thought).</p>
+
+<p>Things initially worked fine but switching to &ldquo;friendly permalinks&rdquo; brought up
+404 error messages for all content. After some googling, and reading the
+Apache error log, changed</p>
+
+<p>/Applications/wordpress-2.9.2-0/apps/wordpress/conf/wordpress.conf to contain</p>
+
+<pre><code>Alias /wordpress/ "/Applications/wordpress-2.9.2-0/apps/wordpress/htdocs/"
+Alias /wordpress "/Applications/wordpress-2.9.2-0/apps/wordpress/htdocs"
+
+&lt;Directory "/Applications/wordpress-2.9.2-0/apps/wordpress/htdocs"&gt;
+    Options Indexes MultiViews FollowSymLinks
+    AllowOverride all
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<p>Now things are working although it appears that the Bitnami Stack is a single
+blog version of WordPress. I suspect I will gain additional insight as my
+evaluation continues.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -493,71 +557,6 @@ everything was working again.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/23/post-those-weird-phone-numbers-may-be-me/">Post Those Weird Phone Numbers (May Be Me)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-23T00:00:00-06:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2009</time>
-        
-         | <a href="/blog/2009/12/23/post-those-weird-phone-numbers-may-be-me/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My wife asked me about a strange number that had shown up on her cell phone.
-She went to the Google and found out that it had been reported by others.
-Some as &ldquo;what is this?&rdquo;, some for bill collectors, some for solicitations,
-etc.</p>
-
-<p>It turns out I that I had called her using Skype and I don&rsquo;t have a caller-id
-number set to my cell phone or a SKYPE IN number so the dial out number is
-from a pool and that pool number gets a lot of use.  Of course, no is posting
-&ldquo;my husband&rdquo; called on this number since those with explanation (and
-presumably desired calls) don&rsquo;t generate the energy to post to the net.</p>
-
-<p>The solution choices seem to be to</p>
-
-<ol>
-<li><p> buy SKYPE IN to get a specific number  $75/yr (plus ability for folks to
-call in)</p></li>
-<li><p> map number to one&rsquo;s cell phone</p></li>
-<li><p> map number to one&rsquo;s Google Voice number</p></li>
-<li><p> live with issue</p></li>
-</ol>
-
-
-<p>I was going to try choice #3.  To do this, the Google Voice number has to
-receive SMS.  One way to do this is to map SMS messages to Google Voice to
-one&rsquo;s e-mail.  Note it costs you $0.11 on Skype to send the configuration
-message.  After a substantial number for $0.11 attempts, I was not able to get
-the underlying SMS message (it never showed in Google Mail.)  So for the
-moment, I am using option 4 while I weigh the tradeoffs.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -575,6 +574,10 @@ moment, I am using option 4 while I weigh the tradeoffs.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/">Updating Java/NetBeans on OS X</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a>
       </li>
     
@@ -588,10 +591,6 @@ moment, I am using option 4 while I weigh the tradeoffs.</p>
     
       <li class="post">
         <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a>
       </li>
     
   </ul>

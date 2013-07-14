@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: java, | Glimmer]]></title>
+  <link href="http://dgreen.github.io/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://dgreen.github.io/"/>
+  <updated>2013-07-14T17:49:55-05:00</updated>
+  <id>http://dgreen.github.io/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
+    <link href="http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
+    <updated>2013-07-14T17:41:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
+    <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
+
+<p>After moving to Oracle&rsquo;s Java to use on OS X, one finds a new System
+Preference pane which launches a Java preferences App.  Included here is a
+preset option to update Java.  However, one should note that if one installed
+the JDK (Java Development Kit) as opposed to the JRE (Java Run Time
+environment) <strong>only</strong> the JRE portion of the package is automatically updated.
+It appears one has to manually download and update the JDK to get that portion
+of the package updated.  Investigating a bit, it  looks like the attention is
+on the JRE and only the linkages for the Applet usage are updated
+automatically.  The JDK and its command line version of java are not updated
+in addition to all the other components of the JDK.  This is probably not all
+bad as it means the development environment does not change on you without
+notice.</p>
+
+<h2>NetBeans on OS X</h2>
+
+<p>To update NetBeans, download a later version, start the new version and agree
+to migration from  the earlier release.  Then, when you are ready to eliminate
+the old version of NetBeans, go to the /Applications/NetBeans directory and
+delete only that old version.</p>
+]]></content>
+  </entry>
+  
+</feed>
