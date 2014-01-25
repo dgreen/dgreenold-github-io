@@ -26,3 +26,8 @@ To update NetBeans, download a later version, start the new version and agree
 to migration from  the earlier release.  Then, when you are ready to eliminate
 the old version of NetBeans, go to the /Applications/NetBeans directory and
 delete only that old version.
+
+Update:  25 Jan 2014 -- The template directory is made when the first
+template is created.  On the Mac, it is located at `~/Library/Application\ Support/NetBeans/7.4/config/Templates`
+and has a `Classes` directory and a `Properties` directory.  It appears that one can move the templates
+from one config directory to a new one as part of migrating.
