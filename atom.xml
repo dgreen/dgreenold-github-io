@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-08-29T10:24:35-05:00</updated>
+  <updated>2014-01-25T17:46:57-06:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -39,6 +39,11 @@ notice.</p>
 to migration from  the earlier release.  Then, when you are ready to eliminate
 the old version of NetBeans, go to the /Applications/NetBeans directory and
 delete only that old version.</p>
+
+<p>Update:  25 Jan 2014 &mdash; The template directory is made when the first
+template is created.  On the Mac, it is located at <code>~/Library/Application\ Support/NetBeans/7.4/config/Templates</code>
+and has a <code>Classes</code> directory and a <code>Properties</code> directory.  It appears that one can move the templates
+from one config directory to a new one as part of migrating.</p>
 ]]></content>
   </entry>
   
@@ -866,7 +871,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#117;&#x73;&#101;&#114;&#105;&#100;&#64;&#115;&#x69;&#x74;&#101;&#x2e;&#99;&#111;&#109;">&#117;&#115;&#x65;&#114;&#x69;&#100;&#x40;&#115;&#105;&#x74;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#117;&#x73;&#x65;&#x72;&#x69;&#100;&#x40;&#115;&#105;&#x74;&#101;&#x2e;&#x63;&#111;&#109;">&#117;&#115;&#101;&#114;&#x69;&#100;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was

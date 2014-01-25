@@ -4,7 +4,7 @@
   <title><![CDATA[Category: developer | Glimmer]]></title>
   <link href="http://dgreen.github.io/blog/categories/developer/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2013-08-29T10:24:35-05:00</updated>
+  <updated>2014-01-25T17:46:57-06:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -39,6 +39,11 @@ notice.</p>
 to migration from  the earlier release.  Then, when you are ready to eliminate
 the old version of NetBeans, go to the /Applications/NetBeans directory and
 delete only that old version.</p>
+
+<p>Update:  25 Jan 2014 &mdash; The template directory is made when the first
+template is created.  On the Mac, it is located at <code>~/Library/Application\ Support/NetBeans/7.4/config/Templates</code>
+and has a <code>Classes</code> directory and a <code>Properties</code> directory.  It appears that one can move the templates
+from one config directory to a new one as part of migrating.</p>
 ]]></content>
   </entry>
   
