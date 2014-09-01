@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The simple stuff can get you... - Glimmer</title>
+  <title>waiting on migration tools for octopress 3 - Glimmer</title>
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="I was trying out the EPUB export of VoodooPad and figured out I had to
-make a cover page in the tool as well as a collection. I then filled out the &hellip;">
+  <meta name="description" content="Waiting on Migration Tools for Octopress 3 Sep 1st, 2014 Watching the Twitter posts, it looks like a lot of work has gone
+into building Octopress 3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ make a cover page in the tool as well as a collection. I then filled out the &he
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you">
+  <link rel="canonical" href="http://dgreen.github.io/waiting-on-migration-tools-for-octopress-3.0">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
@@ -65,15 +65,40 @@ make a cover page in the tool as well as a collection. I then filled out the &he
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">The Simple Stuff Can Get You...</h1>
-    
-    
+    <h1 class="entry-title">Waiting on Migration Tools for Octopress 3</h1>
+    <p class="meta">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-01T01:16:00-05:00" pubdate data-updated="true">Sep 1<span>st</span>, 2014</time></p>
+  </header>
+  
+  Watching the Twitter posts, it looks like a lot of work has gone
+into building Octopress 3.0 around a somewhat different philosophy
+than Octopress 2.0 making migration a challenge at present.
+
+Some have migrated themselves, while the author is discussing
+a migration tool.
+
+I will wait a while and see what develops.  Octopress 2.0 
+continues to work so I can (or should) concentrate on blog content.
+
+  
+    <footer>
       <p class="meta">
         
+        
 
 
 
@@ -85,74 +110,28 @@ make a cover page in the tool as well as a collection. I then filled out the &he
   
 
 
-<time datetime="2012-06-09T00:00:00-05:00" pubdate data-updated="true">Jun 9<span>th</span>, 2012</time>
-        
-         | <a href="#disqus_thread">Comments</a>
+<time datetime="2014-09-01T01:16:00-05:00" pubdate data-updated="true">Sep 1<span>st</span>, 2014</time>
         
       </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
-make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#x75;&#115;&#101;&#114;&#x69;&#x64;&#x40;&#x73;&#x69;&#x74;&#x65;&#x2e;&#99;&#111;&#109;">&#117;&#x73;&#x65;&#x72;&#105;&#x64;&#64;&#x73;&#x69;&#x74;&#101;&#x2e;&#x63;&#111;&#x6d;</a>) and then
-saved with an .epub extension.</p>
-
-<p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
-told it was an invalid format. Alas, googling did not help me (it has to
-happen every once in a while).</p>
-
-<p>After a goodly bit of exploring, the problem was the e-mail address in angle
-brackets as part of the author information. I removed them and things were
-good to go.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
       
+        <div class="sharing">
   
-
-<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-09T00:00:00-05:00" pubdate data-updated="true">Jun 9<span>th</span>, 2012</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you/" data-via="dgreeo" data-counturl="http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dgreen.github.io/waiting-on-migration-tools-for-octopress-3.0" data-via="dgreeo" data-counturl="http://dgreen.github.io/waiting-on-migration-tools-for-octopress-3.0" >Tweet</a>
   
   
   
 </div>
 
-    
-    <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do---james-edward-gray-ii---railsconf-2012/" title="Previous Post: Ten Things You Didn't Know Rails Could Do - James Edward Gray II - RailsConf 2012">&laquo; Ten Things You Didn't Know Rails Could Do - James Edward Gray II - RailsConf 2012</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/07/10/coffeescript-with-select2-library/" title="Next Post: CoffeeScript with Select2 library">CoffeeScript with Select2 library &raquo;</a>
-      
-    </p>
-  </footer>
+    </footer>
+  
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -234,7 +213,10 @@ good to go.</p>
       var disqus_shortname = 'faintinsights';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dgreen.github.io/waiting-on-migration-tools-for-octopress-3.0';
+        var disqus_url = 'http://dgreen.github.io/waiting-on-migration-tools-for-octopress-3.0';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

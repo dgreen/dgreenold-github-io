@@ -672,4 +672,8 @@
         <loc>http://dgreen.github.io/robots.txt</loc>
         <lastmod>2013-06-05T16:26:29-05:00</lastmod>
     </url>
+    <url>
+        <loc>http://dgreen.github.io/waiting-on-migration-tools-for-octopress-3.0</loc>
+        <lastmod>2014-09-01T01:20:40-05:00</lastmod>
+    </url>
 </urlset>
