@@ -9,8 +9,9 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Looking at Wordpress for a variety of reasons since IEEE&rsquo;s EWH effort has
-decided to go with it. Bitnami has a Wordpress application for &hellip;">
+  <meta name="description" content="I have been using MultiMarkdown for a while now. I use it for creating
+simple text files that I want to read in text mode but also want to perhaps
+& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +67,122 @@ decided to go with it. Bitnami has a Wordpress application for &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/29/multimarkdown/">MultiMarkdown</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-29T00:00:00-05:00" pubdate data-updated="true">May 29<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/05/29/multimarkdown/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been using <a href="http://fletcherpenney.net/multimarkdown/"><em>MultiMarkdown</em></a> for a while now. I use it for creating
+simple text files that I want to read in text mode but also want to perhaps
+&ldquo;dress up&rdquo; as either a HTML or PDF file (mostly the former).</p>
+
+<p>Since it is text oriented, it is easy to use scripts to automate things into
+or within this format. Many of my UAB pages are built with it (I use a .mmd
+file extension) and I built an extensive set of scripts and processes for
+maintaining <em>IEEE Region 3</em> meeting agendas with the tool. I successfully
+turned this package over to the new <em>Region 3 Secretary</em> so there is now &ldquo;user
+2&rdquo; for this automation.</p>
+
+<p>The <em>MultiMarkdown</em> site has a good documentation as well as some files to
+download as examples. For my course <a href="http:/www-ece.eng.uab.edu/DGreen/ee448">web pages</a>, I use a banner to provide
+breadcrumb like linkages to other parts of the university, my department, and
+my web site. This banner as well as the heading of one of my typical
+<em>MultiMarkdown</em> pages looks like</p>
+
+<hr />
+
+<pre><code>Title:        What Tools Do I Need?
+Author:       David Green
+Affiliation:  UAB
+Date:         DATELM
+Keywords:
+Format:       complete
+LaTeX XSLT:   article.xslt
+
+[UAB][1] -&gt; [ENG][2] -&gt; [ [ECE][3] / [ECE Intranet][4] ] -&gt; [ [DGreen][5]
+</code></pre>
+
+<p>/</p>
+
+<pre><code>[DGreen Intranet][6] ] -&gt; [EE448/548][7] -&gt; TITLE
+
+* * *
+
+TITLE
+=====
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum
+</code></pre>
+
+<p>facilisis</p>
+
+<pre><code>justo, eget tempor ligula accumsan nec. Proin dignissim fermentum
+</code></pre>
+
+<p>scelerisque.</p>
+
+<pre><code>Donec scelerisque vehicula dui ac imperdiet. Integer est dolor, varius
+</code></pre>
+
+<p>dapibus</p>
+
+<pre><code>ultricies a, facilisis sed tortor.
+
+Fusce quis orci turpis, eget fringilla arcu.
+Quisque a ligula a tellus commodo gravida dapibus nec massa. Fusce eu urna
+</code></pre>
+
+<p>lacus,</p>
+
+<pre><code>ac molestie odio.
+</code></pre>
+
+<hr />
+
+<p>I use a script to process <code>TITLE</code> to match the title in the header as well as
+change the text <code>DATELM</code> to the present date. My script, after doing some
+substitutions like the ones described, calls the <em>MultiMarkdown</em> script
+<code>mmd2XHTML</code> which generates the web page.</p>
+
+<p>By removing, the header through the <code>TITLE</code> (and its underline) lines, it can
+be processed using the <em>MultiMarkdown</em> script <code>mmd2PDFXeLaTeX.pl</code> to produce a
+nice looking <em>PDF</em> document.</p>
+
+<p>Finally, I should note that many blogs (including <em>tumblr.</em>) accept
+<a href="http://daringfireball.net/projects/markdown/"><em>Markdown</em></a> formatting which is the initial motivation for the
+<em>MultiMarkdown</em> tools.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -481,82 +598,6 @@ follow.</p></blockquote>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/02/08/old-code-on-new-platforms/">Old Code on New Platforms</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-08T00:00:00-06:00" pubdate data-updated="true">Feb 8<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/02/08/old-code-on-new-platforms/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>OS X made the jump to a 64bit platform with 10.6 Snow Leopard.  Of course, not
-everything is written for 64 bit mode at present.  The Universal file format
-allows for binaries to be containers hold many different copies of the same
-code but for different architectures.</p>
-
-<p>So specifically, I was trying to build the latest <strong>rcov</strong> for the platform to
-run under the now creaky old Locomotive shell I have been modifying to keep my
-development rails environments separate from the OS&rsquo;s installation.  Dutifully
-giving the command while inside a terminal session where the paths map to
-locations within the Locomotive container:</p>
-
-<p><code>gem install rcov</code></p>
-
-<p>was giving the right &ldquo;words&rdquo; for output including the fact that the binary
-extensions were being built (although it happened really quickly!).  Looking
-inside, I found the rcovrt.bundle that was built and verified it was being
-copied into position.</p>
-
-<p>But using</p>
-
-<p><code>file rcovrt.bundle</code></p>
-
-<p>I found that it was a <code>Mach-O x86_64</code> rather than like the other bundles that
-were already there that were <code>Mach-O i386</code> bundles.</p>
-
-<p>I found the <code>Makefile</code> for the rcovrt code and tried it.</p>
-
-<p>`make clean</p>
-
-<blockquote><p>make<br> make install`</p></blockquote>
-
-<p>Based on hints from <a href="http://blog.d27n.com/2009/08/26/mac-os-x-snow-leopard-rails-mysql-and-sphinx/">Mac OS X Snow Leopard + Rails, MySQL, and Sphinx</a>, I
-added</p>
-
-<p><code>-arch i386</code></p>
-
-<p>to all <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>, <code>LDSHARED</code> variables, redid the
-&ldquo;<code>make</code> dance&rdquo;.  Success, I had the right type bundle in the right place and
-everything was working again.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -574,6 +615,10 @@ everything was working again.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/">Waiting on Migration Tools for Octopress 3</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/">Updating Java/NetBeans on OS X</a>
       </li>
     
@@ -587,10 +632,6 @@ everything was working again.</p>
     
       <li class="post">
         <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Using Bitnami&#8217;s Rubystack on VirtualBox Linux With Vagrant</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
       </li>
     
   </ul>

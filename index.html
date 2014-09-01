@@ -9,8 +9,9 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Oracle Java on OS X After moving to Oracle&rsquo;s Java to use on OS X, one finds a new System
-Preference pane which launches a Java preferences App &hellip;">
+  <meta name="description" content="Watching the Twitter posts, it looks like a lot of work has gone
+into building Octopress 3.0 around a somewhat different philosophy
+than Octopress 2. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +67,52 @@ Preference pane which launches a Java preferences App &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/">Waiting on Migration Tools for Octopress 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-01T01:33:00-05:00" pubdate data-updated="true">Sep 1<span>st</span>, 2014</time>
+        
+         | <a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Watching the Twitter posts, it looks like a lot of work has gone
+into building Octopress 3.0 around a somewhat different philosophy
+than Octopress 2.0 making migration a challenge at present.</p>
+
+<p><a href="http://justcurious.is/2014/octopress3/">Some have migrated themselves</a>, while the <a href="https://github.com/octopress/octopress/issues/30">author is discussing
+a migration tool</a>.</p>
+
+<p>I will wait a while and see what develops.  Octopress 2.0
+continues to work so I can (or should) concentrate on blog content.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -942,162 +989,6 @@ configured so I would not spend time repeating the building of this space.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/21/github-with-assembla/">GitHub With Assembla</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-21T00:00:00-05:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
-        
-         | <a href="/blog/2012/07/21/github-with-assembla/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://github.com">GitHub</a> has now made a nice simple GUI tool for both <a href="http://mac.github.com">OS X</a> and
-<a href="http://windows.github.com">Windows</a>. They have made them freely available for download. They seem to
-have made careful choices about what to support and not support in order to
-keep tool as simple as possible. They do support using GitHub<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> against
-other git repositories such as Assembla or a homegrown one. They don&rsquo;t support
-multiple remote repositories for a specific local repository but you are free
-to use GitHub.com for one project<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and Assembla (for example) for
-another. The two limitations that I have seen that &ldquo;hurt&rdquo; sometimes are</p>
-
-<ol>
-<li> There is no graphical view of the change tree (while confusing, if you need it, alternatives are even more confusing)</li>
-<li> The Windows and Mac Clients look different and behave a bit different.</li>
-<li> Github really knows you by the name/email you list in it&rsquo;s configuration and does not like/support your having a separate identity on a per project basis.</li>
-</ol>
-
-
-<p>These limitations are not fundamental and Github.com may work on them in the
-future. There have been frequent updates thus far to Github &mdash; perhaps they
-will continue.</p>
-
-<h2>Using GitHub with an existing project hosted in Assembla</h2>
-
-<p>If this is your first use of Assembla (but assuming you already have an
-account), then you will need to update your Assembla profile with your public
-ssh key. This file may exist on your system <code>~/.ssh/pub.rsa</code> where <code>~</code> refers
-to your home directory. You probably generated this as part of your git
-install but if not (and after you possibily install ssh), use</p>
-
-<pre><code>ssh-keygen -C "demo@example.com" -t rsa
-</code></pre>
-
-<p>substituing your email address. Take the defaults (hit return) on everything
-unless there is an offer to overwrite the pub.rsa file AND you need the pre-
-existing one! You will now a the file you need. Go to your profile in
-Assembla, select manage keys and upload this file to assembla.</p>
-
-<p>If there is no local repository associated with the existing project, you will
-need to clone it using the command line. Assembla gives the step by step
-instructions personalized for the repository (see the &ldquo;git clone&rdquo; information
-near the top of the Source/Git tab). Be sure to use the &ldquo;clone/push URL&rdquo; if
-you are planning to push back to Assembla in the future.</p>
-
-<p>After you have a local repository (start here if you already had one), merely
-start up GitHub, and use the menu to select <code>File | Add Local Repository</code>
-option selecting the directory containing the project repository.</p>
-
-<h2>Starting a new project with GitHub and Assembla</h2>
-
-<p>Make your Assembla Space in Assembla selecting an option that includes
-Source/Git repository. After it is made, you will be on a page that contains
-very useful &ldquo;Getting started with Git&rdquo; instructions. For this note, I assume
-you have installed git and configured it with your name and email.</p>
-
-<p>If you are starting the project, create your repository folder as you would
-any folder, perhaps</p>
-
-<pre><code> mkdir demo
-</code></pre>
-
-<p>Attach a terminal window to this new directory (new project) or the existing
-directory corresponding to the top of your existing project.</p>
-
-<pre><code> cd demo
-</code></pre>
-
-<p>Then, assuming you have not been using git and a local respository only,
-initialize git</p>
-
-<pre><code> git init
-</code></pre>
-
-<p>If you have a new project, you need at least one file. Create one &mdash; prehaps a
-readme.txt file.</p>
-
-<pre><code> echo "" &gt; readme.txt
-</code></pre>
-
-<p>Out of scope for this note but if it is an existing project not yet in git,
-you may wish to <a href="https://help.github.com/articles/ignoring-files">set up a .gitignore file</a> to keep certain files (or file
-types) from being tracked. We will assume we are tracking everything for
-simplicity here.</p>
-
-<p>Now, we need to add all new (or changed files)_for tracking and commit the
-present state of the files to the local repository. We will use &ldquo;First commit&rdquo;
-as the message about this commit. Adjust as desired but limit yourself to one
-line of information unless you know how to do multiple lines as one command in
-your terminal (command) program.</p>
-
-<pre><code>git add .  
-git commit -m "First commit"
-</code></pre>
-
-<p>Now configure the repository to know where the remote repository is in
-Assembla. Be sure to use the customized one on your Assembla instructions.</p>
-
-<pre><code>git remote add origin git@git.assembla.com:demo.git
-</code></pre>
-
-<p>where demo is the name of the remote repository as known to Assembla.</p>
-
-<p>Finally, send your first commit up to the remote repository.</p>
-
-<pre><code>git push origin master
-</code></pre>
-
-<p>Success. You can now switch to Github as noted for an existing git reponsitory
-above.</p>
-
-<hr />
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>I will use &ldquo;GitHub&rdquo; to refer to the program and &ldquo;GitHub.com&rdquo; to refer to the site or company for the remainder of this note.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>Don&rsquo;t forget to create your Github.com account and tell GitHub about this!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1113,6 +1004,10 @@ above.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/">Waiting on Migration Tools for Octopress 3</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/">Updating Java/NetBeans on OS X</a>
       </li>
     
@@ -1126,10 +1021,6 @@ above.</p>
     
       <li class="post">
         <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Using Bitnami&#8217;s Rubystack on VirtualBox Linux With Vagrant</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a>
       </li>
     
   </ul>
