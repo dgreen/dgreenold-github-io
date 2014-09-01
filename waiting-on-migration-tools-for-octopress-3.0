@@ -88,11 +88,15 @@ into building Octopress 3. &hellip;">
 into building Octopress 3.0 around a somewhat different philosophy
 than Octopress 2.0 making migration a challenge at present.
 
-Some have migrated themselves, while the author is discussing
-a migration tool.
+[Some have migrated themselves][self], while the [author is discussing
+a migration tool][tool].
 
 I will wait a while and see what develops.  Octopress 2.0 
 continues to work so I can (or should) concentrate on blog content.
+
+
+[self]: http://justcurious.is/2014/octopress3/
+[tool]: https://github.com/octopress/octopress/issues/30
 
   
     <footer>
