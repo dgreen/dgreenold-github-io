@@ -9,9 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="I have been using MultiMarkdown for a while now. I use it for creating
-simple text files that I want to read in text mode but also want to perhaps
-& &hellip;">
+  <meta name="description" content="Sometimes you think you are going crazy only to find out it is a software bug
+(or feature!). I was trying to update the audio for a Powerpoint slide &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,65 @@ simple text files that I want to read in text mode but also want to perhaps
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/31/powerpoint-sound-record-bug/">Powerpoint Sound Record Bug</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-31T00:00:00-05:00" pubdate data-updated="true">May 31<span>st</span>, 2010</time>
+        
+         | <a href="/blog/2010/05/31/powerpoint-sound-record-bug/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sometimes you think you are going crazy only to find out it is a software bug
+(or feature!).</p>
+
+<p>I was trying to update the audio for a <em>Powerpoint</em> slide presentation. I set
+the record volume to the level I liked in OS X with the Sound Preference
+Panel. I also set up the nice USB microphone to be the source of the sound.</p>
+
+<p>Then I selected <code>Insert | Sound | Record</code> to bring up the <em>Microsoft
+Powerpoint 2008</em> widget to record the sound. I was not getting good sound
+levels. Eventually I left the <em>Apple</em> Sound Preference Panel displaying the
+sound level and discovered that when I hit the <code>Record</code> button, the sound
+level was lowered automatically. Once I figured it out, I was able to counter
+the behavior by revisiting the Sound Preference Panel after hitting record. Of
+course, it is hard to hit record, give the Sound Preference Panel focus, and
+read a slide&rsquo;s script with out delay and at a level volume but it was good
+enough (or I was giving in).</p>
+
+<p>I tried building an <em>Automator</em> workflow to do this and I could get it to
+record hitting the <code>Record</code> button but evidently <em>Microsoft</em> did not give them
+unique names so the recorded action would not active the record button. Had I
+been able to do that, there was an <em>Apple</em> insert for <em>Automator</em> to allow me
+to reset the audio level.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -556,48 +614,6 @@ form.  Zero Inbox can work even if you want to keep your reference information
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/02/16/caltech-proposes-curriculum-change-more-breadth-in-science-better-writing-skills---san-jose-mercury-news/">Caltech Proposes Curriculum Change: More Breadth in Science, Better Writing Skills - San Jose Mercury News</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-16T00:00:00-06:00" pubdate data-updated="true">Feb 16<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/02/16/caltech-proposes-curriculum-change-more-breadth-in-science-better-writing-skills---san-jose-mercury-news/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.mercurynews.com/news/ci_14404493">Caltech proposes curriculum change: more breadth in science, better writing
-skills &ndash; San Jose Mercury News</a></p>
-
-<blockquote><p>Note it is just a proposal at this point but something interesting to
-follow.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -615,6 +631,10 @@ follow.</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/23/java-sound-update/">Java Sound Update</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/">Waiting on Migration Tools for Octopress 3</a>
       </li>
     
@@ -628,10 +648,6 @@ follow.</p></blockquote>
     
       <li class="post">
         <a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/">Make a New Rails 3.2 App in the VM Environment</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Using Bitnami&#8217;s Rubystack on VirtualBox Linux With Vagrant</a>
       </li>
     
   </ul>

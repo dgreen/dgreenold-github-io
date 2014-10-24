@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2014-10-23T22:16:24-05:00</updated>
+  <updated>2014-10-23T22:26:51-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,117 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Java Sound Update]]></title>
+    <link href="http://dgreen.github.io/blog/2014/10/23/java-sound-update/"/>
+    <updated>2014-10-23T22:24:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2014/10/23/java-sound-update</id>
+    <content type="html"><![CDATA[<p>For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
+using <a href="http://alvinalexander.com/java/java-audio-example-java-au-play-sound">Alvin Alexander&rsquo;s article</a> for inspiration.  The downside of this approach, of course,
+is the dependency on classes that are not part of the JAVA API and therefore might change at anytime
+although they have been relatively stable for many years.</p>
+
+<p>Recently, I found a <a href="http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar">stackoverflow discussion</a> noting the existence of AudioSystem (and related clases).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm"> * File: ModernRingPhone.java</span>
+</span><span class='line'><span class="cm"> * Author: David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> * Assignment:  SoundOff - EE333 Fall 2014</span>
+</span><span class='line'><span class="cm"> * Vers: 1.0.0 10/23/2014 dgg - initial coding</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * Credits:  Concepts from http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.AudioSystem</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.Clip</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * @author David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModernRingPhone</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>    <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// open the sound file as a Java input stream</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">gongFile</span> <span class="o">=</span> <span class="s">&quot;telephone-ring-3.wav&quot;</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">gongFile</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// create an audiostream from the inputstream</span>
+</span><span class='line'>        <span class="n">Clip</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">clip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">gongFile</span><span class="o">)));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// play the audio clip with the audioplayer class</span>
+</span><span class='line'>        <span class="n">clip</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// wait for sound to finish before terminating program (necessary for </span>
+</span><span class='line'>        <span class="c1">// running inside NetBeans, at least)</span>
+</span><span class='line'>        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10000</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">catch</span> <span class="o">(</span> <span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Things did not go well&quot;</span> <span class="o">);</span>
+</span><span class='line'>        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Waiting on Migration Tools for Octopress 3]]></title>
@@ -888,7 +999,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#117;&#x73;&#x65;&#114;&#105;&#x64;&#x40;&#x73;&#x69;&#x74;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#x75;&#115;&#x65;&#114;&#x69;&#100;&#64;&#115;&#105;&#116;&#101;&#x2e;&#99;&#111;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x75;&#115;&#101;&#114;&#105;&#100;&#x40;&#115;&#105;&#x74;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#x65;&#x72;&#x69;&#100;&#64;&#x73;&#x69;&#116;&#x65;&#46;&#x63;&#111;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -1062,21 +1173,6 @@ this issue.)</p>
 
 <p>If you missed this, checkout this interesting article with VERY
 interesting videos.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Complex code (not recommended!)]]></title>
-    <link href="http://dgreen.github.io/blog/2011/10/02/complex-code-not-recommended/"/>
-    <updated>2011-10-02T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2011/10/02/complex-code-not-recommended</id>
-    <content type="html"><![CDATA[<p>From a Twitter post on 9/28/11 12:04 PM</p>
-
-<p><a href="https://twitter.com/johnregehr/status/119095238882111488">https://twitter.com/johnregehr/status/119095238882111488</a></p>
-
-<p>Real line of code from gzip:</p>
-
-<p><code>n -= (e = (e = WSIZE - ((d &amp;= WSIZE-1) &gt; w ? d : w)) &gt; n ? n : e);</code></p>
 ]]></content>
   </entry>
   
