@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="I having been keeping three office suites (MS Office 2008, OpenOffice.Org, and
+iWork) on the MacBook Air I use.  After looking at the  &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,116 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/22/csv-to-tsv-file-conversion/">CSV to TSV File Conversion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-22T00:00:00-05:00" pubdate data-updated="true">May 22<span>nd</span>, 2009</time>
+        
+         | <a href="/blog/2009/05/22/csv-to-tsv-file-conversion/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I having been keeping three office suites (MS Office 2008, OpenOffice.Org, and
+iWork) on the MacBook Air I use.  After looking at the interoperability
+glitches between MS Office (which IEEE uses broadly) and OpenOffice.Org, I
+decided to consider removing OpenOffice.Org to reclaim disk space which is at
+a premium on the Air.  The big reason I keep OpenOffice.Org around is to
+create Tab Separated Files that I use in several workflows.</p>
+
+<p>In several workflows, including the Region 3 Meeting Registration Application
+and my course plan to syllabus product for the university, I use a spreadsheet
+for development of information and then export the information to a tab-
+separated value file for processing by scripts as needed.  I use tab-separated
+files because tabs don&rsquo;t occur in my data and thus it is a good separator.
+OpenOffice&rsquo;s Calc (their spreadsheet) can write a decent tab separated file.</p>
+
+<p>Alas, Microsoft Excel on the Mac did not use to have a tab separated output
+(only comma separated output).  Now, Excel 2008 on the Mac now has a tab
+separated output but it has two issues:</p>
+
+<ol>
+<li><p> The tab separation appears to have merely substituted tabs for commas in
+the output file.</p></li>
+<li><p> Microsoft still has not gotten the word that OS X uses the linefeed code
+( ) like UNIX not a carriage return code ( ) like OS 9 and incorrectly marks
+its output lines.</p></li>
+</ol>
+
+
+<p>The flawed tab separation output adds quotes around cells that contain commas
+and doubles quotes within quotes  for data transparency.  This is added
+complexity to parse and is the reason I was avoiding the CSV format.  I did
+not want (in my existing code) to deal with CSV or the MS flawed TSV format.</p>
+
+<p>Looking around the web, I did not find a utility to do the conversion but I
+noticed support for the <a href="http://www.ruby-doc.org/core/classes/CSV.html" title="CSV support in Ruby">CSV support in Ruby</a>.  A general translation of
+CSV to TSV (where operating system newlines are supported by the language
+implicitly can be done neatly with</p>
+
+<pre><code>#!/usr/bin/env ruby
+
+require csv
+
+if ! ARGV[0]
+  puts "Usage: csv2tsv file.csv  (writes to standard out)"
+  exit
+end
+
+CSV.open( ARGV[0], r) do | row |
+  puts row.join("   ")
+end
+</code></pre>
+
+<p>and a slight change to the open method can fix change the input reading to use
+carriage return line endings while outputting using OS line endings.  The
+resultant code with modification is</p>
+
+<pre><code>#!/usr/bin/env ruby
+
+require csv
+
+if ! ARGV[0]
+  puts "Usage: csv2tsv file.csv  (writes to standard out)"
+  exit
+end
+
+CSV.open( ARGV[0], r, nil, " ") do | row |
+  puts row.join("   ")
+end
+</code></pre>
+
+<p>Since I had to unescape the cells anyway, I chose to start from the more CSV
+rather than the uncommon version of TSV  output by Excel 2008.</p>
+
+<p>A future improvement could be to auto-detect the line ending problem.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -451,50 +561,6 @@ lesson.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/01/30/from-another-tumbler----academic-earth/">From Another Tumbler &#8211; Academic Earth</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-30T00:00:00-06:00" pubdate data-updated="true">Jan 30<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/01/30/from-another-tumbler----academic-earth/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://unalone.tumblr.com/post/74166939/academic-earth">From another Tumbler &mdash; Academic Earth</a></p>
-
-<blockquote><p>Quoting Rory:</p>
-
-<p>As a brief aside, isn’t the world just incredible? You can access millions
-of dollars worth of lectures for free, without once moving from your seat.
-Life rocks.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -512,6 +578,10 @@ Life rocks.</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/30/software-programming-skills-popularity/">Software Programming Skills Popularity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/23/java-sound-update/">Java Sound Update</a>
       </li>
     
@@ -525,10 +595,6 @@ Life rocks.</p></blockquote>
     
       <li class="post">
         <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/">Make a New Rails 3.2 App in the VM Environment</a>
       </li>
     
   </ul>

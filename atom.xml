@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2014-10-23T22:26:51-05:00</updated>
+  <updated>2014-11-30T20:47:31-06:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Software Programming Skills Popularity]]></title>
+    <link href="http://dgreen.github.io/blog/2014/11/30/software-programming-skills-popularity/"/>
+    <updated>2014-11-30T20:20:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2014/11/30/software-programming-skills-popularity</id>
+    <content type="html"><![CDATA[<p>There are lots of ways to evaluate popularity, and in the end, all are probably very transitory.
+In his <a href="http://qz.com/298635/these-programming-languages-will-earn-you-the-most-money/">Quartz article</a>, Max Nisen examined American job data and reports the top ten slanguage/frameworks (by
+salary offers) are</p>
+
+<ol>
+<li> Ruby on Rails</li>
+<li> Objective C</li>
+<li> Python</li>
+<li> Java</li>
+<li> C++</li>
+<li> JavaScript</li>
+<li> C</li>
+<li> R</li>
+<li> C#</li>
+<li> Visual Basic</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java Sound Update]]></title>
@@ -999,7 +1024,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x75;&#115;&#101;&#114;&#105;&#100;&#x40;&#115;&#105;&#x74;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#x65;&#x72;&#x69;&#100;&#64;&#x73;&#x69;&#116;&#x65;&#46;&#x63;&#111;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#117;&#x73;&#101;&#114;&#x69;&#x64;&#x40;&#115;&#105;&#x74;&#101;&#46;&#x63;&#111;&#109;">&#117;&#x73;&#101;&#114;&#105;&#x64;&#64;&#x73;&#x69;&#x74;&#101;&#46;&#x63;&#x6f;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -1161,18 +1186,6 @@ me (via automated iCal behavior).</p>
 
 <p>(bug report submitted to Apple, there are discussions in the Apple Forum on
 this issue.)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How Google's Self-Driving Car Works - IEEE Spectrum]]></title>
-    <link href="http://dgreen.github.io/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/"/>
-    <updated>2011-10-22T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2011/10/22/how-googles-self-driving-car-works&#8212;ieee-spectrum</id>
-    <content type="html"><![CDATA[<p><a href="http://m.spectrum.ieee.org/automaton/robotics/artificial-intelligence/how-google-self-driving-car-works">How Googles Self-Driving Car Works &ndash; IEEE Spectrum</a></p>
-
-<p>If you missed this, checkout this interesting article with VERY
-interesting videos.</p>
 ]]></content>
   </entry>
   

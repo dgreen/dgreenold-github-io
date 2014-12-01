@@ -9,8 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="I was working on a the last note and wanted to check things out under a fresh
-install. I decided to make a new Mac User to accomplish this. I used &hellip;">
+  <meta name="description" content="As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation. I recently &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,52 @@ install. I decided to make a new Mac User to accomplish this. I used &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/19/exploring-stately-for-ruby/">Exploring Stately for Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-19T01:24:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/19/exploring-stately-for-ruby/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation.</p>
+
+<p>I recently found a new ruby gem <a href="https://github.com/rtwomey/stately">stately</a> which seemed interesting.  Like many packages, the documentation initially seemed confusing so a bit of exploring seemed appropriate.  This note documents the little exploring that I did (mostly so I can return to it should I want to use this gem in an application.  The two examples left when the dust settled are given in this <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074">gist</a>.</p>
+
+<p>My first attempt was to build a counter.  I had a bit of problem getting the syntax right and when I retreated to the document&rsquo;s examples,  I found they were incomplete.  My first successful attempt (from a syntax point of view was stately_demo_bad (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_bad-rb">gist</a>).</p>
+
+<p>It did not work because the method associated with defining all the details of the state machine appears to change the scope of some of the code into other internally defined classes yielding very unexpected behavior.</p>
+
+<p>Moving everything to method (messages) inside the state machine seems to be the expected (and allowable) approach yielding stately_demo_good (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_good-rb">gist</a>).</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -452,7 +497,7 @@ $(document).ready -&gt;
 
   <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x75;&#115;&#101;&#114;&#105;&#100;&#x40;&#115;&#105;&#x74;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#x65;&#x72;&#x69;&#100;&#64;&#x73;&#x69;&#116;&#x65;&#46;&#x63;&#111;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#117;&#x73;&#101;&#114;&#x69;&#x64;&#x40;&#115;&#105;&#x74;&#101;&#46;&#x63;&#111;&#109;">&#117;&#x73;&#101;&#114;&#105;&#x64;&#64;&#x73;&#x69;&#x74;&#101;&#46;&#x63;&#x6f;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -766,47 +811,6 @@ this issue.)</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/">How Google&#8217;s Self-Driving Car Works - IEEE Spectrum</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-22T00:00:00-05:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time>
-        
-         | <a href="/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://m.spectrum.ieee.org/automaton/robotics/artificial-intelligence/how-google-self-driving-car-works">How Googles Self-Driving Car Works &ndash; IEEE Spectrum</a></p>
-
-<p>If you missed this, checkout this interesting article with VERY
-interesting videos.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -824,6 +828,10 @@ interesting videos.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/30/software-programming-skills-popularity/">Software Programming Skills Popularity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/23/java-sound-update/">Java Sound Update</a>
       </li>
     
@@ -837,10 +845,6 @@ interesting videos.</p>
     
       <li class="post">
         <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/">Make a New Rails 3.2 App in the VM Environment</a>
       </li>
     
   </ul>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails | Glimmer]]></title>
+  <link href="http://dgreen.github.io/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://dgreen.github.io/"/>
+  <updated>2014-11-30T20:47:31-06:00</updated>
+  <id>http://dgreen.github.io/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Software Programming Skills Popularity]]></title>
+    <link href="http://dgreen.github.io/blog/2014/11/30/software-programming-skills-popularity/"/>
+    <updated>2014-11-30T20:20:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2014/11/30/software-programming-skills-popularity</id>
+    <content type="html"><![CDATA[<p>There are lots of ways to evaluate popularity, and in the end, all are probably very transitory.
+In his <a href="http://qz.com/298635/these-programming-languages-will-earn-you-the-most-money/">Quartz article</a>, Max Nisen examined American job data and reports the top ten slanguage/frameworks (by
+salary offers) are</p>
+
+<ol>
+<li> Ruby on Rails</li>
+<li> Objective C</li>
+<li> Python</li>
+<li> Java</li>
+<li> C++</li>
+<li> JavaScript</li>
+<li> C</li>
+<li> R</li>
+<li> C#</li>
+<li> Visual Basic</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
