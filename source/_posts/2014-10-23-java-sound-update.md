@@ -40,7 +40,6 @@ public class ModernRingPhone {
     try {
         // open the sound file as a Java input stream
         String gongFile = "telephone-ring-3.wav";
-        InputStream in = new FileInputStream(gongFile);
 
         // create an audiostream from the inputstream
         Clip clip = AudioSystem.getClip();
@@ -63,6 +62,8 @@ public class ModernRingPhone {
 
 ```
 
+
+Update: 2015-02-08 Removed unnecessary line of code
 
 [oldstyle]: http://alvinalexander.com/java/java-audio-example-java-au-play-sound
 [newstyle]: http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar
