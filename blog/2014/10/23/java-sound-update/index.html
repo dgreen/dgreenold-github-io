@@ -146,7 +146,6 @@ although they have been relatively stable for many years.</p>
 <span class='line-number'>43</span>
 <span class='line-number'>44</span>
 <span class='line-number'>45</span>
-<span class='line-number'>46</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
 </span><span class='line'><span class="cm"> * File: ModernRingPhone.java</span>
 </span><span class='line'><span class="cm"> * Author: David Green &lt;dgreen@uab.edu&gt;</span>
@@ -173,7 +172,6 @@ although they have been relatively stable for many years.</p>
 </span><span class='line'>    <span class="k">try</span> <span class="o">{</span>
 </span><span class='line'>        <span class="c1">// open the sound file as a Java input stream</span>
 </span><span class='line'>        <span class="n">String</span> <span class="n">gongFile</span> <span class="o">=</span> <span class="s">&quot;telephone-ring-3.wav&quot;</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">gongFile</span><span class="o">);</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="c1">// create an audiostream from the inputstream</span>
 </span><span class='line'>        <span class="n">Clip</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
@@ -196,7 +194,7 @@ although they have been relatively stable for many years.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>Update: 2015-02-08 Removed unnecessary line of code</p>
 </div>
 
 
@@ -320,7 +318,7 @@ although they have been relatively stable for many years.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - David Green -
+  Copyright &copy; 2015 - David Green -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
