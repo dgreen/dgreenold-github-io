@@ -3,7 +3,7 @@ layout: post
 title: "Java Sound Update"
 date: 2014-10-23 22:24
 comments: true
-categories: 
+categories: java
 ---
 
 For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
