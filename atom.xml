@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2015-02-08T23:55:19-06:00</updated>
+  <updated>2015-09-21T21:50:32-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,162 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Line Segment Graphic]]></title>
+    <link href="http://dgreen.github.io/blog/2015/09/21/creating-a-line-segment-graphic/"/>
+    <updated>2015-09-21T21:23:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2015/09/21/creating-a-line-segment-graphic</id>
+    <content type="html"><![CDATA[<p>The following code</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm"> * File: CreateSimplePlot.java</span>
+</span><span class='line'><span class="cm"> * Author: David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> * Vers: 1.1.0 09/21/2015 dgg - change from Etch-A-Sketch to Plotter</span>
+</span><span class='line'><span class="cm"> * Vers: 1.0.0 09/10/2014 dgg - initial coding</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * Credits:  (if any for sections of code)</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.imageio.ImageIO</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Code from:  http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm</span>
+</span><span class='line'><span class="cm"> * (modifications by ...)</span>
+</span><span class='line'><span class="cm"> * @author David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateSimplePlot</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">t</span><span class="o">;</span>       <span class="c1">// time</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">oldT</span><span class="o">;</span>    <span class="c1">// old time</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">deltaT</span><span class="o">;</span>  <span class="c1">// time increment</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">y</span><span class="o">;</span>       <span class="c1">// plot value</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">oldY</span><span class="o">;</span>    <span class="c1">// old plot value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">700</span><span class="o">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed</span>
+</span><span class='line'>      <span class="c1">// into integer pixels</span>
+</span><span class='line'>      <span class="n">BufferedImage</span> <span class="n">bi</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_ARGB</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">Graphics2D</span> <span class="n">ig2</span> <span class="o">=</span> <span class="n">bi</span><span class="o">.</span><span class="na">createGraphics</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// make full image white</span>
+</span><span class='line'>      <span class="n">ig2</span><span class="o">.</span><span class="na">fillRect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">700</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// draw black lines</span>
+</span><span class='line'>      <span class="n">ig2</span><span class="o">.</span><span class="na">setPaint</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">oldT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.;</span>
+</span><span class='line'>      <span class="n">oldY</span> <span class="o">=</span> <span class="n">plotFunction</span><span class="o">(</span><span class="n">oldT</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">deltaT</span> <span class="o">=</span> <span class="mi">5</span><span class="o">.;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">deltaT</span><span class="o">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">700</span><span class="o">.;</span> <span class="n">t</span> <span class="o">+=</span> <span class="n">deltaT</span> <span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">y</span> <span class="o">=</span> <span class="mf">250.0</span> <span class="o">+</span> <span class="mf">200.0</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">200</span><span class="o">.)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">);</span>
+</span><span class='line'>        <span class="n">ig2</span><span class="o">.</span><span class="na">drawLine</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">oldT</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">oldY</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">t</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">y</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">oldY</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">oldT</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// write the resulting file</span>
+</span><span class='line'>      <span class="n">ImageIO</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">bi</span><span class="o">,</span> <span class="s">&quot;PNG&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;plot.png&quot;</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ie</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Exception raised &quot;</span> <span class="o">+</span> <span class="n">ie</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">plotFunction</span><span class="o">(</span><span class="kt">double</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mf">250.0</span> <span class="o">+</span> <span class="mf">200.0</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">200</span><span class="o">.)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>produces</p>
+
+<p>![Figure 1. Sinusoid example plot][plot.png]</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Software Programming Skills Popularity]]></title>
@@ -1022,7 +1178,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#117;&#x73;&#101;&#x72;&#x69;&#100;&#64;&#115;&#x69;&#116;&#101;&#x2e;&#99;&#111;&#109;">&#117;&#115;&#101;&#x72;&#105;&#x64;&#x40;&#115;&#105;&#116;&#x65;&#x2e;&#99;&#111;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x75;&#x73;&#101;&#114;&#x69;&#x64;&#64;&#x73;&#105;&#116;&#x65;&#46;&#99;&#111;&#109;">&#x75;&#115;&#x65;&#x72;&#105;&#x64;&#x40;&#115;&#x69;&#x74;&#101;&#46;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -1161,29 +1317,6 @@ as various versions of Windows, Linux, and Unix.</p>
 <p>Interesting positive story about Dropbox&#8217;s beginnings. Seems a lot
 less antagonistic than many. Evidently 68 accounts got exposed when the
 password glitch happened.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iCal does not delete old events cleanly IMO]]></title>
-    <link href="http://dgreen.github.io/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/"/>
-    <updated>2011-12-01T00:00:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo</id>
-    <content type="html"><![CDATA[<p>I turned on (for a few minutes) deletions of iCal events. Some of my calendars
-are hosted in Exchange and some on Google. Some of these events are group
-meetings with group scheduling in place. My calendar appointments with other
-individuals are both inside the &ldquo;Exchange&rdquo; and/or &ldquo;Google&rdquo; space and outside.</p>
-
-<p>iCal is notifying all these individuals of the deleted group meetings (from 2
-or more years ago since I said delete after 730 days) that the meeting has
-been canceled. Of course, it happened long ago &mdash; it was not cancelled. Alas,
-all of these individuals are getting e-mail announcing these cancelations from
-me (via automated iCal behavior).</p>
-
-<p>Broke, broke, broke!</p>
-
-<p>(bug report submitted to Apple, there are discussions in the Apple Forum on
-this issue.)</p>
 ]]></content>
   </entry>
   

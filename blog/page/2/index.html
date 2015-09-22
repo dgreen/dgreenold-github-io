@@ -9,7 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation. I recently &hellip;">
+  <meta name="description" content="Safe booting for FileVault users is now possible again in OS X 10.8.3. As always, you hold down the (left) shift key right after the chime when &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-14T02:01:00-05:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
+
+<p>On my old Mac Mini, things are pretty slow in Safe Boot.  It  must be disk intensive as my SSD-based MacBook Pro is much faster.</p>
+
+<p>Since safe boot is the safe way to fix some things like</p>
+
+<pre><code>Sandboxd: ... mdworker(..) deny mach-lookup com.apple.ls.boxd
+</code></pre>
+
+<p>It is great to have this working again.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -497,7 +544,7 @@ $(document).ready -&gt;
 
   <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#117;&#x73;&#101;&#x72;&#x69;&#100;&#64;&#115;&#x69;&#116;&#101;&#x2e;&#99;&#111;&#109;">&#117;&#115;&#101;&#x72;&#105;&#x64;&#x40;&#115;&#105;&#116;&#x65;&#x2e;&#99;&#111;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x75;&#x73;&#101;&#114;&#x69;&#x64;&#64;&#x73;&#105;&#116;&#x65;&#46;&#99;&#111;&#109;">&#x75;&#115;&#x65;&#x72;&#105;&#x64;&#x40;&#115;&#x69;&#x74;&#101;&#46;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -759,58 +806,6 @@ password glitch happened.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/">iCal Does Not Delete Old Events Cleanly IMO</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-01T00:00:00-06:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I turned on (for a few minutes) deletions of iCal events. Some of my calendars
-are hosted in Exchange and some on Google. Some of these events are group
-meetings with group scheduling in place. My calendar appointments with other
-individuals are both inside the &ldquo;Exchange&rdquo; and/or &ldquo;Google&rdquo; space and outside.</p>
-
-<p>iCal is notifying all these individuals of the deleted group meetings (from 2
-or more years ago since I said delete after 730 days) that the meeting has
-been canceled. Of course, it happened long ago &mdash; it was not cancelled. Alas,
-all of these individuals are getting e-mail announcing these cancelations from
-me (via automated iCal behavior).</p>
-
-<p>Broke, broke, broke!</p>
-
-<p>(bug report submitted to Apple, there are discussions in the Apple Forum on
-this issue.)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -828,6 +823,10 @@ this issue.)</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/30/software-programming-skills-popularity/">Software Programming Skills Popularity</a>
       </li>
     
@@ -841,10 +840,6 @@ this issue.)</p>
     
       <li class="post">
         <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/">Updating Java/NetBeans on OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a>
       </li>
     
   </ul>

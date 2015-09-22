@@ -9,8 +9,52 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="There are lots of ways to evaluate popularity, and in the end, all are probably very transitory.
-In his Quartz article, Max Nisen examined American &hellip;">
+  <meta name="description" content="The following code 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +110,191 @@ In his Quartz article, Max Nisen examined American &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-21T21:23:00-05:00" pubdate data-updated="true">Sep 21<span>st</span>, 2015</time>
+        
+         | <a href="/blog/2015/09/21/creating-a-line-segment-graphic/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The following code</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm"> * File: CreateSimplePlot.java</span>
+</span><span class='line'><span class="cm"> * Author: David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> * Vers: 1.1.0 09/21/2015 dgg - change from Etch-A-Sketch to Plotter</span>
+</span><span class='line'><span class="cm"> * Vers: 1.0.0 09/10/2014 dgg - initial coding</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * Credits:  (if any for sections of code)</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.imageio.ImageIO</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Code from:  http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm</span>
+</span><span class='line'><span class="cm"> * (modifications by ...)</span>
+</span><span class='line'><span class="cm"> * @author David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateSimplePlot</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">t</span><span class="o">;</span>       <span class="c1">// time</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">oldT</span><span class="o">;</span>    <span class="c1">// old time</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">deltaT</span><span class="o">;</span>  <span class="c1">// time increment</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">y</span><span class="o">;</span>       <span class="c1">// plot value</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">oldY</span><span class="o">;</span>    <span class="c1">// old plot value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">700</span><span class="o">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed</span>
+</span><span class='line'>      <span class="c1">// into integer pixels</span>
+</span><span class='line'>      <span class="n">BufferedImage</span> <span class="n">bi</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_ARGB</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">Graphics2D</span> <span class="n">ig2</span> <span class="o">=</span> <span class="n">bi</span><span class="o">.</span><span class="na">createGraphics</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// make full image white</span>
+</span><span class='line'>      <span class="n">ig2</span><span class="o">.</span><span class="na">fillRect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">700</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// draw black lines</span>
+</span><span class='line'>      <span class="n">ig2</span><span class="o">.</span><span class="na">setPaint</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">oldT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.;</span>
+</span><span class='line'>      <span class="n">oldY</span> <span class="o">=</span> <span class="n">plotFunction</span><span class="o">(</span><span class="n">oldT</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">deltaT</span> <span class="o">=</span> <span class="mi">5</span><span class="o">.;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">deltaT</span><span class="o">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">700</span><span class="o">.;</span> <span class="n">t</span> <span class="o">+=</span> <span class="n">deltaT</span> <span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">y</span> <span class="o">=</span> <span class="mf">250.0</span> <span class="o">+</span> <span class="mf">200.0</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">200</span><span class="o">.)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">);</span>
+</span><span class='line'>        <span class="n">ig2</span><span class="o">.</span><span class="na">drawLine</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">oldT</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">oldY</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">t</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">y</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">oldY</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">oldT</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// write the resulting file</span>
+</span><span class='line'>      <span class="n">ImageIO</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">bi</span><span class="o">,</span> <span class="s">&quot;PNG&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;plot.png&quot;</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ie</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Exception raised &quot;</span> <span class="o">+</span> <span class="n">ie</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">plotFunction</span><span class="o">(</span><span class="kt">double</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mf">250.0</span> <span class="o">+</span> <span class="mf">200.0</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">200</span><span class="o">.)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>produces</p>
+
+<p>![Figure 1. Sinusoid example plot][plot.png]</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1029,53 +1258,6 @@ worry about that in the past but I know many others have.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/">Safe Boot Is Back (in OS X10.8.3) With FileVault</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-14T02:01:00-05:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
-
-<p>On my old Mac Mini, things are pretty slow in Safe Boot.  It  must be disk intensive as my SSD-based MacBook Pro is much faster.</p>
-
-<p>Since safe boot is the safe way to fix some things like</p>
-
-<pre><code>Sandboxd: ... mdworker(..) deny mach-lookup com.apple.ls.boxd
-</code></pre>
-
-<p>It is great to have this working again.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1091,6 +1273,10 @@ worry about that in the past but I know many others have.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/30/software-programming-skills-popularity/">Software Programming Skills Popularity</a>
       </li>
     
@@ -1104,10 +1290,6 @@ worry about that in the past but I know many others have.</p>
     
       <li class="post">
         <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/">Updating Java/NetBeans on OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a>
       </li>
     
   </ul>

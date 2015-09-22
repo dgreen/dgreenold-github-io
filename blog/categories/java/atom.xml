@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: java, | Glimmer]]></title>
+  <title><![CDATA[Category: java | Glimmer]]></title>
   <link href="http://dgreen.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2015-02-08T23:55:19-06:00</updated>
+  <updated>2015-09-21T21:50:32-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -14,36 +14,161 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
-    <link href="http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
-    <updated>2013-07-14T17:41:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
-    <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
+    <title type="html"><![CDATA[Creating a Line Segment Graphic]]></title>
+    <link href="http://dgreen.github.io/blog/2015/09/21/creating-a-line-segment-graphic/"/>
+    <updated>2015-09-21T21:23:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2015/09/21/creating-a-line-segment-graphic</id>
+    <content type="html"><![CDATA[<p>The following code</p>
 
-<p>After moving to Oracle&rsquo;s Java to use on OS X, one finds a new System
-Preference pane which launches a Java preferences App.  Included here is a
-preset option to update Java.  However, one should note that if one installed
-the JDK (Java Development Kit) as opposed to the JRE (Java Run Time
-environment) <strong>only</strong> the JRE portion of the package is automatically updated.
-It appears one has to manually download and update the JDK to get that portion
-of the package updated.  Investigating a bit, it  looks like the attention is
-on the JRE and only the linkages for the Applet usage are updated
-automatically.  The JDK and its command line version of java are not updated
-in addition to all the other components of the JDK.  This is probably not all
-bad as it means the development environment does not change on you without
-notice.</p>
+<p>```java
+/<em>
+ * File: CreateSimplePlot.java
+ * Author: David Green <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#103;&#x72;&#101;&#x65;&#110;&#x40;&#117;&#97;&#98;&#x2e;&#101;&#x64;&#x75;">&#x64;&#x67;&#114;&#x65;&#101;&#110;&#x40;&#117;&#x61;&#98;&#46;&#101;&#x64;&#x75;</a>
+ * Vers: 1.1.0 09/21/2015 dgg &ndash; change from Etch-A-Sketch to Plotter
+ * Vers: 1.0.0 09/10/2014 dgg &ndash; initial coding
+ *
+ * Credits:  (if any for sections of code)
+ </em>/</p>
 
-<h2>NetBeans on OS X</h2>
+<p>import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;</p>
 
-<p>To update NetBeans, download a later version, start the new version and agree
-to migration from  the earlier release.  Then, when you are ready to eliminate
-the old version of NetBeans, go to the /Applications/NetBeans directory and
-delete only that old version.</p>
+<p>/<em>*
+ * Code from:  <a href="http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm">http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm</a>
+ * (modifications by &hellip;)
+ * @author David Green <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#100;&#x67;&#x72;&#101;&#x65;&#x6e;&#x40;&#x75;&#97;&#98;&#46;&#101;&#100;&#x75;">&#100;&#103;&#x72;&#101;&#x65;&#x6e;&#64;&#x75;&#x61;&#x62;&#x2e;&#101;&#x64;&#x75;</a>
+ </em>/
+public class CreateSimplePlot {</p>
 
-<p>Update:  25 Jan 2014 &mdash; The template directory is made when the first
-template is created.  On the Mac, it is located at <code>~/Library/Application\ Support/NetBeans/7.4/config/Templates</code>
-and has a <code>Classes</code> directory and a <code>Properties</code> directory.  It appears that one can move the templates
-from one config directory to a new one as part of migrating.</p>
+<p>  static public void main(String args[]) throws Exception {</p>
+
+<pre><code>double t;       // time
+double oldT;    // old time
+double deltaT;  // time increment
+double y;       // plot value
+double oldY;    // old plot value
+
+try {
+  int width = 700, height = 500;
+
+  // TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed
+  // into integer pixels
+  BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+  Graphics2D ig2 = bi.createGraphics();
+
+  // make full image white
+  ig2.fillRect(0, 0, 700, 500);
+
+  // draw black lines
+  ig2.setPaint(Color.BLACK);
+
+  oldT = 0.;
+  oldY = plotFunction(oldT);
+  deltaT = 5.;
+
+
+  for (t = deltaT; t &lt; 700.; t += deltaT ) {
+    y = 250.0 + 200.0 * Math.sin( (t / 200.) * 2. * Math.PI );
+    ig2.drawLine((int) oldT, (int) oldY, (int) t, (int) y);
+    oldY = y;
+    oldT = t;
+  }
+
+  // write the resulting file
+  ImageIO.write(bi, "PNG", new File("plot.png"));
+
+} catch (IOException ie) {
+  System.out.println("Exception raised " + ie);
+}
+</code></pre>
+
+<p>  }</p>
+
+<p>  private static double plotFunction(double t) {</p>
+
+<pre><code>return 250.0 + 200.0 * Math.sin( (t / 200.) * 2. * Math.PI );
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>```
+produces</p>
+
+<p>![Figure 1. Sinusoid example plot][plot.png]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java Sound Update]]></title>
+    <link href="http://dgreen.github.io/blog/2014/10/23/java-sound-update/"/>
+    <updated>2014-10-23T22:24:00-05:00</updated>
+    <id>http://dgreen.github.io/blog/2014/10/23/java-sound-update</id>
+    <content type="html"><![CDATA[<p>For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
+using <a href="http://alvinalexander.com/java/java-audio-example-java-au-play-sound">Alvin Alexander&rsquo;s article</a> for inspiration.  The downside of this approach, of course,
+is the dependency on classes that are not part of the JAVA API and therefore might change at anytime
+although they have been relatively stable for many years.</p>
+
+<p>Recently, I found a <a href="http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar">stackoverflow discussion</a> noting the existence of AudioSystem (and related clases).</p>
+
+<p>```java
+/<em>
+ * File: ModernRingPhone.java
+ * Author: David Green <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#100;&#x67;&#x72;&#x65;&#x65;&#x6e;&#x40;&#x75;&#97;&#x62;&#46;&#101;&#100;&#117;">&#100;&#x67;&#x72;&#x65;&#101;&#110;&#64;&#117;&#x61;&#x62;&#x2e;&#x65;&#100;&#117;</a>
+ * Assignment:  SoundOff &ndash; EE333 Fall 2014
+ * Vers: 1.0.0 10/23/2014 dgg &ndash; initial coding
+ *
+ * Credits:  Concepts from <a href="http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar">http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar</a>
+ </em>/</p>
+
+<p>import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;</p>
+
+<p>/<em>*
+ *
+ * @author David Green <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x64;&#103;&#x72;&#101;&#101;&#110;&#64;&#x75;&#97;&#x62;&#x2e;&#x65;&#100;&#117;">&#100;&#103;&#x72;&#101;&#101;&#110;&#64;&#x75;&#x61;&#98;&#46;&#x65;&#100;&#117;</a>
+ </em>/
+public class ModernRingPhone {</p>
+
+<p>  public static void main(String[] args)
+  {</p>
+
+<pre><code>try {
+    // open the sound file as a Java input stream
+    String gongFile = "telephone-ring-3.wav";
+
+    // create an audiostream from the inputstream
+    Clip clip = AudioSystem.getClip();
+    clip.open(AudioSystem.getAudioInputStream(new File(gongFile)));
+
+    // play the audio clip with the audioplayer class
+    clip.start();
+
+    // wait for sound to finish before terminating program (necessary for 
+    // running inside NetBeans, at least)
+    Thread.sleep(10000);
+}
+catch ( Exception e) {
+    System.out.println("Things did not go well" );
+    e.printStackTrace();
+    System.exit(-1);
+}
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>```</p>
+
+<p>Update: 2015-02-08 Removed unnecessary line of code</p>
 ]]></content>
   </entry>
   
