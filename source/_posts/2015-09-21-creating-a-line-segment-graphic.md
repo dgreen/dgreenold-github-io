@@ -83,4 +83,4 @@ public class CreateSimplePlot {
 ```
 produces
 
-![Figure 1. Sinusoid example plot][plot.png]
+![Figure 1. Sinusoid example plot](plot.png)
