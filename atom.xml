@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2015-09-21T21:59:42-05:00</updated>
+  <updated>2015-09-21T22:00:50-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -165,7 +165,7 @@
 
 <p>produces</p>
 
-<p><img src="plot.png" alt="Figure 1. Sinusoid example plot" /></p>
+<p><img src="images/plot.png" alt="Figure 1. Sinusoid example plot" /></p>
 ]]></content>
   </entry>
   
@@ -1178,7 +1178,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#117;&#115;&#101;&#114;&#105;&#100;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#111;&#x6d;">&#x75;&#x73;&#101;&#x72;&#105;&#x64;&#x40;&#115;&#x69;&#x74;&#x65;&#46;&#x63;&#111;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x75;&#115;&#x65;&#x72;&#105;&#100;&#x40;&#115;&#x69;&#x74;&#101;&#x2e;&#x63;&#111;&#x6d;">&#x75;&#115;&#x65;&#x72;&#105;&#100;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
