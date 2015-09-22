@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Glimmer]]></title>
   <link href="http://dgreen.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2015-09-21T22:01:40-05:00</updated>
+  <updated>2015-09-21T22:26:17-05:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -23,7 +23,7 @@
 <p>```java
 /<em>
  * File: CreateSimplePlot.java
- * Author: David Green <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#x67;&#114;&#101;&#x65;&#x6e;&#64;&#117;&#x61;&#x62;&#46;&#101;&#100;&#117;">&#100;&#103;&#114;&#101;&#101;&#x6e;&#x40;&#117;&#97;&#x62;&#46;&#x65;&#x64;&#117;</a>
+ * Author: David Green <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#100;&#103;&#114;&#x65;&#101;&#x6e;&#64;&#117;&#x61;&#98;&#46;&#101;&#x64;&#117;">&#100;&#x67;&#114;&#x65;&#x65;&#110;&#x40;&#x75;&#97;&#98;&#46;&#101;&#100;&#117;</a>
  * Vers: 1.1.0 09/21/2015 dgg &ndash; change from Etch-A-Sketch to Plotter
  * Vers: 1.0.0 09/10/2014 dgg &ndash; initial coding
  *
@@ -40,7 +40,7 @@ import javax.imageio.ImageIO;</p>
 <p>/<em>*
  * Code from:  <a href="http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm">http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm</a>
  * (modifications by &hellip;)
- * @author David Green <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x64;&#x67;&#114;&#x65;&#101;&#110;&#x40;&#x75;&#97;&#x62;&#x2e;&#101;&#x64;&#x75;">&#x64;&#103;&#x72;&#x65;&#101;&#110;&#64;&#117;&#x61;&#98;&#x2e;&#101;&#x64;&#x75;</a>
+ * @author David Green <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#103;&#114;&#101;&#x65;&#110;&#64;&#117;&#x61;&#98;&#46;&#101;&#100;&#117;">&#x64;&#103;&#x72;&#x65;&#101;&#110;&#x40;&#x75;&#97;&#x62;&#46;&#101;&#100;&#x75;</a>
  </em>/
 public class CreateSimplePlot {</p>
 
@@ -100,7 +100,7 @@ try {
 <p>```
 produces</p>
 
-<p><img src="images/plot.png" alt="Figure 1. Sinusoid example plot" /></p>
+<p><img src="/images/plot.png" alt="Figure 1. Sinusoid example plot" /></p>
 
 <p>as a PNG graphic file.</p>
 ]]></content>
@@ -121,7 +121,7 @@ although they have been relatively stable for many years.</p>
 <p>```java
 /<em>
  * File: ModernRingPhone.java
- * Author: David Green <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#100;&#103;&#x72;&#x65;&#101;&#110;&#64;&#x75;&#97;&#x62;&#46;&#101;&#100;&#x75;">&#x64;&#103;&#x72;&#x65;&#101;&#x6e;&#64;&#117;&#97;&#x62;&#x2e;&#x65;&#100;&#117;</a>
+ * Author: David Green <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#100;&#103;&#x72;&#101;&#x65;&#110;&#x40;&#117;&#97;&#x62;&#x2e;&#x65;&#100;&#117;">&#x64;&#103;&#x72;&#101;&#x65;&#110;&#64;&#x75;&#97;&#x62;&#46;&#x65;&#100;&#117;</a>
  * Assignment:  SoundOff &ndash; EE333 Fall 2014
  * Vers: 1.0.0 10/23/2014 dgg &ndash; initial coding
  *
@@ -136,7 +136,7 @@ import javax.sound.sampled.Clip;</p>
 
 <p>/<em>*
  *
- * @author David Green <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x64;&#x67;&#x72;&#101;&#x65;&#x6e;&#64;&#x75;&#x61;&#x62;&#46;&#101;&#x64;&#x75;">&#100;&#103;&#x72;&#101;&#x65;&#110;&#x40;&#117;&#x61;&#98;&#46;&#x65;&#x64;&#x75;</a>
+ * @author David Green <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#x67;&#114;&#x65;&#x65;&#x6e;&#x40;&#117;&#97;&#x62;&#46;&#101;&#x64;&#117;">&#x64;&#x67;&#x72;&#x65;&#101;&#110;&#x40;&#x75;&#x61;&#x62;&#46;&#x65;&#x64;&#x75;</a>
  </em>/
 public class ModernRingPhone {</p>
 
