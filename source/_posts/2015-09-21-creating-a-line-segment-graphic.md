@@ -83,6 +83,6 @@ public class CreateSimplePlot {
 ```
 produces
 
-![Figure 1. Sinusoid example plot](images/plot.png)
+![Figure 1. Sinusoid example plot](/images/plot.png)
 
 as a PNG graphic file.
