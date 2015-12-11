@@ -9,7 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Safe booting for FileVault users is now possible again in OS X 10.8.3. As always, you hold down the (left) shift key right after the chime when &hellip;">
+  <meta name="description" content="In a long overdue action, I have moved the glimmer blog out of Tumblr. I had
+been wanting to use (Multi-)Markdown more in blogging to continue my &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/27/Tumbling-out/">Tumbling Out!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T18:02:45-05:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/27/Tumbling-out/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
+been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
+focusing on the format.  I also had a student tell me he could not access the
+Tumblr website at work due to its other content.  Tumblr was/is an easy to use
+site but my purposes and those of other users don&rsquo;t seem to match.  I had been
+looking at Jekyll for a while and considering what to try when I discovered
+that GitHub supported web hosting with some support for Jekyll.  Finding the
+<a href="http://jekyllrb.com/docs/migrations/">Jekyll importer</a> that would do most of the heavy lifting for
+moving the site, I took the plunge.</p>
+
+<p>Over about 4 hours, I was able to do fixups of the files that the importer
+brought over.  I also changed Jekyll to use Kramdown instead of Maruku based
+on  this <a href="http://natedickson.com/blog/2013/04/09/mostly-multimarkdown-blogging-in-octopress/">hint</a> originally from <a href="http://brettterpstra.com">Brett Terpstra</a>.</p>
+
+<p>After a bit more exploring, I discovered Octopress which wraps Jekyll with
+additional conveniences (even though it uses an older version of Jekyll).  I
+was able to copy the raw Jekyll work into the <a href="http://octopress.org/" title="Octopress">Octopress</a> copy.</p>
+
+<p>After trying things out, I also made the decision to host against my Github
+Account rather than a project (although both Jekyll and Octopress can handle
+either approach.)  This was a bit hard to retreat to.  I had to</p>
+
+<ol>
+<li> Re-run scripts</li>
+<li> Edit .git/config</li>
+<li> Edit Rakefile</li>
+<li> Edit _config</li>
+</ol>
+
+
+<p>but I think I got it.</p>
+
+<p>Most &ldquo;irritating thing&rdquo; is to put <code>bundle exec</code> in front of all rake commands
+as Octopress is not using more current code.  I have not generally had to
+worry about that in the past but I know many others have.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -544,7 +617,7 @@ $(document).ready -&gt;
 
   <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#x75;&#115;&#x65;&#114;&#105;&#x64;&#x40;&#x73;&#x69;&#116;&#x65;&#x2e;&#99;&#111;&#109;">&#117;&#115;&#x65;&#114;&#x69;&#x64;&#x40;&#x73;&#105;&#116;&#x65;&#x2e;&#99;&#x6f;&#109;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x75;&#x73;&#101;&#x72;&#x69;&#100;&#64;&#x73;&#x69;&#116;&#x65;&#x2e;&#99;&#x6f;&#x6d;">&#117;&#115;&#101;&#114;&#x69;&#x64;&#64;&#x73;&#105;&#x74;&#101;&#x2e;&#x63;&#111;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -764,48 +837,6 @@ as various versions of Windows, Linux, and Unix.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup---forbes/">Dropbox: The Inside Story of Tech&#8217;s Hottest Startup - Forbes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-28T00:00:00-06:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup---forbes/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.forbes.com/sites/victoriabarret/2011/10/18/dropbox-the-inside-story-of-techs-hottest-startup/">Dropbox: The Inside Story Of Techs Hottest Startup &ndash; Forbes</a></p>
-
-<p>Interesting positive story about Dropbox&#8217;s beginnings. Seems a lot
-less antagonistic than many. Evidently 68 accounts got exposed when the
-password glitch happened.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -823,6 +854,10 @@ password glitch happened.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/10/java-sound-update-2/">Java Sound Update 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a>
       </li>
     
@@ -836,10 +871,6 @@ password glitch happened.</p>
     
       <li class="post">
         <a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/">Waiting on Migration Tools for Octopress 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/">Updating Java/NetBeans on OS X</a>
       </li>
     
   </ul>
