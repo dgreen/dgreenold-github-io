@@ -65,7 +65,9 @@ public class ModernRingPhone {
 
 Update: 2015-02-08 Removed unnecessary line of code
 
-[oldstyle]: http://alvinalexander.com/java/java-audio-example-java-au-play-sound
+Update: 2015-12-10 Revised example is available [here](http://dgreen.github.io/blog/2015/12/10/java-sound-update-2/).
+
+[oldstyle]: http://alvinalexander.com/java/java-audio-example-java-au-play-sound  
 [newstyle]: http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar
 
 
