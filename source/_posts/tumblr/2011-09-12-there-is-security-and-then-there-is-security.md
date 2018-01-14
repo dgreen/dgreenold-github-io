@@ -26,5 +26,4 @@ parties.
 Where to next? I will be splitting my data between Dropbox and non-replicated
 data that needs to stay private as well as terminating my SpiderOak account.
 
-[1]: /2011/06/22/dropbox-accidentally-unlocked-all-accounts-for-4-hours.html
-
+[1]: /blog/2011/06/22/dropbox-accidentally-unlocked-all-accounts-for-4-hours.html
