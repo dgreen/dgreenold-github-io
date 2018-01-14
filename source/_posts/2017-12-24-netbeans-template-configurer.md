@@ -32,6 +32,8 @@ in the form of a `templates.jar` file in their course Learning Management
 System.
 
 The students cleverly put the basic templates (modified versions of the ones in 
-NetBeans) in the jar file as resources allowing one to modify the templates as desired but only have to distribute a jar file to new students.
+NetBeans) in the jar file as resources allowing one to modify the templates as desired but only have to distribute a jar file to new students. 
+We placed the code into [Github](code).
 
 [oldpost]: blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/
+[code]: https://github.com/dgreen/NetBeansTemplateConfig
