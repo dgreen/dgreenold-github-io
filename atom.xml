@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="http://dgreen.github.io/atom.xml" rel="self"/>
   <link href="http://dgreen.github.io/"/>
-  <updated>2017-12-24T16:36:03-06:00</updated>
+  <updated>2018-01-14T01:13:34-06:00</updated>
   <id>http://dgreen.github.io/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NetBeans Template Configurer]]></title>
+    <link href="http://dgreen.github.io/blog/2017/12/24/netbeans-template-configurer/"/>
+    <updated>2017-12-24T23:07:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2017/12/24/netbeans-template-configurer</id>
+    <content type="html"><![CDATA[<p>Many years ago, I wrote a <a href="blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/">post</a> about how to use the NetBeans template system for
+my students.  It quickly covered the basics and demonstrated how to set things up
+for the course&rsquo;s documentation standard.</p>
+
+<p>In Fall 2017, one of the <em>UAB EE333</em> Project teams built a clever tool to do
+this initialization for the student.  This makes it much easier for the new
+student to set up the automation at the beginning before they have any real
+experience with  NetBeans.  The tool solicits the data needed (student name,
+email, course) and installs the templates.</p>
+
+<p>It has been tested on both <em>Windows 10</em> and <em>Mac OS 10.12</em> with <em>NetBeans 8.2</em> and attempts
+to work with earlier and later versions of things but that is mostly outside the
+testing space.  The team consisting of</p>
+
+<ul>
+<li>Dylan Dalton</li>
+<li>Schauber Gbalou</li>
+<li>Matthew Manuel</li>
+<li>Joey Richardson</li>
+<li>Darrin Wang</li>
+</ul>
+
+
+<p>have agreed to having the source code of their tool on GitHub under a MIT
+license.  UAB students should be able to find a compiled version of the code
+in the form of a <code>templates.jar</code> file in their course Learning Management
+System.</p>
+
+<p>The students cleverly put the basic templates (modified versions of the ones in
+NetBeans) in the jar file as resources allowing one to modify the templates as desired but only have to distribute a jar file to new students.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java Sound Update 2]]></title>
@@ -1410,7 +1448,7 @@ $(document).ready -&gt;
     <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#117;&#x73;&#x65;&#x72;&#105;&#100;&#x40;&#115;&#105;&#x74;&#x65;&#46;&#99;&#111;&#x6d;">&#117;&#115;&#x65;&#x72;&#105;&#100;&#x40;&#x73;&#105;&#x74;&#x65;&#x2e;&#99;&#111;&#109;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x75;&#x73;&#101;&#x72;&#105;&#x64;&#x40;&#115;&#x69;&#x74;&#101;&#x2e;&#x63;&#x6f;&#109;">&#x75;&#x73;&#x65;&#x72;&#105;&#100;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -1445,97 +1483,6 @@ who could not attend.</p>
 
 <blockquote><p><p>A nice Prezi that gives inside into some of the parameters for
 typography.<p></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Adjusting the Mac OS X path]]></title>
-    <link href="http://dgreen.github.io/blog/2012/01/21/adjusting-the-mac-os-x-path/"/>
-    <updated>2012-01-21T00:00:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2012/01/21/adjusting-the-mac-os-x-path</id>
-    <content type="html"><![CDATA[<p>The <strong>path</strong> is an environmental variable that tells the command line (shell)
-processor where to look for programs (commands) to run when they are entered
-on the command line without any directory information. The shell will look for
-the command in all the directories listed in the path variable.</p>
-
-<p>In OS X, the active path can be shown when in the terminal window by typing
-<code>echo $PATH</code> command on the command line (where <code>[user@system ~]$</code> is the
-command line prompt and the text right before the &ldquo;]&rdquo; is the present working
-directory (pwd). If it is &ldquo;~&rdquo; then it is the home directory of the user,
-typically something like /Users/user (for a user named user).</p>
-
-<pre><code> [user@system ~]$ echo $PATH
-</code></pre>
-
-<p>The path in OS X is maintained in several places:</p>
-
-<ul>
-<li>.bash_profile</li>
-<li>.bashrc</li>
-<li>system versions of the above</li>
-<li>.MacOSX/environment.plist</li>
-</ul>
-
-
-<p>There a lot of references for the first three since this is roughly the same
-as Linux/Unix assuming both systems are using the bash terminal shell. An
-example is in <a href="http://www.tech-recipes.com/rx/2621/os_x_change_path_environment_variable/">Tech-Recipes</a>.</p>
-
-<p>.MacOSX/environment.plist is obviously specialized to OS X, and this path
-modification is seen by the GUI as well as command line programs run in the
-terminal window. If the directory does not exist, you can make it at the
-terminal prompt:</p>
-
-<pre><code>[user@system ~]$ mkdir .MacOSX
-</code></pre>
-
-<p>Today, the file, if it exists, may be stored in binary rather than in text
-form:</p>
-
-<pre><code>[user@system ~]$ cd .MacOSX
-[user@system .MacOSX]$ more environment.plist
-"environment.plist" may be a binary file.  See it anyway?
-</code></pre>
-
-<p>is indicative of the file being binary. The command <code>plutil</code> can convert this
-binary file to text oriented:</p>
-
-<pre><code>[user@system .MacOSX]$ plutil -convert xml1 environment.plist
-</code></pre>
-
-<p>at this point, you can edit it carefully to contain your path. It must be a
-complete collection where each path is separated by a &ldquo;:&rdquo; and the file must
-obey XML rules. Mine looks like:</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-    &lt;key&gt;PATH&lt;/key&gt;
-    &lt;string&gt;/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin&lt;/string&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code></pre>
-
-<p>You can either edit the file by hand with your favorite text editor, or if you
-have Xcode installed, there is a tool to edit the file in a structured manner.
-The tool may be able to work without conversion from binary to xml.</p>
-
-<p>After editing the file, you may wish to convert it back to binary (although I
-don&rsquo;t think it is necessary) by</p>
-
-<pre><code>[user@system .MacOSX]$ plutil -convert binary1 environment.plist
-</code></pre>
-
-<p>After changing this file, you will have to either logout or reboot so that all
-the OS X parts associated with your login will use this new path.</p>
-
-<hr />
-
-<h3>Short note for other OSes</h3>
-
-<p>The JAVA folks offer this <a href="http://java.com/en/download/help/path.xml">short article</a> for other operating systems such
-as various versions of Windows, Linux, and Unix.</p>
 ]]></content>
   </entry>
   
