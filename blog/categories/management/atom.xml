@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Management, | Glimmer]]></title>
+  <link href="http://dgreen.github.io/blog/categories/management/atom.xml" rel="self"/>
+  <link href="http://dgreen.github.io/"/>
+  <updated>2018-01-21T11:27:12-06:00</updated>
+  <id>http://dgreen.github.io/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Finding Reminders in Evernote]]></title>
+    <link href="http://dgreen.github.io/blog/2018/01/21/finding-reminders-in-evernote/"/>
+    <updated>2018-01-21T11:23:00-06:00</updated>
+    <id>http://dgreen.github.io/blog/2018/01/21/finding-reminders-in-evernote</id>
+    <content type="html"><![CDATA[<p>Here is a hint that I was not able to find quickly in Google nor in the EverNote help.</p>
+
+<p>Enter &ldquo;Reminders&rdquo; into the Search Bar and then select &ldquo;Notes with Reminders&rdquo; to find all
+notes that have reminders.  Very logical but took a few minutes and hopefully this
+short post will same someone else a few.</p>
+]]></content>
+  </entry>
+  
+</feed>

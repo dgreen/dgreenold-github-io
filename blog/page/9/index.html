@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Preview.app (the PDF and graphic viewer) will update itself to changes in the
-underlying file when it gains focus. That makes it more valuable for &hellip;">
+  <meta name="description" content="Instructors and projects usually have documentation standards.  The standards
+I supply my students are an abbreviated version of what a project team &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,107 @@ underlying file when it gains focus. That makes it more valuable for &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/">Configuring NetBeans to Produce Custom Documentation Header</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-24T00:00:00-05:00" pubdate data-updated="true">Sep 24<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Instructors and projects usually have documentation standards.  The <a href="http://www-ece.eng.uab.edu/DGreen/java_ex/JavaDocStyle.html">standards
+I supply my students</a> are an abbreviated version of what a project team
+might use.</p>
+
+<p>NetBeans can be customized to help.  In this note, I will limit my comments to
+creating the header of the file.  By example, I require:</p>
+
+<pre><code>/*
+ * File: FileName.java
+ * Author:  Student name, &lt;official student e-mail&gt;
+ * Assignment: Project 2 EE333 Fall 2006
+ * Vers: 1.0.0 09/01/2006 dgg - initial coding
+ *
+ * Credits:  (if any for sections of code)
+ */
+</code></pre>
+
+<p>Thru the menu option Tools | Templates, one can &ldquo;open in editor&rdquo; the selection
+&ldquo;User.properties&rdquo; which is under &ldquo;User Configuration Properties&rdquo; in the
+scrollable tree-oriented selection control.</p>
+
+<p>There one can define a couple &ldquo;variables&rdquo; that are useful:</p>
+
+<pre><code>user=Full name &lt;emailAddress&gt;
+initials=dgg
+course=EE333 Fall 2009
+</code></pre>
+
+<p>Then one can save this, and in the same area, select &ldquo;Java Class&rdquo; under &ldquo;Java&rdquo;
+and adjust things so the template contains</p>
+
+<pre><code>/*
+ * File: ${name}.java
+ * Author: ${user}
+ * Assignment:  ${project.displayName} - ${course}
+ * Vers: 1.0.0 ${date?date?string("MM/dd/yyyy")} ${initials} - initial coding
+ *
+ * Credits:  (if any for sections of code)
+ */
+
+&lt;#if package?? &amp;&amp; package != ""&gt;
+package ${package};
+&lt;/#if&gt;
+/**
+ *
+ */
+public class ${name} {
+
+}
+</code></pre>
+
+<p>Of course, if one is doing work for multiple classes, another approach besides
+&ldquo;$(course)&rdquo; might be appropriate.</p>
+
+<p>For more information consult <a href="http://wiki.netbeans.org/FaqTemplateVariables">FaqTemplateVariables</a> (variables in the
+template) and <a href="http://wiki.netbeans.org/FaqFreeMarker">FaqFreeMarker</a> (coding in template).</p>
+
+<hr />
+
+<h3>Update January 2013</h3>
+
+<p>In NetBeans 7.2.1, the variables are now reachable with the &ldquo;Settings&rdquo; button in the Templates dialog.</p>
+
+<p>One may also wish to look at the license support in the default template and include it in your template.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -581,48 +682,6 @@ binary editor.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/23/free-installation-guides-for-apple-mac-mini/">Free Installation Guides for Apple Mac Mini</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-23T00:00:00-05:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2009</time>
-        
-         | <a href="/blog/2009/08/23/free-installation-guides-for-apple-mac-mini/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://eshop.macsales.com/shop/mac-mini/">Free Installation Guides for Apple Mac mini</a></p>
-
-<blockquote><p>It can be done.  I have successfully upgraded a Mac Mini (early 2009
-model) to 4GB RAM and 500GB 7200 rpm drive using the guidance (and products)
-from this site.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -640,6 +699,10 @@ from this site.</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/01/21/finding-reminders-in-evernote/">Finding Reminders in Evernote</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/12/24/netbeans-template-configurer/">NetBeans Template Configurer</a>
       </li>
     
@@ -653,10 +716,6 @@ from this site.</p></blockquote>
     
       <li class="post">
         <a href="/blog/2014/11/30/software-programming-skills-popularity/">Software Programming Skills Popularity</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/23/java-sound-update/">Java Sound Update</a>
       </li>
     
   </ul>
