@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Glimmer]]></title>
-  <link href="http://dgreen.github.io/atom.xml" rel="self"/>
-  <link href="http://dgreen.github.io/"/>
-  <updated>2018-01-21T11:27:12-06:00</updated>
-  <id>http://dgreen.github.io/</id>
+  <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2018-09-29T10:12:45-04:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
     
@@ -14,10 +14,29 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Success -- hard work and-or luck?]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2018/09/29/success-hard-work-and-or-luck/"/>
+    <updated>2018-09-29T09:39:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2018/09/29/success-hard-work-and-or-luck</id>
+    <content type="html"><![CDATA[<p>In his article <em><a href="https://jamesclear.com/luck-vs-hard-work">Absolute Success is Luck. Relative Success is Hard Work.</a></em>, James Clear provides a pair of stories about how luck (including the circumstances one is born into) and hard work both play a role in success.  He concludes that luck controls absolute success and hard work controls relative success.</p>
+
+<p>Later in the article, he has an engineeering/science way of conveying his idea:</p>
+
+<blockquote><p>Imagine you can map success on a graph. Success is measured on the Y-axis. Time is measured on the X-axis. And when you are born, the ball you pluck out of Buffett&rsquo;s Ovarian Lottery determines the y-intercept. Those who are born lucky start higher on the graph. Those who are born into tougher circumstances start lower.</p>
+
+<p>Here&rsquo;s the key: You can only control the slope of your success, not your initial position.</p></blockquote>
+
+<p>There are more gems as well as several good stories in the article and I highly recommend you read it.</p>
+
+<p>He closes noting that one can not control luck but can control the hard work input.  I would qualify this to note that it has to be correctly focused hard work.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Finding Reminders in Evernote]]></title>
-    <link href="http://dgreen.github.io/blog/2018/01/21/finding-reminders-in-evernote/"/>
-    <updated>2018-01-21T11:23:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2018/01/21/finding-reminders-in-evernote</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2018/01/21/finding-reminders-in-evernote/"/>
+    <updated>2018-01-21T11:23:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2018/01/21/finding-reminders-in-evernote</id>
     <content type="html"><![CDATA[<p>Here is a hint that I was not able to find quickly in Google nor in the EverNote help.</p>
 
 <p>Enter &ldquo;Reminders&rdquo; into the Search Bar and then select &ldquo;Notes with Reminders&rdquo; to find all
@@ -28,9 +47,9 @@ short post will same someone else a few.</p>
   
   <entry>
     <title type="html"><![CDATA[NetBeans Template Configurer]]></title>
-    <link href="http://dgreen.github.io/blog/2017/12/24/netbeans-template-configurer/"/>
-    <updated>2017-12-24T23:07:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2017/12/24/netbeans-template-configurer</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2017/12/24/netbeans-template-configurer/"/>
+    <updated>2017-12-24T23:07:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2017/12/24/netbeans-template-configurer</id>
     <content type="html"><![CDATA[<p>Many years ago, I wrote a <a href="blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/">post</a> about how to use the NetBeans template system for
 my students.  It quickly covered the basics and demonstrated how to set things up
 for the course&rsquo;s documentation standard.</p>
@@ -67,9 +86,9 @@ We placed the code into <a href="code">Github</a>.</p>
   
   <entry>
     <title type="html"><![CDATA[Java Sound Update 2]]></title>
-    <link href="http://dgreen.github.io/blog/2015/12/10/java-sound-update-2/"/>
-    <updated>2015-12-10T20:22:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2015/12/10/java-sound-update-2</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2/"/>
+    <updated>2015-12-10T20:22:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2</id>
     <content type="html"><![CDATA[<p>This is an update to a prior <a href="http://dgreen.github.io/blog/2014/10/23/java-sound-update/">article</a>.</p>
 
 <p>UAB EE Students Andrew Peturis, Chaselyn Langley and other team members produced an interesting
@@ -295,9 +314,9 @@ hopefully preserved the important behaviors they wished to document.  The new co
   
   <entry>
     <title type="html"><![CDATA[Creating a Line Segment Graphic]]></title>
-    <link href="http://dgreen.github.io/blog/2015/09/21/creating-a-line-segment-graphic/"/>
-    <updated>2015-09-21T21:23:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2015/09/21/creating-a-line-segment-graphic</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2015/09/21/creating-a-line-segment-graphic/"/>
+    <updated>2015-09-21T21:23:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2015/09/21/creating-a-line-segment-graphic</id>
     <content type="html"><![CDATA[<p>The following code</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -445,7 +464,7 @@ hopefully preserved the important behaviors they wished to document.  The new co
 
 <p>produces</p>
 
-<p><img src="http://dgreen.github.io/images/plot.png" alt="Figure 1. Sinusoid example plot" /></p>
+<p><img src="https://glimmer.gwizlabs.net/images/plot.png" alt="Figure 1. Sinusoid example plot" /></p>
 
 <p>as a PNG graphic file.</p>
 ]]></content>
@@ -453,9 +472,9 @@ hopefully preserved the important behaviors they wished to document.  The new co
   
   <entry>
     <title type="html"><![CDATA[Software Programming Skills Popularity]]></title>
-    <link href="http://dgreen.github.io/blog/2014/11/30/software-programming-skills-popularity/"/>
-    <updated>2014-11-30T20:20:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2014/11/30/software-programming-skills-popularity</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2014/11/30/software-programming-skills-popularity/"/>
+    <updated>2014-11-30T20:20:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2014/11/30/software-programming-skills-popularity</id>
     <content type="html"><![CDATA[<p>There are lots of ways to evaluate popularity, and in the end, all are probably very transitory.
 In his <a href="http://qz.com/298635/these-programming-languages-will-earn-you-the-most-money/">Quartz article</a>, Max Nisen examined American job data and reports the top ten slanguage/frameworks (by
 salary offers) are</p>
@@ -478,9 +497,9 @@ salary offers) are</p>
   
   <entry>
     <title type="html"><![CDATA[Java Sound Update]]></title>
-    <link href="http://dgreen.github.io/blog/2014/10/23/java-sound-update/"/>
-    <updated>2014-10-23T22:24:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2014/10/23/java-sound-update</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2014/10/23/java-sound-update/"/>
+    <updated>2014-10-23T22:24:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2014/10/23/java-sound-update</id>
     <content type="html"><![CDATA[<p>For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
 using <a href="http://alvinalexander.com/java/java-audio-example-java-au-play-sound">Alvin Alexander&rsquo;s article</a> for inspiration.  The downside of this approach, of course,
 is the dependency on classes that are not part of the JAVA API and therefore might change at anytime
@@ -589,9 +608,9 @@ although they have been relatively stable for many years.</p>
   
   <entry>
     <title type="html"><![CDATA[Waiting on Migration Tools for Octopress 3]]></title>
-    <link href="http://dgreen.github.io/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/"/>
-    <updated>2014-09-01T01:33:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/"/>
+    <updated>2014-09-01T01:33:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3</id>
     <content type="html"><![CDATA[<p>Watching the Twitter posts, it looks like a lot of work has gone
 into building Octopress 3.0 around a somewhat different philosophy
 than Octopress 2.0 making migration a challenge at present.</p>
@@ -606,9 +625,9 @@ continues to work so I can (or should) concentrate on blog content.</p>
   
   <entry>
     <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
-    <link href="http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
-    <updated>2013-07-14T17:41:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
+    <updated>2013-07-14T17:41:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
     <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
 
 <p>After moving to Oracle&rsquo;s Java to use on OS X, one finds a new System
@@ -640,10 +659,10 @@ from one config directory to a new one as part of migrating.</p>
   
   <entry>
     <title type="html"><![CDATA[Using MySQL with Bitnami on Vagrant VM]]></title>
-    <link href="http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/"/>
-    <updated>2013-07-08T17:52:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm</id>
-    <content type="html"><![CDATA[<p>The <a href="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
+    <link href="https://glimmer.gwizlabs.net/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/"/>
+    <updated>2013-07-08T17:52:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm</id>
+    <content type="html"><![CDATA[<p>The <a href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
 Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
 directory, it expects to be a slightly more traditional install and use the userid mysql for
 running the MySQL server.  However, the built databases are secured to the vagrant user account
@@ -701,10 +720,10 @@ Internet (or even LAN) visible.</p>
   
   <entry>
     <title type="html"><![CDATA[Make a new rails 3.2 app in the VM Environment]]></title>
-    <link href="http://dgreen.github.io/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/"/>
-    <updated>2013-06-06T15:38:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment</id>
-    <content type="html"><![CDATA[<p>After <a href="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">installing the VM on the computer</a>, one can make a new Rails
+    <link href="https://glimmer.gwizlabs.net/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/"/>
+    <updated>2013-06-06T15:38:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment</id>
+    <content type="html"><![CDATA[<p>After <a href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">installing the VM on the computer</a>, one can make a new Rails
 App by the following process:</p>
 
 <ul>
@@ -874,9 +893,9 @@ App by the following process:</p>
   
   <entry>
     <title type="html"><![CDATA[Using Bitnami's Rubystack on VirtualBox Linux with Vagrant]]></title>
-    <link href="http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/"/>
-    <updated>2013-06-06T01:36:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/"/>
+    <updated>2013-06-06T01:36:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant</id>
     <content type="html"><![CDATA[<p>In my Software Engineering Projects class, we are going to do a RAILS-based
 project.  Based on feedback from last year&rsquo;s class, I am furnishing students
 with an almost configured RAILS system for development.  The system is based on</p>
@@ -1079,9 +1098,9 @@ VM.</p>
   
   <entry>
     <title type="html"><![CDATA[Adding to a non-privileged users path in Windows 7]]></title>
-    <link href="http://dgreen.github.io/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
-    <updated>2013-06-05T15:35:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
+    <updated>2013-06-05T15:35:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
     <content type="html"><![CDATA[<p>Does it have to be this hard?</p>
 
 <p>Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
@@ -1113,9 +1132,9 @@ The paths specified by the user are at the end of the system paths.</p>
   
   <entry>
     <title type="html"><![CDATA[Tumbling out!]]></title>
-    <link href="http://dgreen.github.io/blog/2013/05/27/Tumbling-out/"/>
-    <updated>2013-05-27T18:02:45-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/05/27/Tumbling-out</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/05/27/Tumbling-out/"/>
+    <updated>2013-05-27T19:02:45-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/05/27/Tumbling-out</id>
     <content type="html"><![CDATA[<p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
 been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
 focusing on the format.  I also had a student tell me he could not access the
@@ -1156,9 +1175,9 @@ worry about that in the past but I know many others have.</p>
   
   <entry>
     <title type="html"><![CDATA[Safe Boot is back (in OS X10.8.3) with FileVault]]></title>
-    <link href="http://dgreen.github.io/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/"/>
-    <updated>2013-04-14T02:01:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/"/>
+    <updated>2013-04-14T02:01:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault</id>
     <content type="html"><![CDATA[<p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
 
 <p>On my old Mac Mini, things are pretty slow in Safe Boot.  It  must be disk intensive as my SSD-based MacBook Pro is much faster.</p>
@@ -1174,9 +1193,9 @@ worry about that in the past but I know many others have.</p>
   
   <entry>
     <title type="html"><![CDATA[Exploring stately for Ruby]]></title>
-    <link href="http://dgreen.github.io/blog/2013/01/19/exploring-stately-for-ruby/"/>
-    <updated>2013-01-19T01:24:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2013/01/19/exploring-stately-for-ruby</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/01/19/exploring-stately-for-ruby/"/>
+    <updated>2013-01-19T01:24:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/01/19/exploring-stately-for-ruby</id>
     <content type="html"><![CDATA[<p>As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation.</p>
 
 <p>I recently found a new ruby gem <a href="https://github.com/rtwomey/stately">stately</a> which seemed interesting.  Like many packages, the documentation initially seemed confusing so a bit of exploring seemed appropriate.  This note documents the little exploring that I did (mostly so I can return to it should I want to use this gem in an application.  The two examples left when the dust settled are given in this <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074">gist</a>.</p>
@@ -1191,9 +1210,9 @@ worry about that in the past but I know many others have.</p>
   
   <entry>
     <title type="html"><![CDATA[Trading Memory for Functionality (Enough Performance)]]></title>
-    <link href="http://dgreen.github.io/blog/2012/07/24/trading-memory-for-functionality-enough-performance/"/>
-    <updated>2012-07-24T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2012/07/24/trading-memory-for-functionality-enough-performance</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2012/07/24/trading-memory-for-functionality-enough-performance/"/>
+    <updated>2012-07-24T00:00:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2012/07/24/trading-memory-for-functionality-enough-performance</id>
     <content type="html"><![CDATA[<p>I was working on a the last note and wanted to check things out under a fresh
 install. I decided to make a new Mac User to accomplish this. I used GitHub
 for the Mac, Safari on the Assembla site and the Tumblr site, and the command
@@ -1220,9 +1239,9 @@ configured so I would not spend time repeating the building of this space.</p>
   
   <entry>
     <title type="html"><![CDATA[GitHub with Assembla]]></title>
-    <link href="http://dgreen.github.io/blog/2012/07/21/github-with-assembla/"/>
-    <updated>2012-07-21T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2012/07/21/github-with-assembla</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2012/07/21/github-with-assembla/"/>
+    <updated>2012-07-21T00:00:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2012/07/21/github-with-assembla</id>
     <content type="html"><![CDATA[<p><a href="http://github.com">GitHub</a> has now made a nice simple GUI tool for both <a href="http://mac.github.com">OS X</a> and
 <a href="http://windows.github.com">Windows</a>. They have made them freely available for download. They seem to
 have made careful choices about what to support and not support in order to
@@ -1347,9 +1366,9 @@ above.</p>
   
   <entry>
     <title type="html"><![CDATA[CoffeeScript with Select2 library]]></title>
-    <link href="http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library/"/>
-    <updated>2012-07-10T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2012/07/10/coffeescript-with-select2-library</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2012/07/10/coffeescript-with-select2-library/"/>
+    <updated>2012-07-10T00:00:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2012/07/10/coffeescript-with-select2-library</id>
     <content type="html"><![CDATA[<p>I had two demons: a new library and a language I was not really familiar with.
 A formula for puzzles. I did not find quickly the right example to do the
 jQuery/Select2 JavaScript to CoffeeScript mapping but I did find a <a href="http://js2cs.nodejitsu.com/">reverse
@@ -1457,12 +1476,12 @@ $(document).ready -&gt;
   
   <entry>
     <title type="html"><![CDATA[The simple stuff can get you...]]></title>
-    <link href="http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you/"/>
-    <updated>2012-06-09T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2012/06/09/the-simple-stuff-can-get-you</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2012/06/09/the-simple-stuff-can-get-you/"/>
+    <updated>2012-06-09T00:00:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#117;&#x73;&#x65;&#114;&#105;&#100;&#64;&#115;&#x69;&#x74;&#x65;&#46;&#99;&#x6f;&#109;">&#x75;&#x73;&#x65;&#114;&#x69;&#100;&#x40;&#x73;&#x69;&#x74;&#101;&#46;&#99;&#111;&#109;</a>) and then
+metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#117;&#x73;&#101;&#x72;&#x69;&#x64;&#64;&#115;&#105;&#116;&#101;&#x2e;&#x63;&#111;&#109;">&#x75;&#115;&#x65;&#114;&#x69;&#x64;&#64;&#x73;&#105;&#116;&#101;&#x2e;&#x63;&#x6f;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -1472,19 +1491,6 @@ happen every once in a while).</p>
 <p>After a goodly bit of exploring, the problem was the e-mail address in angle
 brackets as part of the author information. I removed them and things were
 good to go.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ten Things You Didn't Know Rails Could Do - James Edward Gray II - RailsConf 2012]]></title>
-    <link href="http://dgreen.github.io/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do---james-edward-gray-ii---railsconf-2012/"/>
-    <updated>2012-05-21T00:00:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do&#8212;james-edward-gray-ii&#8212;railsconf-2012</id>
-    <content type="html"><![CDATA[<p><a href="http://confreaks.com/videos/889-railsconf2012-ten-things-you-didn-t-know-rails-could-do">Ten Things You Didnt Know Rails Could Do &ndash; James Edward Gray II &ndash; RailsConf 2012</a></p>
-
-<p>One of several good videos from the RailsConf 2012 conference. Thanks to
-the organizers and sponsors for making this available on-line for those of us
-who could not attend.</p>
 ]]></content>
   </entry>
   

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: java, | Glimmer]]></title>
-  <link href="http://dgreen.github.io/blog/categories/java/atom.xml" rel="self"/>
-  <link href="http://dgreen.github.io/"/>
-  <updated>2018-01-21T11:27:12-06:00</updated>
-  <id>http://dgreen.github.io/</id>
+  <link href="https://glimmer.gwizlabs.net/blog/categories/java/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2018-09-29T10:12:45-04:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
-    <link href="http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
-    <updated>2013-07-14T17:41:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
+    <updated>2013-07-14T17:41:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
     <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
 
 <p>After moving to Oracle&rsquo;s Java to use on OS X, one finds a new System

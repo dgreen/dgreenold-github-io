@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Evernote, | Glimmer]]></title>
-  <link href="http://dgreen.github.io/blog/categories/evernote/atom.xml" rel="self"/>
-  <link href="http://dgreen.github.io/"/>
-  <updated>2018-01-21T11:27:12-06:00</updated>
-  <id>http://dgreen.github.io/</id>
+  <link href="https://glimmer.gwizlabs.net/blog/categories/evernote/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2018-09-29T10:12:45-04:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Finding Reminders in Evernote]]></title>
-    <link href="http://dgreen.github.io/blog/2018/01/21/finding-reminders-in-evernote/"/>
-    <updated>2018-01-21T11:23:00-06:00</updated>
-    <id>http://dgreen.github.io/blog/2018/01/21/finding-reminders-in-evernote</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2018/01/21/finding-reminders-in-evernote/"/>
+    <updated>2018-01-21T11:23:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2018/01/21/finding-reminders-in-evernote</id>
     <content type="html"><![CDATA[<p>Here is a hint that I was not able to find quickly in Google nor in the EverNote help.</p>
 
 <p>Enter &ldquo;Reminders&rdquo; into the Search Bar and then select &ldquo;Notes with Reminders&rdquo; to find all

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Windows7 | Glimmer]]></title>
-  <link href="http://dgreen.github.io/blog/categories/windows7/atom.xml" rel="self"/>
-  <link href="http://dgreen.github.io/"/>
-  <updated>2018-01-21T11:27:12-06:00</updated>
-  <id>http://dgreen.github.io/</id>
+  <link href="https://glimmer.gwizlabs.net/blog/categories/windows7/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2018-09-29T10:12:45-04:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Adding to a non-privileged users path in Windows 7]]></title>
-    <link href="http://dgreen.github.io/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
-    <updated>2013-06-05T15:35:00-05:00</updated>
-    <id>http://dgreen.github.io/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
+    <link href="https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
+    <updated>2013-06-05T15:35:00-04:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
     <content type="html"><![CDATA[<p>Does it have to be this hard?</p>
 
 <p>Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
