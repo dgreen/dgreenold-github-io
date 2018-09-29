@@ -2,11 +2,11 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://dgreen.github.io
+url: https://glimmer.gwizlabs.net
 title: Glimmer
-subtitle: Faint insights into (mostly) the world of automation
+subtitle: Faint insights into (mostly) the worlds of automation and productivity
 author: David Green
-simple_search: http://google.com/search
+simple_search: https://google.com/search
 description: Things that I am thinking about or learning (either through reading or by school of hard knocks). These are my personal thoughts and not necessarily the positions or thoughts of any organization I am associated with.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
