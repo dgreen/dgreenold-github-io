@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2018-09-29T10:12:45-04:00</updated>
+  <updated>2018-09-29T10:25:22-04:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -1481,7 +1481,7 @@ $(document).ready -&gt;
     <id>https://glimmer.gwizlabs.net/blog/2012/06/09/the-simple-stuff-can-get-you</id>
     <content type="html"><![CDATA[<p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#117;&#x73;&#101;&#x72;&#x69;&#x64;&#64;&#115;&#105;&#116;&#101;&#x2e;&#x63;&#111;&#109;">&#x75;&#115;&#x65;&#114;&#x69;&#x64;&#64;&#x73;&#105;&#116;&#101;&#x2e;&#x63;&#x6f;&#109;</a>) and then
+metadata including author information (David Green <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#117;&#x73;&#x65;&#x72;&#x69;&#100;&#64;&#x73;&#105;&#116;&#101;&#x2e;&#x63;&#111;&#x6d;">&#x75;&#115;&#x65;&#x72;&#105;&#100;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#111;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
