@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="After installing the VM on the computer, one can make a new Rails
-App by the following process: Go to the machine directory in your host machine &hellip;">
+  <meta name="description" content="The Bitnami install doccumented earlier is a bit broken relative to MySQL.
+Evidently, when Bitnami installs in the VM situation and moves itself to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,96 @@ App by the following process: Go to the machine directory in your host machine &
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-08T17:52:00-05:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
+Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
+directory, it expects to be a slightly more traditional install and use the userid mysql for
+running the MySQL server.  However, the built databases are secured to the vagrant user account
+(at least in my release).  This is relatively easy to confirm, try starting the server</p>
+
+<pre><code> sudo ~/rubystack/ctlscript.sh start mysql
+</code></pre>
+
+<p>and not that it fails (after a bit).  One can look at the <code>mysqld.log</code> in <code>~/rubystack/mysql/data</code>
+directory and see access errors.</p>
+
+<p>The fix is to give the mysql user access to the MySQL data directory:</p>
+
+<pre><code>cd ~/rubystack/mysql  
+sudo chown -R mysql.vagrant data
+</code></pre>
+
+<p>After this is done, the startup command should work.</p>
+
+<h2>To start MySQL</h2>
+
+<pre><code>cd rubystack  
+sudo ./ctlscript.sh start mysql
+</code></pre>
+
+<h2>To stop MySQL</h2>
+
+<pre><code>cd rubystack  
+sudo ./ctlscript.sh stop mysql
+</code></pre>
+
+<h2>Create MySQL databases for dev, test, production</h2>
+
+<p>The following sequence setups the development, test, and production databases for the
+Rails project <em>tbd4students</em>.</p>
+
+<pre><code>tbd4students&gt; mysql -u root
+CREATE DATABASE tbd4students_development DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_development.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE tbd4students_test DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_test.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE tbd4students_production DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON tbd4students_production.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
+EXIT;
+</code></pre>
+
+<p>In this example, the username <code>vagrant</code> (default in the VM) with a password of
+&lsquo;<code>password</code>&rsquo; is used to access the server.  There is also a presumption that
+the root password to the MySQL server is blank.  This configuration, of
+course, is NO security and is only useful when on a closed system.  One should
+research how to configure things more  securely for anything that will be
+Internet (or even LAN) visible.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/">Make a New Rails 3.2 App in the VM Environment</a></h1>
     
     
@@ -88,7 +178,7 @@ App by the following process: Go to the machine directory in your host machine &
   
 
 
-<time datetime="2013-06-06T15:38:00-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+<time datetime="2013-06-06T15:38:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/#disqus_thread">Comments</a>
         
@@ -290,7 +380,7 @@ App by the following process:</p>
   
 
 
-<time datetime="2013-06-06T01:36:00-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+<time datetime="2013-06-06T01:36:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/#disqus_thread">Comments</a>
         
@@ -524,7 +614,7 @@ VM.</p>
   
 
 
-<time datetime="2013-06-05T15:35:00-04:00" pubdate data-updated="true">Jun 5<span>th</span>, 2013</time>
+<time datetime="2013-06-05T15:35:00-05:00" pubdate data-updated="true">Jun 5<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/#disqus_thread">Comments</a>
         
@@ -587,7 +677,7 @@ The paths specified by the user are at the end of the system paths.</p>
   
 
 
-<time datetime="2013-05-27T19:02:45-04:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
+<time datetime="2013-05-27T18:02:45-05:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/05/27/Tumbling-out/#disqus_thread">Comments</a>
         
@@ -659,7 +749,7 @@ worry about that in the past but I know many others have.</p>
   
 
 
-<time datetime="2013-04-14T02:01:00-04:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+<time datetime="2013-04-14T02:01:00-05:00" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/#disqus_thread">Comments</a>
         
@@ -706,7 +796,7 @@ worry about that in the past but I know many others have.</p>
   
 
 
-<time datetime="2013-01-19T01:24:00-05:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
+<time datetime="2013-01-19T01:24:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/01/19/exploring-stately-for-ruby/#disqus_thread">Comments</a>
         
@@ -752,7 +842,7 @@ worry about that in the past but I know many others have.</p>
   
 
 
-<time datetime="2012-07-24T00:00:00-04:00" pubdate data-updated="true">Jul 24<span>th</span>, 2012</time>
+<time datetime="2012-07-24T00:00:00-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2012</time>
         
          | <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/#disqus_thread">Comments</a>
         
@@ -810,7 +900,7 @@ configured so I would not spend time repeating the building of this space.</p>
   
 
 
-<time datetime="2012-07-21T00:00:00-04:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
+<time datetime="2012-07-21T00:00:00-05:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
         
          | <a href="/blog/2012/07/21/github-with-assembla/#disqus_thread">Comments</a>
         
@@ -966,7 +1056,7 @@ above.</p>
   
 
 
-<time datetime="2012-07-10T00:00:00-04:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
+<time datetime="2012-07-10T00:00:00-05:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
         
          | <a href="/blog/2012/07/10/coffeescript-with-select2-library/#disqus_thread">Comments</a>
         
@@ -1084,55 +1174,6 @@ $(document).ready -&gt;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/09/the-simple-stuff-can-get-you/">The Simple Stuff Can Get You&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-09T00:00:00-04:00" pubdate data-updated="true">Jun 9<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/06/09/the-simple-stuff-can-get-you/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
-make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x75;&#115;&#101;&#114;&#105;&#100;&#64;&#x73;&#x69;&#116;&#x65;&#46;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#101;&#114;&#x69;&#100;&#64;&#x73;&#x69;&#x74;&#101;&#x2e;&#99;&#x6f;&#x6d;</a>) and then
-saved with an .epub extension.</p>
-
-<p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
-told it was an invalid format. Alas, googling did not help me (it has to
-happen every once in a while).</p>
-
-<p>After a goodly bit of exploring, the problem was the e-mail address in angle
-brackets as part of the author information. I removed them and things were
-good to go.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1150,6 +1191,10 @@ good to go.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/19/finding-java-and-netbeans/">Finding Java and NetBeans</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success &#8211; Hard Work And-or Luck?</a>
       </li>
     
@@ -1163,10 +1208,6 @@ good to go.</p>
     
       <li class="post">
         <a href="/blog/2015/12/10/java-sound-update-2/">Java Sound Update 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a>
       </li>
     
   </ul>

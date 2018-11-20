@@ -9,7 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="In his article Absolute Success is Luck. Relative Success is Hard Work., James Clear provides a pair of stories about how luck (including the &hellip;">
+  <meta name="description" content="Working with NetBeans 9 with an OpenJDK 10 install on a MacOS Mojave machine. I teach a course EE333 where we use Java as the basis for our efforts &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +71,124 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2018/11/19/finding-java-and-netbeans/">Finding Java and NetBeans</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-11-19T23:01:00-06:00" pubdate data-updated="true">Nov 19<span>th</span>, 2018</time>
+        
+         | <a href="/blog/2018/11/19/finding-java-and-netbeans/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Working with NetBeans 9 with an OpenJDK 10 install on a MacOS Mojave machine.</p>
+
+<p>I teach a course EE333 where we use Java as the basis for our efforts in learning object-oriented design and programming.  We had to migrate to NetBeans 9 as NetBeans 8.2 became unworkable in some environments and unsupported.  We also went to Java 10.  First with Oracle although on November 16, 2018 they started wanting to uninstall it and have users move to Java 11 which I gather is going to have long-term support.</p>
+
+<p>Both the Oracle code and the OpenJDK code for MacOS have a new (to me at least) structure where it has a more Mac-like file structure with a &ldquo;Contents&rdquo; folder in between the JDK-name and the &ldquo;Home&rdquo; directory.  There is also a MacOS folder and an info.plist.</p>
+
+<p><img src="/images/jdk10-dir-layout.png" alt="/Library/Java Directory with JDK 10 on MacOS" /></p>
+
+<p>This means that the <code>JAVA_HOME</code> should be set a bit differently (to <code>/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home</code>) in the ~/.bash_profile configuration file.</p>
+
+<p>There were several errors in the Ant-based building in NetBeans 9 which essentially were stating that it was not possible to find the <code>java</code> executable and that the RT (runtime) version would be used instead.</p>
+
+<p>In the build.xml file (on lines 120, 121, 127, 362, and 378 on the file I had), there was a path error that may either be just an error or more likely something that is not built correctly for the later JDK versions.  This removed a bunch of error messages.</p>
+
+<p>An example (120, 121) of this in diff form (leading spaces removed) is</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">-  &lt;available file=&quot;${java.home}${file.separator}${file.separator}bin${file.separator}java&quot;/&gt;</span>
+</span><span class='line'><span class="gd">-  &lt;available file=&quot;${java.home}${file.separator}${file.separator}bin${file.separator}java.exe&quot;/&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;available file=&quot;${java.home}${file.separator}..${file.separator}bin${file.separator}java&quot;/&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;available file=&quot;${java.home}${file.separator}..${file.separator}bin${file.separator}java.exe&quot;/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But then, it looks like on restart, NetBeans did not like it and in nbproject/UPDATED.TXT it says</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>============================================
+</span><span class='line'>Project ScheduleBuilder build script updated
+</span><span class='line'>============================================
+</span><span class='line'>
+</span><span class='line'>Project build script file jfx-impl.xml in nbproject sub-directory has not been recognized
+</span><span class='line'>as compliant with this version of NetBeans JavaFX support module. To ensure correct
+</span><span class='line'>and complete functionality within this NetBeans installation the script file has been
+</span><span class='line'>backed up to jfx-impl_backup.xml and then updated to the currently supported state.
+</span><span class='line'>
+</span><span class='line'>FX Project build script auto-update may be triggered on project open either after
+</span><span class='line'>NetBeans installation update or by manual changes in jfx-impl.xml. Please note that
+</span><span class='line'>changing jfx-impl.xml manually is not recommended. Any build customization code should
+</span><span class='line'>be placed only in build.xml in project root directory.
+</span><span class='line'>
+</span><span class='line'>Remark: The auto-update mechanism can be disabled by setting property
+</span><span class='line'>javafx.disable.autoupdate=true
+</span><span class='line'>Automatic opening of this notification when project files are updated can be disabled by setting property
+</span><span class='line'>javafx.disable.autoupdate.notification=true
+</span><span class='line'>(in build.properties, private.properties or project.properties).
+</span><span class='line'>
+</span><span class='line'>Remark: Files nbproject/jfx-impl_backup*.xml and this file nbproject/UPDATED.TXT
+</span><span class='line'>are not used when building the project and can be freely deleted.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which essentially undid the changes.  Good news is that the error messages are not (yet) back.  I removed
+the two files noted as removable.</p>
+
+<p>I will try to remember to check the NetBeans 10vc3 to see if the issue still exists.</p>
+
+<p>In the JDK11, JavaFX will be removed from the JDK and become a standalone package to maintain and install.  Both NetBeans and Java are on multi-times a year release cycle making it challenging to keep up with things for a class baseline.  Hopefully, a stability point is soon.  I know many folks are working towards this goal.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success &#8211; Hard Work And-or Luck?</a></h1>
     
     
@@ -87,7 +205,7 @@
   
 
 
-<time datetime="2018-09-29T09:39:00-04:00" pubdate data-updated="true">Sep 29<span>th</span>, 2018</time>
+<time datetime="2018-09-29T09:39:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2018</time>
         
          | <a href="/blog/2018/09/29/success-hard-work-and-or-luck/#disqus_thread">Comments</a>
         
@@ -135,7 +253,7 @@
   
 
 
-<time datetime="2018-01-21T11:23:00-05:00" pubdate data-updated="true">Jan 21<span>st</span>, 2018</time>
+<time datetime="2018-01-21T11:23:00-06:00" pubdate data-updated="true">Jan 21<span>st</span>, 2018</time>
         
          | <a href="/blog/2018/01/21/finding-reminders-in-evernote/#disqus_thread">Comments</a>
         
@@ -177,7 +295,7 @@ short post will same someone else a few.</p>
   
 
 
-<time datetime="2017-12-24T23:07:00-05:00" pubdate data-updated="true">Dec 24<span>th</span>, 2017</time>
+<time datetime="2017-12-24T23:07:00-06:00" pubdate data-updated="true">Dec 24<span>th</span>, 2017</time>
         
          | <a href="/blog/2017/12/24/netbeans-template-configurer/#disqus_thread">Comments</a>
         
@@ -245,7 +363,7 @@ We placed the code into <a href="code">Github</a>.</p>
   
 
 
-<time datetime="2015-12-10T20:22:00-05:00" pubdate data-updated="true">Dec 10<span>th</span>, 2015</time>
+<time datetime="2015-12-10T20:22:00-06:00" pubdate data-updated="true">Dec 10<span>th</span>, 2015</time>
         
          | <a href="/blog/2015/12/10/java-sound-update-2/#disqus_thread">Comments</a>
         
@@ -502,7 +620,7 @@ hopefully preserved the important behaviors they wished to document.  The new co
   
 
 
-<time datetime="2015-09-21T21:23:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2015</time>
+<time datetime="2015-09-21T21:23:00-05:00" pubdate data-updated="true">Sep 21<span>st</span>, 2015</time>
         
          | <a href="/blog/2015/09/21/creating-a-line-segment-graphic/#disqus_thread">Comments</a>
         
@@ -689,7 +807,7 @@ hopefully preserved the important behaviors they wished to document.  The new co
   
 
 
-<time datetime="2014-11-30T20:20:00-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2014</time>
+<time datetime="2014-11-30T20:20:00-06:00" pubdate data-updated="true">Nov 30<span>th</span>, 2014</time>
         
          | <a href="/blog/2014/11/30/software-programming-skills-popularity/#disqus_thread">Comments</a>
         
@@ -743,7 +861,7 @@ salary offers) are</p>
   
 
 
-<time datetime="2014-10-23T22:24:00-04:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2014</time>
+<time datetime="2014-10-23T22:24:00-05:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2014</time>
         
          | <a href="/blog/2014/10/23/java-sound-update/#disqus_thread">Comments</a>
         
@@ -883,7 +1001,7 @@ although they have been relatively stable for many years.</p>
   
 
 
-<time datetime="2014-09-01T01:33:00-04:00" pubdate data-updated="true">Sep 1<span>st</span>, 2014</time>
+<time datetime="2014-09-01T01:33:00-05:00" pubdate data-updated="true">Sep 1<span>st</span>, 2014</time>
         
          | <a href="/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/#disqus_thread">Comments</a>
         
@@ -929,7 +1047,7 @@ continues to work so I can (or should) concentrate on blog content.</p>
   
 
 
-<time datetime="2013-07-14T17:41:00-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2013</time>
+<time datetime="2013-07-14T17:41:00-05:00" pubdate data-updated="true">Jul 14<span>th</span>, 2013</time>
         
          | <a href="/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/#disqus_thread">Comments</a>
         
@@ -971,96 +1089,6 @@ from one config directory to a new one as part of migrating.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/">Using MySQL With Bitnami on Vagrant VM</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-08T17:52:00-04:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
-Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
-directory, it expects to be a slightly more traditional install and use the userid mysql for
-running the MySQL server.  However, the built databases are secured to the vagrant user account
-(at least in my release).  This is relatively easy to confirm, try starting the server</p>
-
-<pre><code> sudo ~/rubystack/ctlscript.sh start mysql
-</code></pre>
-
-<p>and not that it fails (after a bit).  One can look at the <code>mysqld.log</code> in <code>~/rubystack/mysql/data</code>
-directory and see access errors.</p>
-
-<p>The fix is to give the mysql user access to the MySQL data directory:</p>
-
-<pre><code>cd ~/rubystack/mysql  
-sudo chown -R mysql.vagrant data
-</code></pre>
-
-<p>After this is done, the startup command should work.</p>
-
-<h2>To start MySQL</h2>
-
-<pre><code>cd rubystack  
-sudo ./ctlscript.sh start mysql
-</code></pre>
-
-<h2>To stop MySQL</h2>
-
-<pre><code>cd rubystack  
-sudo ./ctlscript.sh stop mysql
-</code></pre>
-
-<h2>Create MySQL databases for dev, test, production</h2>
-
-<p>The following sequence setups the development, test, and production databases for the
-Rails project <em>tbd4students</em>.</p>
-
-<pre><code>tbd4students&gt; mysql -u root
-CREATE DATABASE tbd4students_development DEFAULT CHARACTER SET utf8;
-GRANT ALL PRIVILEGES ON tbd4students_development.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
-CREATE DATABASE tbd4students_test DEFAULT CHARACTER SET utf8;
-GRANT ALL PRIVILEGES ON tbd4students_test.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
-CREATE DATABASE tbd4students_production DEFAULT CHARACTER SET utf8;
-GRANT ALL PRIVILEGES ON tbd4students_production.* TO 'vagrant'@'localhost' IDENTIFIED BY 'password';
-EXIT;
-</code></pre>
-
-<p>In this example, the username <code>vagrant</code> (default in the VM) with a password of
-&lsquo;<code>password</code>&rsquo; is used to access the server.  There is also a presumption that
-the root password to the MySQL server is blank.  This configuration, of
-course, is NO security and is only useful when on a closed system.  One should
-research how to configure things more  securely for anything that will be
-Internet (or even LAN) visible.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1076,6 +1104,10 @@ Internet (or even LAN) visible.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/19/finding-java-and-netbeans/">Finding Java and NetBeans</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success &#8211; Hard Work And-or Luck?</a>
       </li>
     
@@ -1089,10 +1121,6 @@ Internet (or even LAN) visible.</p>
     
       <li class="post">
         <a href="/blog/2015/12/10/java-sound-update-2/">Java Sound Update 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a>
       </li>
     
   </ul>
