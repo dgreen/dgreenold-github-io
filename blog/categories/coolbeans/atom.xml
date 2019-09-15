@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CoolBeans, | Glimmer]]></title>
+  <link href="https://glimmer.gwizlabs.net/blog/categories/coolbeans/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2019-09-15T13:25:47-05:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Onward to Maven in Apache NetBeans]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven/"/>
+    <updated>2019-09-15T11:23:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven</id>
+    <content type="html"><![CDATA[<p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
+
+<p>Another change made was changing the underlying preferred build automation from <a href="https://ant.apache.org">Apache Ant</a> to <a href="https://maven.apache.org">Apache Maven</a> for new projects.  This changes the file structure of the code as well as some details underneath.  NetBeans mostly allows the user to ignore this once the project is made.</p>
+
+<p>One area that is not yet polished (IMO) is the building of a <em>jar</em> file that can be run from the command line.  The menu process &ldquo;Run &#9654; Clean and Build Main Project&rdquo; will build a <em>jar</em> file but it won&rsquo;t configure the manifest so that</p>
+
+<p><code>
+java -jar jarfile.jar
+</code></p>
+
+<p>works.</p>
+
+<p>The <a href="https://www.moreofless.co.uk/executable-jar-netbeans-maven-no-main-manifest-attribute/">solution was posted by Steve Claridge</a> is to modify the POM (Project Object Model) file.  It is under the Project Files folder in the Project View in NetBeans.  Load the <code>pom.xml</code> file into the NetBeans editor.</p>
+
+<p>Quoting from the article:</p>
+
+<blockquote><p>You need to add the following XML snippet to your pom.xml, it can go anywhere inside the <project> element, I usually put it after the <properties> element:</p></blockquote>
+
+<p>```xml</p>
+
+<pre><code>&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.4&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;archive&gt;
+                    &lt;manifest&gt;
+                        &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+                        &lt;mainClass&gt;MAIN CLASS GOES HERE&lt;/mainClass&gt;
+                    &lt;/manifest&gt;
+                &lt;/archive&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+
+<p>```</p>
+
+<blockquote><p>Just replace <strong>MAIN CLASS GOES HERE</strong> with your main class (with it&rsquo;s package prefix), rebuild and your JAR is now runnable. If you are unsure what to put here, just copy the Main Class settings from the Run tab in your Netbeans Project Properties.</p></blockquote>
+
+<p>After you do this, you can use &ldquo;Run &#9654; Clean and Build Main Project&rdquo; in NetBeans to build the <em>jar</em> file.  By changing to the Files view (instead of the Project View), you can see the target directory.</p>
+
+<p>The name of the <em>jar</em> file will be dependent on your configuration, your project setup but in my habits project, it was <code>habits-1.0-SNAPSHOT.jar</code> which one can run from the terminal with</p>
+
+<p><code>bash
+java -jar habits-1.0-SNAPSHOT.jar
+</code></p>
+
+<p>assuming that Java has been set up to run at the command line (or you are using the terminal inside NetBeans.)</p>
+
+<p><strong>Note</strong> that the target directory is erased as part of the clean process of &ldquo;Run &#9654; Clean and Build Main Project&rdquo; so you will need to close anything that has files in that space open before re-running the clean process.</p>
+]]></content>
+  </entry>
+  
+</feed>

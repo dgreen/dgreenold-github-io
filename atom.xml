@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2018-11-19T23:43:22-06:00</updated>
+  <updated>2019-09-15T13:25:47-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Onward to Maven in Apache NetBeans]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven/"/>
+    <updated>2019-09-15T11:23:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven</id>
+    <content type="html"><![CDATA[<p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
+
+<p>Another change made was changing the underlying preferred build automation from <a href="https://ant.apache.org">Apache Ant</a> to <a href="https://maven.apache.org">Apache Maven</a> for new projects.  This changes the file structure of the code as well as some details underneath.  NetBeans mostly allows the user to ignore this once the project is made.</p>
+
+<p>One area that is not yet polished (IMO) is the building of a <em>jar</em> file that can be run from the command line.  The menu process &ldquo;Run &#9654; Clean and Build Main Project&rdquo; will build a <em>jar</em> file but it won&rsquo;t configure the manifest so that</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar jarfile.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>works.</p>
+
+<p>The <a href="https://www.moreofless.co.uk/executable-jar-netbeans-maven-no-main-manifest-attribute/">solution was posted by Steve Claridge</a> is to modify the POM (Project Object Model) file.  It is under the Project Files folder in the Project View in NetBeans.  Load the <code>pom.xml</code> file into the NetBeans editor.</p>
+
+<p>Quoting from the article:</p>
+
+<blockquote><p>You need to add the following XML snippet to your pom.xml, it can go anywhere inside the <project> element, I usually put it after the <properties> element:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;archive&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;manifest&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;mainClass&gt;</span>MAIN CLASS GOES HERE<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;/manifest&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/archive&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Just replace <strong>MAIN CLASS GOES HERE</strong> with your main class (with it&rsquo;s package prefix), rebuild and your JAR is now runnable. If you are unsure what to put here, just copy the Main Class settings from the Run tab in your Netbeans Project Properties.</p></blockquote>
+
+<p>After you do this, you can use &ldquo;Run &#9654; Clean and Build Main Project&rdquo; in NetBeans to build the <em>jar</em> file.  By changing to the Files view (instead of the Project View), you can see the target directory.</p>
+
+<p>The name of the <em>jar</em> file will be dependent on your configuration, your project setup but in my habits project, it was <code>habits-1.0-SNAPSHOT.jar</code> which one can run from the terminal with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>java -jar habits-1.0-SNAPSHOT.jar
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>assuming that Java has been set up to run at the command line (or you are using the terminal inside NetBeans.)</p>
+
+<p><strong>Note</strong> that the target directory is erased as part of the clean process of &ldquo;Run &#9654; Clean and Build Main Project&rdquo; so you will need to close anything that has files in that space open before re-running the clean process.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Finding Java and NetBeans]]></title>
@@ -1450,116 +1527,6 @@ above.</p>
 </ol>
 </div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CoffeeScript with Select2 library]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2012/07/10/coffeescript-with-select2-library/"/>
-    <updated>2012-07-10T00:00:00-05:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2012/07/10/coffeescript-with-select2-library</id>
-    <content type="html"><![CDATA[<p>I had two demons: a new library and a language I was not really familiar with.
-A formula for puzzles. I did not find quickly the right example to do the
-jQuery/Select2 JavaScript to CoffeeScript mapping but I did find a <a href="http://js2cs.nodejitsu.com/">reverse
-compiler</a> which helped.</p>
-
-<p>In case it helps, I was trying to convert a working Javascript solution
-(derived from the <a href="http://ivaynberg.github.com/select2/">Select2 documentation</a>):</p>
-
-<hr />
-
-<pre><code>function personFormatResult(person) {
-    var markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
-    if (person.email !== undefined ) {
-        markup += "&lt;td&gt;" + person.email + "&lt;/td&gt;";
-    }
-    if (person.name != undefined ) {
-        markup += "&lt;td&gt;" + person.name + "&lt;/td&gt;";
-    }
-    markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
-    return markup;
-}
-
-function personFormatSelection(person) {
-    var t = person.name;
-    if ( person.email != "" ) {
-      t += " &amp;lt;" + person.email + "&amp;gt;";
-    }
-    return t;
-}
-
-// presently hacked in section_id of 1
-
-$(document).ready(function() {
-    $("#demo1").select2({
-        placeholder: {name: "Search for attendee by email", email: ""},
-        minimumInputLength: 1,
-        ajax: {
-            processData: true,
-            data: function (term, page) {
-                return {
-                    email: term,
-                    section_id: 1
-                };
-            },
-            url: "/attendees/match",
-            dataType: json,
-            results: function (data, page) {
-                return {results: data};
-            }
-        },
-        formatResult: personFormatResult,
-        formatSelection:personFormatSelection
-})});
-</code></pre>
-
-<hr />
-
-<p>to CoffeeScript. One translation is</p>
-
-<hr />
-
-<pre><code>personFormatResult = (person) -&gt;
-  markup = "&lt;table class=person-result&gt;&lt;tr&gt;"
-  markup += "&lt;td&gt;#{person.email}&lt;/td&gt;" if person.email != undefined
-  markup += "&lt;td&gt;#{person.name}&lt;/td&gt;" if person.name != undefined
-  markup += "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
-
-personFormatSelection = (person) -&gt;
-  markup = person.name
-  markup +=  " &amp;lt;" + person.email + "&amp;gt;" if person.email != ""
-
-# And with the help of http://js2cs.nodejitsu.com/ (blank lines optional):
-
-$(document).ready -&gt;
-  $("#demo1").select2
-    placeholder:
-      name: "Search for attendee by email"
-      email: ""
-
-    minimumInputLength: 1
-
-    ajax:
-      processData: true
-
-      data: (term, page) -&gt;
-        email: term
-        section_id: 1
-
-      url: "/attendees/match"
-
-      dataType: "json"
-
-      results: (data, page) -&gt;
-        results: data
-
-    formatResult: personFormatResult
-    formatSelection: personFormatSelection
-</code></pre>
-
-<hr />
-
-<p>Hope this is useful to someone else.</p>
 ]]></content>
   </entry>
   
