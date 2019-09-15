@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: CoolBeans, | Glimmer]]></title>
+  <title><![CDATA[Category: CoolBeans | Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/blog/categories/coolbeans/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-09-15T13:25:47-05:00</updated>
+  <updated>2019-09-15T13:35:09-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
