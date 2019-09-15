@@ -3,7 +3,7 @@ layout: post
 title: "Onward to Maven in Apache NetBeans"
 date: 2019-09-15 11:23
 comments: true
-categories: java, NetBeans, CoolBeans, maven
+categories: java NetBeans CoolBeans maven
 ---
 
 At the time of writing, [*Apache NetBeans*][apacheNetBeans] is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the [Apache Foundation License][license].  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The [CoolBeans project][CoolBeans] packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.
