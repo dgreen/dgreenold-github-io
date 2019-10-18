@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java, | Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/blog/categories/java/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-09-15T13:36:05-05:00</updated>
+  <updated>2019-10-17T22:37:00-07:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Finding Java and NetBeans]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2018/11/19/finding-java-and-netbeans/"/>
-    <updated>2018-11-19T23:01:00-06:00</updated>
+    <updated>2018-11-19T23:01:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2018/11/19/finding-java-and-netbeans</id>
     <content type="html"><![CDATA[<p>Working with NetBeans 9 with an OpenJDK 10 install on a MacOS Mojave machine.</p>
 
@@ -80,7 +80,7 @@ the two files noted as removable.</p>
   <entry>
     <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
-    <updated>2013-07-14T17:41:00-05:00</updated>
+    <updated>2013-07-14T17:41:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
     <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
 

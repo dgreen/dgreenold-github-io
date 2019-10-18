@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="My wife asked me about a strange number that had shown up on her cell phone.
-She went to the Google and found out that it had been reported by others &hellip;">
+  <meta name="description" content="OS X made the jump to a 64bit platform with 10.6 Snow Leopard.  Of course, not
+everything is written for 64 bit mode at present.  The Universal file &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,82 @@ She went to the Google and found out that it had been reported by others &hellip
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2010/02/08/old-code-on-new-platforms/">Old Code on New Platforms</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-08T00:00:00-08:00" pubdate data-updated="true">Feb 8<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/02/08/old-code-on-new-platforms/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OS X made the jump to a 64bit platform with 10.6 Snow Leopard.  Of course, not
+everything is written for 64 bit mode at present.  The Universal file format
+allows for binaries to be containers hold many different copies of the same
+code but for different architectures.</p>
+
+<p>So specifically, I was trying to build the latest <strong>rcov</strong> for the platform to
+run under the now creaky old Locomotive shell I have been modifying to keep my
+development rails environments separate from the OS&rsquo;s installation.  Dutifully
+giving the command while inside a terminal session where the paths map to
+locations within the Locomotive container:</p>
+
+<p><code>gem install rcov</code></p>
+
+<p>was giving the right &ldquo;words&rdquo; for output including the fact that the binary
+extensions were being built (although it happened really quickly!).  Looking
+inside, I found the rcovrt.bundle that was built and verified it was being
+copied into position.</p>
+
+<p>But using</p>
+
+<p><code>file rcovrt.bundle</code></p>
+
+<p>I found that it was a <code>Mach-O x86_64</code> rather than like the other bundles that
+were already there that were <code>Mach-O i386</code> bundles.</p>
+
+<p>I found the <code>Makefile</code> for the rcovrt code and tried it.</p>
+
+<p>`make clean</p>
+
+<blockquote><p>make<br> make install`</p></blockquote>
+
+<p>Based on hints from <a href="http://blog.d27n.com/2009/08/26/mac-os-x-snow-leopard-rails-mysql-and-sphinx/">Mac OS X Snow Leopard + Rails, MySQL, and Sphinx</a>, I
+added</p>
+
+<p><code>-arch i386</code></p>
+
+<p>to all <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>, <code>LDSHARED</code> variables, redid the
+&ldquo;<code>make</code> dance&rdquo;.  Success, I had the right type bundle in the right place and
+everything was working again.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2009/12/23/post-those-weird-phone-numbers-may-be-me/">Post Those Weird Phone Numbers (May Be Me)</a></h1>
     
     
@@ -88,7 +164,7 @@ She went to the Google and found out that it had been reported by others &hellip
   
 
 
-<time datetime="2009-12-23T00:00:00-06:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2009</time>
+<time datetime="2009-12-23T00:00:00-08:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2009</time>
         
          | <a href="/blog/2009/12/23/post-those-weird-phone-numbers-may-be-me/#disqus_thread">Comments</a>
         
@@ -153,7 +229,7 @@ moment, I am using option 4 while I weigh the tradeoffs.</p>
   
 
 
-<time datetime="2009-12-20T00:00:00-06:00" pubdate data-updated="true">Dec 20<span>th</span>, 2009</time>
+<time datetime="2009-12-20T00:00:00-08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/12/20/giving-back/#disqus_thread">Comments</a>
         
@@ -196,7 +272,7 @@ Internet resource and I feel it is worth supporting.</p>
   
 
 
-<time datetime="2009-09-27T00:00:00-05:00" pubdate data-updated="true">Sep 27<span>th</span>, 2009</time>
+<time datetime="2009-09-27T00:00:00-07:00" pubdate data-updated="true">Sep 27<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/27/merging-with-svn-16/#disqus_thread">Comments</a>
         
@@ -267,7 +343,7 @@ merged from. This page describes things at <a href="http://blogs.open.collab.net
   
 
 
-<time datetime="2009-09-24T00:00:00-05:00" pubdate data-updated="true">Sep 24<span>th</span>, 2009</time>
+<time datetime="2009-09-24T00:00:00-07:00" pubdate data-updated="true">Sep 24<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/#disqus_thread">Comments</a>
         
@@ -368,7 +444,7 @@ template) and <a href="http://wiki.netbeans.org/FaqFreeMarker">FaqFreeMarker</a>
   
 
 
-<time datetime="2009-09-13T00:00:00-05:00" pubdate data-updated="true">Sep 13<span>th</span>, 2009</time>
+<time datetime="2009-09-13T00:00:00-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/13/snow-leopards-preview-updates-upon-regaining-focus/#disqus_thread">Comments</a>
         
@@ -409,7 +485,7 @@ judge the results.</p>
   
 
 
-<time datetime="2009-09-13T00:00:00-05:00" pubdate data-updated="true">Sep 13<span>th</span>, 2009</time>
+<time datetime="2009-09-13T00:00:00-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/13/snow-leopard-make-symbolic-links/#disqus_thread">Comments</a>
         
@@ -452,7 +528,7 @@ work even when you move the target file around.</p>
   
 
 
-<time datetime="2009-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+<time datetime="2009-09-12T00:00:00-07:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/12/the-four-finger-swipe/#disqus_thread">Comments</a>
         
@@ -493,7 +569,7 @@ Interesting.  May have to try to remember what the three finger swipes do.</p>
   
 
 
-<time datetime="2009-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+<time datetime="2009-09-12T00:00:00-07:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/12/snow-leopard---smooth-install/#disqus_thread">Comments</a>
         
@@ -596,7 +672,7 @@ after 10.6.1 patch (if that matters), my Oracle application is working in both
   
 
 
-<time datetime="2009-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+<time datetime="2009-09-12T00:00:00-07:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
         
          | <a href="/blog/2009/09/12/snow-leopard---mailapp/#disqus_thread">Comments</a>
         
@@ -639,86 +715,6 @@ working synchronization scheme to let Exchange fully participate.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/12/mail-configuration/">Mail Configuration</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/09/12/mail-configuration/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Lots of posts today. In recording my Snow Leopard experiences, it occurred to
-me that a decision I made recently regarding handling of sent mail had not
-been documented.  Since I am pretty satisfied, it seems time to document it.
-This is NOT specific to any particular mail client other than it probably does
-not make sense with Google mail and it&rsquo;s tag approach.</p>
-
-<p>For years, I have told the mail client to put a copy of each message I sent
-into a &ldquo;sent mail&rdquo; folder.  I have sometimes chosen to purge messages I did
-not think were worth keeping from there, sometimes just offloaded the whole
-file yearly into another tool, and sometimes tried to move messages that went
-with particular conversations into a folder with the rest of the thread.</p>
-
-<p>I have also played around with BCCing myself on messages.  This lets you know
-the message made it out (for most mail clients) and also forces you to think
-if there are any more actions to take now that you have sent the mail.
-Possible actions include 1) scheduling a follow-up, 2) recording the data you
-supplied in the message in another system, storing the message in folder with
-the rest of the thread, etc.</p>
-
-<p>About a month ago, I have decided to no longer store sent items on the server
-but rather to store them locally on the client, to BCC myself on all messages,
-and to automatically purge local sent items after 30 days.  My operating
-approach is the BCC&#8217;ed message that falls into my inbox gets immediate
-attention and I will process as appropriate as well as make a long term
-archive decision.  Sent messages will hang around from where they were sent
-for 30 days in case something goes wrong &mdash; most of the time, the only thing
-that goes wrong happens very soon since messages that I don&rsquo;t decide to
-archive don&rsquo;t have any long term value.</p>
-
-<p>Anyway, that is my new steady state approach for mail where I have folder-
-control and I like it.</p>
-
-<p>The other half of my mail is served by Google.</p>
-
-<p>I am presently letting Google do what Google does <G>.  My present thought is
-that if I were to use Google through an IMAP interface and use the above
-approach, I would not be successful because Google would only have one message
-(not the BCC one and the sent one) and if I auto-delete (tag as trash) I&rsquo;ll
-lose the ones that are also tagged with something else (appear to be in a
-folder) but I have not experimented yet.</p>
-
-<p><strong>Update 9/13/2009:</strong> Outlook 2007 won&rsquo;t BCC the sender without extra code or
-a plug-in (sigh).</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -736,6 +732,10 @@ a plug-in (sigh).</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
       </li>
     
@@ -749,10 +749,6 @@ a plug-in (sigh).</p>
     
       <li class="post">
         <a href="/blog/2018/01/21/finding-reminders-in-evernote/">Finding Reminders in Evernote</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/12/24/netbeans-template-configurer/">NetBeans Template Configurer</a>
       </li>
     
   </ul>

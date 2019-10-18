@@ -4,7 +4,7 @@
   <title><![CDATA[Category: developer | Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/blog/categories/developer/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-09-15T13:36:05-05:00</updated>
+  <updated>2019-10-17T22:37:00-07:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
-    <updated>2013-07-14T17:41:00-05:00</updated>
+    <updated>2013-07-14T17:41:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
     <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
 
@@ -50,7 +50,7 @@ from one config directory to a new one as part of migrating.</p>
   <entry>
     <title type="html"><![CDATA[Using MySQL with Bitnami on Vagrant VM]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/"/>
-    <updated>2013-07-08T17:52:00-05:00</updated>
+    <updated>2013-07-08T17:52:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm</id>
     <content type="html"><![CDATA[<p>The <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
 Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
@@ -111,7 +111,7 @@ Internet (or even LAN) visible.</p>
   <entry>
     <title type="html"><![CDATA[Make a new rails 3.2 app in the VM Environment]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/"/>
-    <updated>2013-06-06T15:38:00-05:00</updated>
+    <updated>2013-06-06T15:38:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment</id>
     <content type="html"><![CDATA[<p>After <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">installing the VM on the computer</a>, one can make a new Rails
 App by the following process:</p>
@@ -318,7 +318,7 @@ App by the following process:</p>
   <entry>
     <title type="html"><![CDATA[Using Bitnami's Rubystack on VirtualBox Linux with Vagrant]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/"/>
-    <updated>2013-06-06T01:36:00-05:00</updated>
+    <updated>2013-06-06T01:36:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant</id>
     <content type="html"><![CDATA[<p>In my Software Engineering Projects class, we are going to do a RAILS-based
 project.  Based on feedback from last year&rsquo;s class, I am furnishing students

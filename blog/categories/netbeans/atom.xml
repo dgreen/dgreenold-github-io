@@ -4,7 +4,7 @@
   <title><![CDATA[Category: NetBeans | Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/blog/categories/netbeans/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-09-15T13:36:05-05:00</updated>
+  <updated>2019-10-17T22:37:00-07:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -14,9 +14,32 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Configuring CoolBeans 2019.6]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/10/17/configuring-coolbeans-2019-dot-6/"/>
+    <updated>2019-10-17T22:29:00-07:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/10/17/configuring-coolbeans-2019-dot-6</id>
+    <content type="html"><![CDATA[<p>At JDK 8, JavaFX and the JDK were together, thus already configured to build applications with both.  Since that time, they were split apart (by Oracle). Different groups took over the open-source versions of each (JDK, JavaFX, and the IDE).  Each of these components needed work, which was done on different schedules, so at this point, one has to do a bit of work to set up CoolBeans (or NetBeans) for JavaFx work.  Additionally, it has become apparent that developers need to ship the JVM with their products to reduce the pain to their users.</p>
+
+<p>This <a href="https://gist.github.com/dgreen/e1ae4636f311d38758dafdd7b0decf0f">Gist</a> discusses the approach as well as provides the files used.</p>
+
+<p>The approach features</p>
+
+<ul>
+<li>use of modular Java</li>
+<li>latest JavaFX</li>
+<li>integration with CoolBeans (Run, Debug, Generate JavaDoc, Test with TestNG)</li>
+<li>an image that contains everything (for the platform it was built on) to run the program</li>
+</ul>
+
+
+<p>Testing is configured but not demoed.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Onward to Maven in Apache NetBeans]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven/"/>
-    <updated>2019-09-15T11:23:00-05:00</updated>
+    <updated>2019-09-15T11:23:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven</id>
     <content type="html"><![CDATA[<p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
 
@@ -78,7 +101,7 @@ java -jar habits-1.0-SNAPSHOT.jar
   <entry>
     <title type="html"><![CDATA[Finding Java and NetBeans]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2018/11/19/finding-java-and-netbeans/"/>
-    <updated>2018-11-19T23:01:00-06:00</updated>
+    <updated>2018-11-19T23:01:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2018/11/19/finding-java-and-netbeans</id>
     <content type="html"><![CDATA[<p>Working with NetBeans 9 with an OpenJDK 10 install on a MacOS Mojave machine.</p>
 

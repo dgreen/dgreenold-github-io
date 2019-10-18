@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-09-15T13:36:05-05:00</updated>
+  <updated>2019-10-17T22:37:00-07:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -14,9 +14,32 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Configuring CoolBeans 2019.6]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/10/17/configuring-coolbeans-2019-dot-6/"/>
+    <updated>2019-10-17T22:29:00-07:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/10/17/configuring-coolbeans-2019-dot-6</id>
+    <content type="html"><![CDATA[<p>At JDK 8, JavaFX and the JDK were together, thus already configured to build applications with both.  Since that time, they were split apart (by Oracle). Different groups took over the open-source versions of each (JDK, JavaFX, and the IDE).  Each of these components needed work, which was done on different schedules, so at this point, one has to do a bit of work to set up CoolBeans (or NetBeans) for JavaFx work.  Additionally, it has become apparent that developers need to ship the JVM with their products to reduce the pain to their users.</p>
+
+<p>This <a href="https://gist.github.com/dgreen/e1ae4636f311d38758dafdd7b0decf0f">Gist</a> discusses the approach as well as provides the files used.</p>
+
+<p>The approach features</p>
+
+<ul>
+<li>use of modular Java</li>
+<li>latest JavaFX</li>
+<li>integration with CoolBeans (Run, Debug, Generate JavaDoc, Test with TestNG)</li>
+<li>an image that contains everything (for the platform it was built on) to run the program</li>
+</ul>
+
+
+<p>Testing is configured but not demoed.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Onward to Maven in Apache NetBeans]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven/"/>
-    <updated>2019-09-15T11:23:00-05:00</updated>
+    <updated>2019-09-15T11:23:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2019/09/15/onward-to-maven</id>
     <content type="html"><![CDATA[<p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
 
@@ -93,7 +116,7 @@
   <entry>
     <title type="html"><![CDATA[Finding Java and NetBeans]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2018/11/19/finding-java-and-netbeans/"/>
-    <updated>2018-11-19T23:01:00-06:00</updated>
+    <updated>2018-11-19T23:01:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2018/11/19/finding-java-and-netbeans</id>
     <content type="html"><![CDATA[<p>Working with NetBeans 9 with an OpenJDK 10 install on a MacOS Mojave machine.</p>
 
@@ -182,7 +205,7 @@ the two files noted as removable.</p>
   <entry>
     <title type="html"><![CDATA[Success -- hard work and-or luck?]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2018/09/29/success-hard-work-and-or-luck/"/>
-    <updated>2018-09-29T09:39:00-05:00</updated>
+    <updated>2018-09-29T09:39:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2018/09/29/success-hard-work-and-or-luck</id>
     <content type="html"><![CDATA[<p>In his article <em><a href="https://jamesclear.com/luck-vs-hard-work">Absolute Success is Luck. Relative Success is Hard Work.</a></em>, James Clear provides a pair of stories about how luck (including the circumstances one is born into) and hard work both play a role in success.  He concludes that luck controls absolute success and hard work controls relative success.</p>
 
@@ -201,7 +224,7 @@ the two files noted as removable.</p>
   <entry>
     <title type="html"><![CDATA[Finding Reminders in Evernote]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2018/01/21/finding-reminders-in-evernote/"/>
-    <updated>2018-01-21T11:23:00-06:00</updated>
+    <updated>2018-01-21T11:23:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2018/01/21/finding-reminders-in-evernote</id>
     <content type="html"><![CDATA[<p>Here is a hint that I was not able to find quickly in Google nor in the EverNote help.</p>
 
@@ -214,7 +237,7 @@ short post will same someone else a few.</p>
   <entry>
     <title type="html"><![CDATA[NetBeans Template Configurer]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2017/12/24/netbeans-template-configurer/"/>
-    <updated>2017-12-24T23:07:00-06:00</updated>
+    <updated>2017-12-24T23:07:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2017/12/24/netbeans-template-configurer</id>
     <content type="html"><![CDATA[<p>Many years ago, I wrote a <a href="blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/">post</a> about how to use the NetBeans template system for
 my students.  It quickly covered the basics and demonstrated how to set things up
@@ -253,7 +276,7 @@ We placed the code into <a href="code">Github</a>.</p>
   <entry>
     <title type="html"><![CDATA[Java Sound Update 2]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2/"/>
-    <updated>2015-12-10T20:22:00-06:00</updated>
+    <updated>2015-12-10T20:22:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2</id>
     <content type="html"><![CDATA[<p>This is an update to a prior <a href="http://dgreen.github.io/blog/2014/10/23/java-sound-update/">article</a>.</p>
 
@@ -481,7 +504,7 @@ hopefully preserved the important behaviors they wished to document.  The new co
   <entry>
     <title type="html"><![CDATA[Creating a Line Segment Graphic]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2015/09/21/creating-a-line-segment-graphic/"/>
-    <updated>2015-09-21T21:23:00-05:00</updated>
+    <updated>2015-09-21T21:23:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2015/09/21/creating-a-line-segment-graphic</id>
     <content type="html"><![CDATA[<p>The following code</p>
 
@@ -639,7 +662,7 @@ hopefully preserved the important behaviors they wished to document.  The new co
   <entry>
     <title type="html"><![CDATA[Software Programming Skills Popularity]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2014/11/30/software-programming-skills-popularity/"/>
-    <updated>2014-11-30T20:20:00-06:00</updated>
+    <updated>2014-11-30T20:20:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2014/11/30/software-programming-skills-popularity</id>
     <content type="html"><![CDATA[<p>There are lots of ways to evaluate popularity, and in the end, all are probably very transitory.
 In his <a href="http://qz.com/298635/these-programming-languages-will-earn-you-the-most-money/">Quartz article</a>, Max Nisen examined American job data and reports the top ten slanguage/frameworks (by
@@ -664,7 +687,7 @@ salary offers) are</p>
   <entry>
     <title type="html"><![CDATA[Java Sound Update]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2014/10/23/java-sound-update/"/>
-    <updated>2014-10-23T22:24:00-05:00</updated>
+    <updated>2014-10-23T22:24:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2014/10/23/java-sound-update</id>
     <content type="html"><![CDATA[<p>For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
 using <a href="http://alvinalexander.com/java/java-audio-example-java-au-play-sound">Alvin Alexander&rsquo;s article</a> for inspiration.  The downside of this approach, of course,
@@ -775,7 +798,7 @@ although they have been relatively stable for many years.</p>
   <entry>
     <title type="html"><![CDATA[Waiting on Migration Tools for Octopress 3]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3/"/>
-    <updated>2014-09-01T01:33:00-05:00</updated>
+    <updated>2014-09-01T01:33:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2014/09/01/waiting-on-migration-tools-for-octopress-3</id>
     <content type="html"><![CDATA[<p>Watching the Twitter posts, it looks like a lot of work has gone
 into building Octopress 3.0 around a somewhat different philosophy
@@ -792,7 +815,7 @@ continues to work so I can (or should) concentrate on blog content.</p>
   <entry>
     <title type="html"><![CDATA[Updating Java/NetBeans on OS X]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x/"/>
-    <updated>2013-07-14T17:41:00-05:00</updated>
+    <updated>2013-07-14T17:41:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/07/14/updating-java-slash-netbeans-on-os-x</id>
     <content type="html"><![CDATA[<h2>Oracle Java on OS X</h2>
 
@@ -826,7 +849,7 @@ from one config directory to a new one as part of migrating.</p>
   <entry>
     <title type="html"><![CDATA[Using MySQL with Bitnami on Vagrant VM]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm/"/>
-    <updated>2013-07-08T17:52:00-05:00</updated>
+    <updated>2013-07-08T17:52:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/07/08/using-mysql-with-bitnami-on-vagrant-vm</id>
     <content type="html"><![CDATA[<p>The <a href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">Bitnami install doccumented earlier</a> is a bit broken relative to MySQL.
 Evidently, when Bitnami installs in the VM situation and moves itself to the <code>/opt/rubystack...</code>
@@ -887,7 +910,7 @@ Internet (or even LAN) visible.</p>
   <entry>
     <title type="html"><![CDATA[Make a new rails 3.2 app in the VM Environment]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/"/>
-    <updated>2013-06-06T15:38:00-05:00</updated>
+    <updated>2013-06-06T15:38:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment</id>
     <content type="html"><![CDATA[<p>After <a href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">installing the VM on the computer</a>, one can make a new Rails
 App by the following process:</p>
@@ -1060,7 +1083,7 @@ App by the following process:</p>
   <entry>
     <title type="html"><![CDATA[Using Bitnami's Rubystack on VirtualBox Linux with Vagrant]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/"/>
-    <updated>2013-06-06T01:36:00-05:00</updated>
+    <updated>2013-06-06T01:36:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant</id>
     <content type="html"><![CDATA[<p>In my Software Engineering Projects class, we are going to do a RAILS-based
 project.  Based on feedback from last year&rsquo;s class, I am furnishing students
@@ -1265,7 +1288,7 @@ VM.</p>
   <entry>
     <title type="html"><![CDATA[Adding to a non-privileged users path in Windows 7]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
-    <updated>2013-06-05T15:35:00-05:00</updated>
+    <updated>2013-06-05T15:35:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
     <content type="html"><![CDATA[<p>Does it have to be this hard?</p>
 
@@ -1299,7 +1322,7 @@ The paths specified by the user are at the end of the system paths.</p>
   <entry>
     <title type="html"><![CDATA[Tumbling out!]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/05/27/Tumbling-out/"/>
-    <updated>2013-05-27T18:02:45-05:00</updated>
+    <updated>2013-05-27T16:02:45-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/05/27/Tumbling-out</id>
     <content type="html"><![CDATA[<p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
 been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
@@ -1342,7 +1365,7 @@ worry about that in the past but I know many others have.</p>
   <entry>
     <title type="html"><![CDATA[Safe Boot is back (in OS X10.8.3) with FileVault]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/"/>
-    <updated>2013-04-14T02:01:00-05:00</updated>
+    <updated>2013-04-14T02:01:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault</id>
     <content type="html"><![CDATA[<p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
 
@@ -1360,7 +1383,7 @@ worry about that in the past but I know many others have.</p>
   <entry>
     <title type="html"><![CDATA[Exploring stately for Ruby]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2013/01/19/exploring-stately-for-ruby/"/>
-    <updated>2013-01-19T01:24:00-06:00</updated>
+    <updated>2013-01-19T01:24:00-08:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2013/01/19/exploring-stately-for-ruby</id>
     <content type="html"><![CDATA[<p>As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation.</p>
 
@@ -1377,7 +1400,7 @@ worry about that in the past but I know many others have.</p>
   <entry>
     <title type="html"><![CDATA[Trading Memory for Functionality (Enough Performance)]]></title>
     <link href="https://glimmer.gwizlabs.net/blog/2012/07/24/trading-memory-for-functionality-enough-performance/"/>
-    <updated>2012-07-24T00:00:00-05:00</updated>
+    <updated>2012-07-24T00:00:00-07:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2012/07/24/trading-memory-for-functionality-enough-performance</id>
     <content type="html"><![CDATA[<p>I was working on a the last note and wanted to check things out under a fresh
 install. I decided to make a new Mac User to accomplish this. I used GitHub
@@ -1400,133 +1423,6 @@ location, etc.) capability.</p>
 <p>I was very surprised at how much space was taken but I decided my lesson was
 to also trade space for functionality (enough performance) and leave the user
 configured so I would not spend time repeating the building of this space.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[GitHub with Assembla]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2012/07/21/github-with-assembla/"/>
-    <updated>2012-07-21T00:00:00-05:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2012/07/21/github-with-assembla</id>
-    <content type="html"><![CDATA[<p><a href="http://github.com">GitHub</a> has now made a nice simple GUI tool for both <a href="http://mac.github.com">OS X</a> and
-<a href="http://windows.github.com">Windows</a>. They have made them freely available for download. They seem to
-have made careful choices about what to support and not support in order to
-keep tool as simple as possible. They do support using GitHub<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> against
-other git repositories such as Assembla or a homegrown one. They don&rsquo;t support
-multiple remote repositories for a specific local repository but you are free
-to use GitHub.com for one project<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and Assembla (for example) for
-another. The two limitations that I have seen that &ldquo;hurt&rdquo; sometimes are</p>
-
-<ol>
-<li> There is no graphical view of the change tree (while confusing, if you need it, alternatives are even more confusing)</li>
-<li> The Windows and Mac Clients look different and behave a bit different.</li>
-<li> Github really knows you by the name/email you list in it&rsquo;s configuration and does not like/support your having a separate identity on a per project basis.</li>
-</ol>
-
-
-<p>These limitations are not fundamental and Github.com may work on them in the
-future. There have been frequent updates thus far to Github &mdash; perhaps they
-will continue.</p>
-
-<h2>Using GitHub with an existing project hosted in Assembla</h2>
-
-<p>If this is your first use of Assembla (but assuming you already have an
-account), then you will need to update your Assembla profile with your public
-ssh key. This file may exist on your system <code>~/.ssh/pub.rsa</code> where <code>~</code> refers
-to your home directory. You probably generated this as part of your git
-install but if not (and after you possibily install ssh), use</p>
-
-<pre><code>ssh-keygen -C "demo@example.com" -t rsa
-</code></pre>
-
-<p>substituing your email address. Take the defaults (hit return) on everything
-unless there is an offer to overwrite the pub.rsa file AND you need the pre-
-existing one! You will now a the file you need. Go to your profile in
-Assembla, select manage keys and upload this file to assembla.</p>
-
-<p>If there is no local repository associated with the existing project, you will
-need to clone it using the command line. Assembla gives the step by step
-instructions personalized for the repository (see the &ldquo;git clone&rdquo; information
-near the top of the Source/Git tab). Be sure to use the &ldquo;clone/push URL&rdquo; if
-you are planning to push back to Assembla in the future.</p>
-
-<p>After you have a local repository (start here if you already had one), merely
-start up GitHub, and use the menu to select <code>File | Add Local Repository</code>
-option selecting the directory containing the project repository.</p>
-
-<h2>Starting a new project with GitHub and Assembla</h2>
-
-<p>Make your Assembla Space in Assembla selecting an option that includes
-Source/Git repository. After it is made, you will be on a page that contains
-very useful &ldquo;Getting started with Git&rdquo; instructions. For this note, I assume
-you have installed git and configured it with your name and email.</p>
-
-<p>If you are starting the project, create your repository folder as you would
-any folder, perhaps</p>
-
-<pre><code> mkdir demo
-</code></pre>
-
-<p>Attach a terminal window to this new directory (new project) or the existing
-directory corresponding to the top of your existing project.</p>
-
-<pre><code> cd demo
-</code></pre>
-
-<p>Then, assuming you have not been using git and a local respository only,
-initialize git</p>
-
-<pre><code> git init
-</code></pre>
-
-<p>If you have a new project, you need at least one file. Create one &mdash; prehaps a
-readme.txt file.</p>
-
-<pre><code> echo "" &gt; readme.txt
-</code></pre>
-
-<p>Out of scope for this note but if it is an existing project not yet in git,
-you may wish to <a href="https://help.github.com/articles/ignoring-files">set up a .gitignore file</a> to keep certain files (or file
-types) from being tracked. We will assume we are tracking everything for
-simplicity here.</p>
-
-<p>Now, we need to add all new (or changed files)_for tracking and commit the
-present state of the files to the local repository. We will use &ldquo;First commit&rdquo;
-as the message about this commit. Adjust as desired but limit yourself to one
-line of information unless you know how to do multiple lines as one command in
-your terminal (command) program.</p>
-
-<pre><code>git add .  
-git commit -m "First commit"
-</code></pre>
-
-<p>Now configure the repository to know where the remote repository is in
-Assembla. Be sure to use the customized one on your Assembla instructions.</p>
-
-<pre><code>git remote add origin git@git.assembla.com:demo.git
-</code></pre>
-
-<p>where demo is the name of the remote repository as known to Assembla.</p>
-
-<p>Finally, send your first commit up to the remote repository.</p>
-
-<pre><code>git push origin master
-</code></pre>
-
-<p>Success. You can now switch to Github as noted for an existing git reponsitory
-above.</p>
-
-<hr />
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>I will use &ldquo;GitHub&rdquo; to refer to the program and &ldquo;GitHub.com&rdquo; to refer to the site or company for the remainder of this note.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>Don&rsquo;t forget to create your Github.com account and tell GitHub about this!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
 ]]></content>
   </entry>
   

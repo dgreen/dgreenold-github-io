@@ -9,8 +9,9 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="I had two demons: a new library and a language I was not really familiar with.
-A formula for puzzles. I did not find quickly the right example to do &hellip;">
+  <meta name="description" content="GitHub has now made a nice simple GUI tool for both OS X and
+Windows. They have made them freely available for download. They seem to
+have made &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,162 @@ A formula for puzzles. I did not find quickly the right example to do &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/07/21/github-with-assembla/">GitHub With Assembla</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-21T00:00:00-07:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/07/21/github-with-assembla/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://github.com">GitHub</a> has now made a nice simple GUI tool for both <a href="http://mac.github.com">OS X</a> and
+<a href="http://windows.github.com">Windows</a>. They have made them freely available for download. They seem to
+have made careful choices about what to support and not support in order to
+keep tool as simple as possible. They do support using GitHub<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> against
+other git repositories such as Assembla or a homegrown one. They don&rsquo;t support
+multiple remote repositories for a specific local repository but you are free
+to use GitHub.com for one project<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and Assembla (for example) for
+another. The two limitations that I have seen that &ldquo;hurt&rdquo; sometimes are</p>
+
+<ol>
+<li> There is no graphical view of the change tree (while confusing, if you need it, alternatives are even more confusing)</li>
+<li> The Windows and Mac Clients look different and behave a bit different.</li>
+<li> Github really knows you by the name/email you list in it&rsquo;s configuration and does not like/support your having a separate identity on a per project basis.</li>
+</ol>
+
+
+<p>These limitations are not fundamental and Github.com may work on them in the
+future. There have been frequent updates thus far to Github &mdash; perhaps they
+will continue.</p>
+
+<h2>Using GitHub with an existing project hosted in Assembla</h2>
+
+<p>If this is your first use of Assembla (but assuming you already have an
+account), then you will need to update your Assembla profile with your public
+ssh key. This file may exist on your system <code>~/.ssh/pub.rsa</code> where <code>~</code> refers
+to your home directory. You probably generated this as part of your git
+install but if not (and after you possibily install ssh), use</p>
+
+<pre><code>ssh-keygen -C "demo@example.com" -t rsa
+</code></pre>
+
+<p>substituing your email address. Take the defaults (hit return) on everything
+unless there is an offer to overwrite the pub.rsa file AND you need the pre-
+existing one! You will now a the file you need. Go to your profile in
+Assembla, select manage keys and upload this file to assembla.</p>
+
+<p>If there is no local repository associated with the existing project, you will
+need to clone it using the command line. Assembla gives the step by step
+instructions personalized for the repository (see the &ldquo;git clone&rdquo; information
+near the top of the Source/Git tab). Be sure to use the &ldquo;clone/push URL&rdquo; if
+you are planning to push back to Assembla in the future.</p>
+
+<p>After you have a local repository (start here if you already had one), merely
+start up GitHub, and use the menu to select <code>File | Add Local Repository</code>
+option selecting the directory containing the project repository.</p>
+
+<h2>Starting a new project with GitHub and Assembla</h2>
+
+<p>Make your Assembla Space in Assembla selecting an option that includes
+Source/Git repository. After it is made, you will be on a page that contains
+very useful &ldquo;Getting started with Git&rdquo; instructions. For this note, I assume
+you have installed git and configured it with your name and email.</p>
+
+<p>If you are starting the project, create your repository folder as you would
+any folder, perhaps</p>
+
+<pre><code> mkdir demo
+</code></pre>
+
+<p>Attach a terminal window to this new directory (new project) or the existing
+directory corresponding to the top of your existing project.</p>
+
+<pre><code> cd demo
+</code></pre>
+
+<p>Then, assuming you have not been using git and a local respository only,
+initialize git</p>
+
+<pre><code> git init
+</code></pre>
+
+<p>If you have a new project, you need at least one file. Create one &mdash; prehaps a
+readme.txt file.</p>
+
+<pre><code> echo "" &gt; readme.txt
+</code></pre>
+
+<p>Out of scope for this note but if it is an existing project not yet in git,
+you may wish to <a href="https://help.github.com/articles/ignoring-files">set up a .gitignore file</a> to keep certain files (or file
+types) from being tracked. We will assume we are tracking everything for
+simplicity here.</p>
+
+<p>Now, we need to add all new (or changed files)_for tracking and commit the
+present state of the files to the local repository. We will use &ldquo;First commit&rdquo;
+as the message about this commit. Adjust as desired but limit yourself to one
+line of information unless you know how to do multiple lines as one command in
+your terminal (command) program.</p>
+
+<pre><code>git add .  
+git commit -m "First commit"
+</code></pre>
+
+<p>Now configure the repository to know where the remote repository is in
+Assembla. Be sure to use the customized one on your Assembla instructions.</p>
+
+<pre><code>git remote add origin git@git.assembla.com:demo.git
+</code></pre>
+
+<p>where demo is the name of the remote repository as known to Assembla.</p>
+
+<p>Finally, send your first commit up to the remote repository.</p>
+
+<pre><code>git push origin master
+</code></pre>
+
+<p>Success. You can now switch to Github as noted for an existing git reponsitory
+above.</p>
+
+<hr />
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>I will use &ldquo;GitHub&rdquo; to refer to the program and &ldquo;GitHub.com&rdquo; to refer to the site or company for the remainder of this note.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Don&rsquo;t forget to create your Github.com account and tell GitHub about this!<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/07/10/coffeescript-with-select2-library/">CoffeeScript With Select2 Library</a></h1>
     
     
@@ -88,7 +245,7 @@ A formula for puzzles. I did not find quickly the right example to do &hellip;">
   
 
 
-<time datetime="2012-07-10T00:00:00-05:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
+<time datetime="2012-07-10T00:00:00-07:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
         
          | <a href="/blog/2012/07/10/coffeescript-with-select2-library/#disqus_thread">Comments</a>
         
@@ -227,7 +384,7 @@ $(document).ready -&gt;
   
 
 
-<time datetime="2012-06-09T00:00:00-05:00" pubdate data-updated="true">Jun 9<span>th</span>, 2012</time>
+<time datetime="2012-06-09T00:00:00-07:00" pubdate data-updated="true">Jun 9<span>th</span>, 2012</time>
         
          | <a href="/blog/2012/06/09/the-simple-stuff-can-get-you/#disqus_thread">Comments</a>
         
@@ -238,7 +395,7 @@ $(document).ready -&gt;
 
   <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#x75;&#x73;&#101;&#114;&#x69;&#100;&#x40;&#115;&#x69;&#116;&#101;&#46;&#x63;&#111;&#x6d;">&#x75;&#x73;&#101;&#114;&#x69;&#x64;&#x40;&#115;&#105;&#x74;&#x65;&#46;&#x63;&#x6f;&#109;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#117;&#x73;&#101;&#x72;&#x69;&#x64;&#x40;&#115;&#105;&#x74;&#x65;&#46;&#x63;&#x6f;&#109;">&#117;&#115;&#101;&#x72;&#105;&#x64;&#64;&#115;&#105;&#116;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -276,7 +433,7 @@ good to go.</p>
   
 
 
-<time datetime="2012-05-21T00:00:00-05:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
+<time datetime="2012-05-21T00:00:00-07:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
         
          | <a href="/blog/2012/05/21/ten-things-you-didnt-know-rails-could-do---james-edward-gray-ii---railsconf-2012/#disqus_thread">Comments</a>
         
@@ -318,7 +475,7 @@ who could not attend.</p>
   
 
 
-<time datetime="2012-05-20T00:00:00-05:00" pubdate data-updated="true">May 20<span>th</span>, 2012</time>
+<time datetime="2012-05-20T00:00:00-07:00" pubdate data-updated="true">May 20<span>th</span>, 2012</time>
         
          | <a href="/blog/2012/05/20/a-typography-prezi/#disqus_thread">Comments</a>
         
@@ -359,7 +516,7 @@ typography.<p></p></blockquote>
   
 
 
-<time datetime="2012-01-21T00:00:00-06:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
+<time datetime="2012-01-21T00:00:00-08:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
         
          | <a href="/blog/2012/01/21/adjusting-the-mac-os-x-path/#disqus_thread">Comments</a>
         
@@ -479,7 +636,7 @@ as various versions of Windows, Linux, and Unix.</p>
   
 
 
-<time datetime="2011-12-28T00:00:00-06:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
+<time datetime="2011-12-28T00:00:00-08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/12/28/dropbox-the-inside-story-of-techs-hottest-startup---forbes/#disqus_thread">Comments</a>
         
@@ -521,7 +678,7 @@ password glitch happened.</p>
   
 
 
-<time datetime="2011-12-01T00:00:00-06:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time>
+<time datetime="2011-12-01T00:00:00-08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time>
         
          | <a href="/blog/2011/12/01/ical-does-not-delete-old-events-cleanly-imo/#disqus_thread">Comments</a>
         
@@ -573,7 +730,7 @@ this issue.)</p>
   
 
 
-<time datetime="2011-10-22T00:00:00-05:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time>
+<time datetime="2011-10-22T00:00:00-07:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time>
         
          | <a href="/blog/2011/10/22/how-googles-self-driving-car-works---ieee-spectrum/#disqus_thread">Comments</a>
         
@@ -614,7 +771,7 @@ interesting videos.</p>
   
 
 
-<time datetime="2011-10-02T00:00:00-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
+<time datetime="2011-10-02T00:00:00-07:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
         
          | <a href="/blog/2011/10/02/complex-code-not-recommended/#disqus_thread">Comments</a>
         
@@ -630,65 +787,6 @@ interesting videos.</p>
 <p>Real line of code from gzip:</p>
 
 <p><code>n -= (e = (e = WSIZE - ((d &amp;= WSIZE-1) &gt; w ? d : w)) &gt; n ? n : e);</code></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/12/there-is-security-and-then-there-is-security/">There Is Security and Then There Is Security&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-12T00:00:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/09/12/there-is-security-and-then-there-is-security/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Back in an <a href="/blog/2011/06/22/dropbox-accidentally-unlocked-all-accounts-for-4-hours/">earlier post</a>, I lamented about some of the errors made by
-DropBox that (greatly) reduced the security on data and how I was looking at
-SpiderOak.</p>
-
-<p>I am now reporting that the experiment with SpiderOak is now complete. I have
-had three occasions where it has lost (many) items during it&rsquo;s syncing. I
-forgave the first one as I had changed things on it real quick and SpiderOak
-is slow to sync (in 10-15 minute range). The second situation occurred when
-networking went very unreliable during a storm. I don&rsquo;t really know (nor care)
-what the third cause was. I am to the point that I am greatly afraid I won&rsquo;t
-notice a loss till it has happened in the too distant past.</p>
-
-<p>On these losses, I have both Time Machine and (probably) SpiderOak retrievals
-of the lost data so I hopefully am able to recover all the data without a
-great deal of pain (i.e. regenerating it).</p>
-
-<p>However, it is tremendously less security from loss than with DropBox even
-though it is, by architecture, less likely to expose my information to third
-parties.</p>
-
-<p>Where to next? I will be splitting my data between Dropbox and non-replicated
-data that needs to stay private as well as terminating my SpiderOak account.</p>
 </div>
   
   
@@ -713,6 +811,10 @@ data that needs to stay private as well as terminating my SpiderOak account.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
       </li>
     
@@ -726,10 +828,6 @@ data that needs to stay private as well as terminating my SpiderOak account.</p>
     
       <li class="post">
         <a href="/blog/2018/01/21/finding-reminders-in-evernote/">Finding Reminders in Evernote</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/12/24/netbeans-template-configurer/">NetBeans Template Configurer</a>
       </li>
     
   </ul>
