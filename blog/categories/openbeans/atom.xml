@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OpenBeans | Glimmer]]></title>
+  <link href="https://glimmer.gwizlabs.net/blog/categories/openbeans/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2019-12-16T23:36:56-06:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Configuring CoolBeans 2019.6]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/10/17/configuring-coolbeans-2019-dot-6/"/>
+    <updated>2019-10-17T22:29:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/10/17/configuring-coolbeans-2019-dot-6</id>
+    <content type="html"><![CDATA[<blockquote><p>Now CoolBeans has been renamed OpenBeans</p></blockquote>
+
+<p>At JDK 8, JavaFX and the JDK were together, thus already configured to build applications with both.  Since that time, they were split apart (by Oracle). Different groups took over the open-source versions of each (JDK, JavaFX, and the IDE).  Each of these components needed work, which was done on different schedules, so at this point, one has to do a bit of work to set up CoolBeans (or NetBeans) for JavaFx work.  Additionally, it has become apparent that developers need to ship the JVM with their products to reduce the pain to their users.</p>
+
+<p>This <a href="https://gist.github.com/dgreen/e1ae4636f311d38758dafdd7b0decf0f">Gist</a> discusses the approach as well as provides the files used.</p>
+
+<p>The approach features</p>
+
+<ul>
+<li>use of modular Java</li>
+<li>latest JavaFX</li>
+<li>integration with CoolBeans (Run, Debug, Generate JavaDoc, Test with TestNG)</li>
+<li>an image that contains everything (for the platform it was built on) to run the program</li>
+</ul>
+
+
+<p>Testing is configured but not demoed.</p>
+]]></content>
+  </entry>
+  
+</feed>

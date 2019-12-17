@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Old code on new platforms - Glimmer</title>
+  <title>Category: OpenBeans - Glimmer</title>
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="OS X made the jump to a 64bit platform with 10.6 Snow Leopard.  Of course, not
-everything is written for 64 bit mode at present.  The Universal file &hellip;">
+  <meta name="description" content="Category: OpenBeans">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ everything is written for 64 bit mode at present.  The Universal file &hellip;"
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://glimmer.gwizlabs.net/blog/2010/02/08/old-code-on-new-platforms">
+  <link rel="canonical" href="https://glimmer.gwizlabs.netblog/categories/openbeans">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
@@ -65,120 +64,35 @@ everything is written for 64 bit mode at present.  The Universal file &hellip;"
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Old Code on New Platforms</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-08T00:00:00-06:00" pubdate data-updated="true">Feb 8<span>th</span>, 2010</time>
-        
-         | <a href="#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: OpenBeans</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>OS X made the jump to a 64bit platform with 10.6 Snow Leopard.  Of course, not
-everything is written for 64 bit mode at present.  The Universal file format
-allows for binaries to be containers hold many different copies of the same
-code but for different architectures.</p>
 
-<p>So specifically, I was trying to build the latest <strong>rcov</strong> for the platform to
-run under the now creaky old Locomotive shell I have been modifying to keep my
-development rails environments separate from the OS&rsquo;s installation.  Dutifully
-giving the command while inside a terminal session where the paths map to
-locations within the Locomotive container:</p>
+  
+  <h2>2019</h2>
 
-<p><code>gem install rcov</code></p>
+<article>
+  
+<h1><a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a></h1>
+<time datetime="2019-10-17T22:29:00-05:00" pubdate><span class='month'>Oct</span> <span class='day'>17</span> <span class='year'>2019</span></time>
 
-<p>was giving the right &ldquo;words&rdquo; for output including the fact that the binary
-extensions were being built (although it happened really quickly!).  Looking
-inside, I found the rcovrt.bundle that was built and verified it was being
-copied into position.</p>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/coolbeans/'>CoolBeans</a>, <a class='category' href='/blog/categories/netbeans/'>NetBeans</a>, <a class='category' href='/blog/categories/openbeans/'>OpenBeans</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/maven/'>maven</a></span>
+</footer>
 
-<p>But using</p>
 
-<p><code>file rcovrt.bundle</code></p>
+</article>
 
-<p>I found that it was a <code>Mach-O x86_64</code> rather than like the other bundles that
-were already there that were <code>Mach-O i386</code> bundles.</p>
-
-<p>I found the <code>Makefile</code> for the rcovrt code and tried it.</p>
-
-<p>`make clean</p>
-
-<blockquote><p>make<br> make install`</p></blockquote>
-
-<p>Based on hints from <a href="http://blog.d27n.com/2009/08/26/mac-os-x-snow-leopard-rails-mysql-and-sphinx/">Mac OS X Snow Leopard + Rails, MySQL, and Sphinx</a>, I
-added</p>
-
-<p><code>-arch i386</code></p>
-
-<p>to all <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>, <code>LDSHARED</code> variables, redid the
-&ldquo;<code>make</code> dance&rdquo;.  Success, I had the right type bundle in the right place and
-everything was working again.</p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-08T00:00:00-06:00" pubdate data-updated="true">Feb 8<span>th</span>, 2010</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://glimmer.gwizlabs.net/blog/2010/02/08/old-code-on-new-platforms/" data-via="dgreeo" data-counturl="https://glimmer.gwizlabs.net/blog/2010/02/08/old-code-on-new-platforms/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2009/12/23/post-those-weird-phone-numbers-may-be-me/" title="Previous Post: Post those weird phone numbers (may be me)">&laquo; Post those weird phone numbers (may be me)</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2010/02/16/caltech-proposes-curriculum-change-more-breadth-in-science-better-writing-skills---san-jose-mercury-news/" title="Next Post: Caltech proposes curriculum change: more breadth in science, better writing skills - San Jose Mercury News">Caltech proposes curriculum change: more breadth in science, better writing skills - San Jose Mercury News &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>
