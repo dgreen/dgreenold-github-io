@@ -733,12 +733,18 @@
         <lastmod>2019-12-16T22:03:06-06:00</lastmod>
     </url>
     <url>
+        <loc>
+            https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/
+        </loc>
+        <lastmod>2019-12-17T00:34:18-06:00</lastmod>
+    </url>
+    <url>
         <loc>https://glimmer.gwizlabs.net/</loc>
-        <lastmod>2019-12-16T22:03:06-06:00</lastmod>
+        <lastmod>2019-12-17T00:34:18-06:00</lastmod>
     </url>
     <url>
         <loc>https://glimmer.gwizlabs.net/blog/archives/</loc>
-        <lastmod>2019-12-16T22:03:06-06:00</lastmod>
+        <lastmod>2019-12-17T00:34:18-06:00</lastmod>
     </url>
     <url>
         <loc>https://glimmer.gwizlabs.net/robots.txt</loc>

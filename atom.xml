@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-12-16T23:36:56-06:00</updated>
+  <updated>2019-12-17T00:34:59-06:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Limping along with Octopress and Catalina macOS]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/"/>
+    <updated>2019-12-16T23:46:00-06:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos</id>
+    <content type="html"><![CDATA[<p>I am still using the <a href="http://octopress.org">Octopress 2 framework</a> for the website.  This has been challenging as the dependencies for old obsolete software gets harder and harder to satisfy.  However, it appears that I have succeed again for at least the Catalina release of macOS.</p>
+
+<p>I found out I had a problem when I went to fix Disqus which had moved to <code>https://</code> protocol.  I found the files named disqus.html which had <code>http://</code> and changed it to <code>https://</code> but I was unable to regenerate the code due to a failure of the Octopress tool to run.</p>
+
+<p>I use</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chruby ruby-2.2.10
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>due to the yajl-ruby which won&rsquo;t build under later rubies.</p>
+
+<p>My already built ruby-2.2.10 would not run because the openssl 1.0 version that had been linked in had disappeared (either due to Catalina or my migration to a new MacBook Pro.)  Rebuilding ruby with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-install ruby-2.2.10
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>did not work nor did</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-install ruby-2.2.10 -- --with-openssl-dir<span class="o">=</span>/usr/local/opt/openssl
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>did not work since the openssl was version 1.1.</p>
+
+<p>After a fair bit of false steps, the successful approach was built around Chris Hobb&rsquo;s December 3, 2019 solution (for RVM) posted on <a href="https://stackoverflow.com/questions/15511943/troubles-with-rvm-and-openssl">Stack Overflow</a>.</p>
+
+<p>First follow his steps (repeated here) to install openssl 1.0.2 by downloading openssl 1.0.2 from <a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>, and then building and installing it with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -xzf openssl-1.0.2t.tar.gz
+</span><span class='line'><span class="nb">cd </span>openssl-1.0.2t
+</span><span class='line'>./Configure darwin64-x86_64-cc --prefix<span class="o">=</span>/usr/local/opt/openssl@1.0
+</span><span class='line'>make
+</span><span class='line'>make <span class="nb">test</span>
+</span><span class='line'>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then adapting to <code>chruby</code> / <code>ruby-install</code> approach, build ruby 2.2.10</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-install ruby-2.2.10 -- --with-openssl-dir<span class="o">=</span>/usr/local/opt/openssl@1.0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then going to the directory where I have the blog system and having previously deleted <code>Gemfile.lock</code>, I re-ran the install of gems into the <code>vendor</code> directory.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course, in making this post, I issue</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake new_post<span class="o">[</span><span class="s2">&quot;Limping along with Octopress and Catalina macOS&quot;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Catalina has moved to using zsh instead of bash for its default shell.  Having taken the plunge, I found out that square brackets are used differently in zsh.  I was able to escape them to continue working:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake new_post<span class="se">\[</span><span class="s2">&quot;Limping along with Octopress and Catalina macOS&quot;</span><span class="se">\]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thanks to <a href="http://kinopyo.com/en/blog/escape-square-bracket-by-default-in-zsh!">Qihuan Piao</a> for this hint.</p>
+
+<h2>One less groan</h2>
+
+<p>Evidently the version of pigments used does not know about <code>zsh</code> so the code blocks have to be marked as <code>bash</code> instead of <code>zsh</code>.</p>
+
+<p>Time to think about a supported framework.  Perhaps a migration to the modern version of Jekyll or a broader research into other static site tools that allow markdown content.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Configuring CoolBeans 2019.6]]></title>
@@ -1396,35 +1487,6 @@ worry about that in the past but I know many others have.</p>
 <p>It did not work because the method associated with defining all the details of the state machine appears to change the scope of some of the code into other internally defined classes yielding very unexpected behavior.</p>
 
 <p>Moving everything to method (messages) inside the state machine seems to be the expected (and allowable) approach yielding stately_demo_good (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_good-rb">gist</a>).</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Trading Memory for Functionality (Enough Performance)]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2012/07/24/trading-memory-for-functionality-enough-performance/"/>
-    <updated>2012-07-24T00:00:00-05:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2012/07/24/trading-memory-for-functionality-enough-performance</id>
-    <content type="html"><![CDATA[<p>I was working on a the last note and wanted to check things out under a fresh
-install. I decided to make a new Mac User to accomplish this. I used GitHub
-for the Mac, Safari on the Assembla site and the Tumblr site, and the command
-line. When I finsihed my work, I idlely was thinking about keeping this user
-account around for the next effort or deleting it. One of the consideration
-was how much space was in use by the account. I was shocked to see that the
-home directory took 330MB!</p>
-
-<p>Looking into it, I found the bit space was 300MB in Preferences. The other two
-large directories was Caches (30MB) and Applications Support (12MB). Inside
-preferences was a folder SMDHelpData that was the space user. This folder
-evidently has the help file information: info, caches, and indexes for finding
-things for all the applications on the system (not just those that had been
-used). I am guessing there is a distinct copy per user since in theory at
-least, one could through security settings block different users from various
-components. There may also be some personalization (highlighting, last
-location, etc.) capability.</p>
-
-<p>I was very surprised at how much space was taken but I decided my lesson was
-to also trade space for functionality (enough performance) and leave the user
-configured so I would not spend time repeating the building of this space.</p>
 ]]></content>
   </entry>
   

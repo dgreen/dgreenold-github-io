@@ -9,9 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Watching the Twitter posts, it looks like a lot of work has gone
-into building Octopress 3.0 around a somewhat different philosophy
-than Octopress 2. &hellip;">
+  <meta name="description" content="For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
+using Alvin Alexander&rsquo;s article for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,146 @@ than Octopress 2. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/23/java-sound-update/">Java Sound Update</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-23T22:24:00-05:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2014</time>
+        
+         | <a href="/blog/2014/10/23/java-sound-update/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For years, I have been using (and advising the use of sun.audio) for playing sounds in the Java VM
+using <a href="http://alvinalexander.com/java/java-audio-example-java-au-play-sound">Alvin Alexander&rsquo;s article</a> for inspiration.  The downside of this approach, of course,
+is the dependency on classes that are not part of the JAVA API and therefore might change at anytime
+although they have been relatively stable for many years.</p>
+
+<p>Recently, I found a <a href="http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar">stackoverflow discussion</a> noting the existence of AudioSystem (and related clases).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm"> * File: ModernRingPhone.java</span>
+</span><span class='line'><span class="cm"> * Author: David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> * Assignment:  SoundOff - EE333 Fall 2014</span>
+</span><span class='line'><span class="cm"> * Vers: 1.0.0 10/23/2014 dgg - initial coding</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * Credits:  Concepts from http://stackoverflow.com/questions/15475276/short-sound-file-plays-in-netbeans-but-not-in-jar</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.AudioSystem</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.Clip</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * @author David Green &lt;dgreen@uab.edu&gt;</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModernRingPhone</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>    <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// open the sound file as a Java input stream</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">gongFile</span> <span class="o">=</span> <span class="s">&quot;telephone-ring-3.wav&quot;</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// create an audiostream from the inputstream</span>
+</span><span class='line'>        <span class="n">Clip</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">clip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">gongFile</span><span class="o">)));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// play the audio clip with the audioplayer class</span>
+</span><span class='line'>        <span class="n">clip</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// wait for sound to finish before terminating program (necessary for </span>
+</span><span class='line'>        <span class="c1">// running inside NetBeans, at least)</span>
+</span><span class='line'>        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10000</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">catch</span> <span class="o">(</span> <span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Things did not go well&quot;</span> <span class="o">);</span>
+</span><span class='line'>        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Update: 2015-02-08 Removed unnecessary line of code</p>
+
+<p>Update: 2015-12-10 Revised example is available <a href="http://dgreen.github.io/blog/2015/12/10/java-sound-update-2/">here</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -931,64 +1070,6 @@ worry about that in the past but I know many others have.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/">Trading Memory for Functionality (Enough Performance)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-24T00:00:00-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/07/24/trading-memory-for-functionality-enough-performance/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I was working on a the last note and wanted to check things out under a fresh
-install. I decided to make a new Mac User to accomplish this. I used GitHub
-for the Mac, Safari on the Assembla site and the Tumblr site, and the command
-line. When I finsihed my work, I idlely was thinking about keeping this user
-account around for the next effort or deleting it. One of the consideration
-was how much space was in use by the account. I was shocked to see that the
-home directory took 330MB!</p>
-
-<p>Looking into it, I found the bit space was 300MB in Preferences. The other two
-large directories was Caches (30MB) and Applications Support (12MB). Inside
-preferences was a folder SMDHelpData that was the space user. This folder
-evidently has the help file information: info, caches, and indexes for finding
-things for all the applications on the system (not just those that had been
-used). I am guessing there is a distinct copy per user since in theory at
-least, one could through security settings block different users from various
-components. There may also be some personalization (highlighting, last
-location, etc.) capability.</p>
-
-<p>I was very surprised at how much space was taken but I decided my lesson was
-to also trade space for functionality (enough performance) and leave the user
-configured so I would not spend time repeating the building of this space.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1006,6 +1087,10 @@ configured so I would not spend time repeating the building of this space.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/">Limping Along With Octopress and Catalina macOS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
       </li>
     
@@ -1019,10 +1104,6 @@ configured so I would not spend time repeating the building of this space.</p>
     
       <li class="post">
         <a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success &#8211; Hard Work And-or Luck?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/01/21/finding-reminders-in-evernote/">Finding Reminders in Evernote</a>
       </li>
     
   </ul>

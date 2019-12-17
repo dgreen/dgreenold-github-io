@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | Glimmer]]></title>
+  <link href="https://glimmer.gwizlabs.net/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="https://glimmer.gwizlabs.net/"/>
+  <updated>2019-12-17T00:34:59-06:00</updated>
+  <id>https://glimmer.gwizlabs.net/</id>
+  <author>
+    <name><![CDATA[David Green]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Limping along with Octopress and Catalina macOS]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/"/>
+    <updated>2019-12-16T23:46:00-06:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos</id>
+    <content type="html"><![CDATA[<p>I am still using the <a href="http://octopress.org">Octopress 2 framework</a> for the website.  This has been challenging as the dependencies for old obsolete software gets harder and harder to satisfy.  However, it appears that I have succeed again for at least the Catalina release of macOS.</p>
+
+<p>I found out I had a problem when I went to fix Disqus which had moved to <code>https://</code> protocol.  I found the files named disqus.html which had <code>http://</code> and changed it to <code>https://</code> but I was unable to regenerate the code due to a failure of the Octopress tool to run.</p>
+
+<p>I use</p>
+
+<p><code>bash
+chruby ruby-2.2.10
+</code></p>
+
+<p>due to the yajl-ruby which won&rsquo;t build under later rubies.</p>
+
+<p>My already built ruby-2.2.10 would not run because the openssl 1.0 version that had been linked in had disappeared (either due to Catalina or my migration to a new MacBook Pro.)  Rebuilding ruby with</p>
+
+<p><code>bash
+ruby-install ruby-2.2.10
+</code></p>
+
+<p>did not work nor did</p>
+
+<p><code>bash
+ruby-install ruby-2.2.10 -- --with-openssl-dir=/usr/local/opt/openssl
+</code></p>
+
+<p>did not work since the openssl was version 1.1.</p>
+
+<p>After a fair bit of false steps, the successful approach was built around Chris Hobb&rsquo;s December 3, 2019 solution (for RVM) posted on <a href="https://stackoverflow.com/questions/15511943/troubles-with-rvm-and-openssl">Stack Overflow</a>.</p>
+
+<p>First follow his steps (repeated here) to install openssl 1.0.2 by downloading openssl 1.0.2 from <a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>, and then building and installing it with</p>
+
+<p><code>bash
+tar -xzf openssl-1.0.2t.tar.gz
+cd openssl-1.0.2t
+./Configure darwin64-x86_64-cc --prefix=/usr/local/opt/openssl@1.0
+make
+make test
+sudo make install
+</code></p>
+
+<p>and then adapting to <code>chruby</code> / <code>ruby-install</code> approach, build ruby 2.2.10</p>
+
+<p><code>bash
+ruby-install ruby-2.2.10 -- --with-openssl-dir=/usr/local/opt/openssl@1.0
+</code></p>
+
+<p>Then going to the directory where I have the blog system and having previously deleted <code>Gemfile.lock</code>, I re-ran the install of gems into the <code>vendor</code> directory.</p>
+
+<p><code>bash
+bundle install
+</code></p>
+
+<p>Of course, in making this post, I issue</p>
+
+<p><code>bash
+bundle exec rake new_post["Limping along with Octopress and Catalina macOS"]
+</code></p>
+
+<p>Catalina has moved to using zsh instead of bash for its default shell.  Having taken the plunge, I found out that square brackets are used differently in zsh.  I was able to escape them to continue working:</p>
+
+<p><code>bash
+bundle exec rake new_post\["Limping along with Octopress and Catalina macOS"\]
+</code>
+Thanks to <a href="http://kinopyo.com/en/blog/escape-square-bracket-by-default-in-zsh!">Qihuan Piao</a> for this hint.</p>
+
+<h2>One less groan</h2>
+
+<p>Evidently the version of pigments used does not know about <code>zsh</code> so the code blocks have to be marked as <code>bash</code> instead of <code>zsh</code>.</p>
+
+<p>Time to think about a supported framework.  Perhaps a migration to the modern version of Jekyll or a broader research into other static site tools that allow markdown content.</p>
+]]></content>
+  </entry>
+  
+</feed>

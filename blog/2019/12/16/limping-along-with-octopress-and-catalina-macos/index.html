@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Limping along with Octopress and Catalina macOS - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="I am still using the Octopress 2 framework for the website. This has been challenging as the dependencies for old obsolete software gets harder and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the worlds of automation and productivity</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:glimmer.gwizlabs.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Limping Along With Octopress and Catalina macOS</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2019-12-16T23:46:00-06:00" pubdate data-updated="true">Dec 16<span>th</span>, 2019</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I am still using the <a href="http://octopress.org">Octopress 2 framework</a> for the website.  This has been challenging as the dependencies for old obsolete software gets harder and harder to satisfy.  However, it appears that I have succeed again for at least the Catalina release of macOS.</p>
+
+<p>I found out I had a problem when I went to fix Disqus which had moved to <code>https://</code> protocol.  I found the files named disqus.html which had <code>http://</code> and changed it to <code>https://</code> but I was unable to regenerate the code due to a failure of the Octopress tool to run.</p>
+
+<p>I use</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chruby ruby-2.2.10
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>due to the yajl-ruby which won&rsquo;t build under later rubies.</p>
+
+<p>My already built ruby-2.2.10 would not run because the openssl 1.0 version that had been linked in had disappeared (either due to Catalina or my migration to a new MacBook Pro.)  Rebuilding ruby with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-install ruby-2.2.10
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>did not work nor did</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-install ruby-2.2.10 -- --with-openssl-dir<span class="o">=</span>/usr/local/opt/openssl
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>did not work since the openssl was version 1.1.</p>
+
+<p>After a fair bit of false steps, the successful approach was built around Chris Hobb&rsquo;s December 3, 2019 solution (for RVM) posted on <a href="https://stackoverflow.com/questions/15511943/troubles-with-rvm-and-openssl">Stack Overflow</a>.</p>
+
+<p>First follow his steps (repeated here) to install openssl 1.0.2 by downloading openssl 1.0.2 from <a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>, and then building and installing it with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -xzf openssl-1.0.2t.tar.gz
+</span><span class='line'><span class="nb">cd </span>openssl-1.0.2t
+</span><span class='line'>./Configure darwin64-x86_64-cc --prefix<span class="o">=</span>/usr/local/opt/openssl@1.0
+</span><span class='line'>make
+</span><span class='line'>make <span class="nb">test</span>
+</span><span class='line'>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then adapting to <code>chruby</code> / <code>ruby-install</code> approach, build ruby 2.2.10</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-install ruby-2.2.10 -- --with-openssl-dir<span class="o">=</span>/usr/local/opt/openssl@1.0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then going to the directory where I have the blog system and having previously deleted <code>Gemfile.lock</code>, I re-ran the install of gems into the <code>vendor</code> directory.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course, in making this post, I issue</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake new_post<span class="o">[</span><span class="s2">&quot;Limping along with Octopress and Catalina macOS&quot;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Catalina has moved to using zsh instead of bash for its default shell.  Having taken the plunge, I found out that square brackets are used differently in zsh.  I was able to escape them to continue working:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake new_post<span class="se">\[</span><span class="s2">&quot;Limping along with Octopress and Catalina macOS&quot;</span><span class="se">\]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thanks to <a href="http://kinopyo.com/en/blog/escape-square-bracket-by-default-in-zsh!">Qihuan Piao</a> for this hint.</p>
+
+<h2>One less groan</h2>
+
+<p>Evidently the version of pigments used does not know about <code>zsh</code> so the code blocks have to be marked as <code>bash</code> instead of <code>zsh</code>.</p>
+
+<p>Time to think about a supported framework.  Perhaps a migration to the modern version of Jekyll or a broader research into other static site tools that allow markdown content.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2019-12-16T23:46:00-06:00" pubdate data-updated="true">Dec 16<span>th</span>, 2019</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/catalina/'>catalina</a>, <a class='category' href='/blog/categories/macos/'>macos</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/" data-via="dgreeo" data-counturl="https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/" title="Previous Post: Configuring CoolBeans 2019.6">&laquo; Configuring CoolBeans 2019.6</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/">Limping Along With Octopress and Catalina macOS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/11/19/finding-java-and-netbeans/">Finding Java and NetBeans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success -- Hard Work And-or Luck?</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2019 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'faintinsights';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/';
+        var disqus_url = 'https://glimmer.gwizlabs.net/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
