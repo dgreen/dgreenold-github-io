@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2019-12-17T00:34:59-06:00</updated>
+  <updated>2020-02-06T01:38:00-06:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -371,7 +371,7 @@ We placed the code into <a href="code">Github</a>.</p>
     <link href="https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2/"/>
     <updated>2015-12-10T20:22:00-06:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2</id>
-    <content type="html"><![CDATA[<p>This is an update to a prior <a href="http://dgreen.github.io/blog/2014/10/23/java-sound-update/">article</a>.</p>
+    <content type="html"><![CDATA[<p>This is an update to a prior <a href="https://dgreenteach.org/blog/2014/10/23/java-sound-update/">article</a>.</p>
 
 <p>UAB EE Students Andrew Peturis, Chaselyn Langley and other team members produced an interesting
 GUI Application for children to associate sounds with images.  In the course of doing this, they
@@ -591,6 +591,10 @@ hopefully preserved the important behaviors they wished to document.  The new co
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>Update February 2020</h3>
+
+<p>Changed my web site server link.</p>
 ]]></content>
   </entry>
   
@@ -884,7 +888,9 @@ although they have been relatively stable for many years.</p>
 
 <p>Update: 2015-02-08 Removed unnecessary line of code</p>
 
-<p>Update: 2015-12-10 Revised example is available <a href="http://dgreen.github.io/blog/2015/12/10/java-sound-update-2/">here</a>.</p>
+<p>Update: 2015-12-10 Revised example is available <a href="https://glimmer.gwizlabs.net/blog/2015/12/10/java-sound-update-2/">here</a>.</p>
+
+<p>Update 2020-02-06 Changed my web site server link.</p>
 ]]></content>
   </entry>
   
