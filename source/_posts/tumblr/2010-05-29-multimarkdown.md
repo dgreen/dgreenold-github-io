@@ -70,7 +70,10 @@ _MultiMarkdown_ tools.
 
 [1]: http://fletcherpenney.net/multimarkdown/
 
-[2]: http:/www-ece.eng.uab.edu/DGreen/ee448
+[2]: https:/dgreenteach.org/DGreen/ee448
 
 [3]: http://daringfireball.net/projects/markdown/
 
+### Update February 2020
+
+Changed my web site server link.

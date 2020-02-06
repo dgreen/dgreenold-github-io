@@ -5,7 +5,7 @@ date: 2015-12-10 20:22
 comments: true
 categories: 
 ---
-This is an update to a prior [article](http://dgreen.github.io/blog/2014/10/23/java-sound-update/).
+This is an update to a prior [article](https://dgreenteach.org/blog/2014/10/23/java-sound-update/).
 
 UAB EE Students Andrew Peturis, Chaselyn Langley and other team members produced an interesting 
 GUI Application for children to associate sounds with images.  In the course of doing this, they
@@ -123,3 +123,7 @@ public class Sound {
 }
 
 ```
+
+### Update February 2020
+
+Changed my web site server link.

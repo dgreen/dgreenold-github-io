@@ -67,7 +67,10 @@ In NetBeans 7.2.1, the variables are now reachable with the "Settings" button in
 One may also wish to look at the license support in the default template and include it in your template.
 
 
-[1]: http://www-ece.eng.uab.edu/DGreen/java_ex/JavaDocStyle.html
+[1]: https://dgreenteach.org/DGreen/java_ex/JavaDocStyle.html
 [2]: http://wiki.netbeans.org/FaqTemplateVariables
 [3]: http://wiki.netbeans.org/FaqFreeMarker
 
+### Update February 2020
+
+Changed my web site server link.

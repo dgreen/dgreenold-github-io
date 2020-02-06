@@ -28,4 +28,8 @@ binary editor.
 
 [1]: http://thiamteck.blogspot.com/2007/11/determine-java-class-file-version.html
 [2]: http://www.rgagnon.com/javadetails/java-0544.html
-[3]: http://www-ece.eng.uab.edu/DGreen/java_ex/SimpleClient/SClient0.class
+[3]: https://dgreenteach.org/DGreen/java_ex/SimpleClient/SClient0.class
+
+### Update February 2020
+
+Changed my web site server link.
