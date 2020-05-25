@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Making BookMarked PDFs from Google Docs - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="This post focuses on ensuring that the Table of Contents, as set up in Google Docs index, are transferred into the bookmark meta data of the PDF file &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the worlds of automation and productivity</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:glimmer.gwizlabs.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Making BookMarked PDFs From Google Docs</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2020-05-25T11:28:00-05:00" pubdate data-updated="true">May 25<span>th</span>, 2020</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This post focuses on ensuring that the Table of Contents, as set up in Google Docs index, are transferred into the bookmark meta data of the PDF file.  This is not done when simplying downloading a Google Doc as a PDF. One must export to a .docx file and use Word, Writer, or Pages to produce the PDF file using the correct options for each program.</p>
+
+<p>Using MacOS Preview as the PDF reader, we want the left sidebar when one selects Table of Contents to show the Table of Contents as bookmarks that allow quick access to the page where the content is.</p>
+
+<p><img src="/images/sidebar-toc.png" title="Preview showing sidebar with Table of Contents selected and results" alt="Choose Table of Contents in sidebar"></p>
+
+<!--more-->
+
+
+<h2>Background</h2>
+
+<p>I have chosen Google Docs to maintain the IEEE Region 3 Operations Manual. IEEE is a GSuite organization and I feel that using GoogleDocs had the best potential for promoting collaboration on documents. Additionally, it provides a cloud-based approach for ensuring the source content is available over time. One issue that arises from this choice is the reduced feature set in Google Docs as compared to Microsoft Word, LibreOffice Writer, and Apple Pages.  Google Docs is growing to support more features over time and the others (especially Microsoft and Apple) are trying to ensure a consistent feature set across all platforms (desktop, smartphone, web) thus the gap is closing.</p>
+
+<h2>Process that works</h2>
+
+<p>TLDR;</p>
+
+<blockquote><p>Google Doc → download as .docx → use word processor with bookmark/accessibility options → PDF</p></blockquote>
+
+<p>The process that works is to download the file from Google Docs as a .docx file.  Then using Word, Writer, or Pages open the file and then export it to PDF choosing to use the accessibility options. My computere is a MacBook Pro 13 2018 and is presently running</p>
+
+<ul>
+<li>MacOS Catalina 10.15.4</li>
+<li>Microsoft Word 16.37 (from a Office 365 university subscription)</li>
+<li>LibreOffice 6.4.4.2</li>
+<li>Pages 10.0 (6748)</li>
+</ul>
+
+
+<p>The result we are seeking is to have the table of contents information inserted and maintained in Google Docs not only appear in the PDF page where it is placed but also appear in the meta data of the PDF file so that users can quickly reference those sections.</p>
+
+<p>After using the heading styles in your document to denote the structure, insert the table of contents in the appropriate part of your document using the menu option <em>Insert → Table of Contents</em> .  Choose to show numbers rather than links if you wish to supported printed versions of the PDF.  You may also wish to make sure you are adding page numbers to your page (use the menu option <em>Insert → Page Numbers</em>). The table of contents should now be visible in the document. Right-clicking on the table of contents allows you the option to refresh the table of contents after document changes. You should also be able to click on an entry, and select the link to jumpt to that portion of the document for editing.  Using the menu option <em>File → Download → Microsoft Word (.docx)</em>, get a local machine copy of the document in .docx form.  The next step is to open it in your tool of choice and create the PDF.</p>
+
+<h3>Using Word</h3>
+
+<p>Open the downloaded <code>.docx</code> file in Word. Choose <em>File → Save As&hellip;</em> and then select PDF as the File Format and choose to use the online service.</p>
+
+<p><img src="/images/word-pdf.png" title="'Using Word's File → SaveAs...'" ></p>
+
+<h3>Using LibreOffice</h3>
+
+<p>Open the downloaded <code>.docx</code> file in LibreOffice (Writer). Choose <em>File → Export As → Export As PDF&hellip;</em> and then choose to export the bookmarks. The graphic shows the other options that I selected but not all may be necessary.</p>
+
+<p><img src="/images/libreoffice-pdf.png" title="'Using LibreOffice Writer's File → Export As → Export as PDF...'" ></p>
+
+<h3>Using Pages</h3>
+
+<p>Open the downloaded <code>.docx</code> file in Pages. Choose <em>File → Export To → PDF&hellip;</em> and choose to export using the accessibility option.</p>
+
+<p><img src="/images/pages-pdf.png" title="'Using Pages's File → Export To → PDF..'" ></p>
+
+<h2>Issues with Google Docs export</h2>
+
+<p>Obviously, the most desirable workflow is for Google Docs to added the bookmarks from the Table of Contents to the PDF file or create the document in one of the tools (Word, Writer, or Pages) that will create the desired PDF. Alas, this is not possible today.  Looking at the Google Support forums, it is clear this is a desired feature so hopefully one day it will appear.</p>
+
+<p>In working towards a process to produce a PDF with bookmarks for the Table of Contents, I ran into two limitations in Google Docs. The working around the first limitation</p>
+
+<blockquote><p><em>File → Download → PDF Document (pdf)</em>: does not include the table of contents as bookmark meta data</p></blockquote>
+
+<p>has been the focus of this post.</p>
+
+<p>An additional problem was discovered:</p>
+
+<blockquote><p><em>File → Down → Open Document Format (odf)</em>: does not export a proper table of contents index structure</p></blockquote>
+
+<p>This limitation (at least part of this is a bug IMO) means that the broken table of contents that was properly made in Google Docs is not translated properly into Open Document Format.  If you try to update the index, it shows nothing. It is not suprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data. As noted above, LibreOffice Writer does work using the<code>.docx</code> output from Google Docs.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2020-05-25T11:28:00-05:00" pubdate data-updated="true">May 25<span>th</span>, 2020</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/" data-via="dgreeo" data-counturl="https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/" title="Previous Post: Limping along with Octopress and Catalina macOS">&laquo; Limping along with Octopress and Catalina macOS</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/">Making BookMarked PDFs From Google Docs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/">Limping Along With Octopress and Catalina macOS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/11/19/finding-java-and-netbeans/">Finding Java and NetBeans</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2020 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'faintinsights';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/';
+        var disqus_url = 'https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

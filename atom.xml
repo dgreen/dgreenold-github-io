@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-02-06T01:38:00-06:00</updated>
+  <updated>2020-05-25T15:40:49-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Making BookMarked PDFs from Google Docs]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/"/>
+    <updated>2020-05-25T11:28:00-05:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs</id>
+    <content type="html"><![CDATA[<p>This post focuses on ensuring that the Table of Contents, as set up in Google Docs index, are transferred into the bookmark meta data of the PDF file.  This is not done when simplying downloading a Google Doc as a PDF. One must export to a .docx file and use Word, Writer, or Pages to produce the PDF file using the correct options for each program.</p>
+
+<p>Using MacOS Preview as the PDF reader, we want the left sidebar when one selects Table of Contents to show the Table of Contents as bookmarks that allow quick access to the page where the content is.</p>
+
+<p><img src="https://glimmer.gwizlabs.net/images/sidebar-toc.png" title="Preview showing sidebar with Table of Contents selected and results" alt="Choose Table of Contents in sidebar"></p>
+
+<!--more-->
+
+
+<h2>Background</h2>
+
+<p>I have chosen Google Docs to maintain the IEEE Region 3 Operations Manual. IEEE is a GSuite organization and I feel that using GoogleDocs had the best potential for promoting collaboration on documents. Additionally, it provides a cloud-based approach for ensuring the source content is available over time. One issue that arises from this choice is the reduced feature set in Google Docs as compared to Microsoft Word, LibreOffice Writer, and Apple Pages.  Google Docs is growing to support more features over time and the others (especially Microsoft and Apple) are trying to ensure a consistent feature set across all platforms (desktop, smartphone, web) thus the gap is closing.</p>
+
+<h2>Process that works</h2>
+
+<p>TLDR;</p>
+
+<blockquote><p>Google Doc → download as .docx → use word processor with bookmark/accessibility options → PDF</p></blockquote>
+
+<p>The process that works is to download the file from Google Docs as a .docx file.  Then using Word, Writer, or Pages open the file and then export it to PDF choosing to use the accessibility options. My computere is a MacBook Pro 13 2018 and is presently running</p>
+
+<ul>
+<li>MacOS Catalina 10.15.4</li>
+<li>Microsoft Word 16.37 (from a Office 365 university subscription)</li>
+<li>LibreOffice 6.4.4.2</li>
+<li>Pages 10.0 (6748)</li>
+</ul>
+
+
+<p>The result we are seeking is to have the table of contents information inserted and maintained in Google Docs not only appear in the PDF page where it is placed but also appear in the meta data of the PDF file so that users can quickly reference those sections.</p>
+
+<p>After using the heading styles in your document to denote the structure, insert the table of contents in the appropriate part of your document using the menu option <em>Insert → Table of Contents</em> .  Choose to show numbers rather than links if you wish to supported printed versions of the PDF.  You may also wish to make sure you are adding page numbers to your page (use the menu option <em>Insert → Page Numbers</em>). The table of contents should now be visible in the document. Right-clicking on the table of contents allows you the option to refresh the table of contents after document changes. You should also be able to click on an entry, and select the link to jumpt to that portion of the document for editing.  Using the menu option <em>File → Download → Microsoft Word (.docx)</em>, get a local machine copy of the document in .docx form.  The next step is to open it in your tool of choice and create the PDF.</p>
+
+<h3>Using Word</h3>
+
+<p>Open the downloaded <code>.docx</code> file in Word. Choose <em>File → Save As&hellip;</em> and then select PDF as the File Format and choose to use the online service.</p>
+
+<p><img src="https://glimmer.gwizlabs.net/images/word-pdf.png" title="'Using Word's File → SaveAs...'" ></p>
+
+<h3>Using LibreOffice</h3>
+
+<p>Open the downloaded <code>.docx</code> file in LibreOffice (Writer). Choose <em>File → Export As → Export As PDF&hellip;</em> and then choose to export the bookmarks. The graphic shows the other options that I selected but not all may be necessary.</p>
+
+<p><img src="https://glimmer.gwizlabs.net/images/libreoffice-pdf.png" title="'Using LibreOffice Writer's File → Export As → Export as PDF...'" ></p>
+
+<h3>Using Pages</h3>
+
+<p>Open the downloaded <code>.docx</code> file in Pages. Choose <em>File → Export To → PDF&hellip;</em> and choose to export using the accessibility option.</p>
+
+<p><img src="https://glimmer.gwizlabs.net/images/pages-pdf.png" title="'Using Pages's File → Export To → PDF..'" ></p>
+
+<h2>Issues with Google Docs export</h2>
+
+<p>Obviously, the most desirable workflow is for Google Docs to added the bookmarks from the Table of Contents to the PDF file or create the document in one of the tools (Word, Writer, or Pages) that will create the desired PDF. Alas, this is not possible today.  Looking at the Google Support forums, it is clear this is a desired feature so hopefully one day it will appear.</p>
+
+<p>In working towards a process to produce a PDF with bookmarks for the Table of Contents, I ran into two limitations in Google Docs. The working around the first limitation</p>
+
+<blockquote><p><em>File → Download → PDF Document (pdf)</em>: does not include the table of contents as bookmark meta data</p></blockquote>
+
+<p>has been the focus of this post.</p>
+
+<p>An additional problem was discovered:</p>
+
+<blockquote><p><em>File → Down → Open Document Format (odf)</em>: does not export a proper table of contents index structure</p></blockquote>
+
+<p>This limitation (at least part of this is a bug IMO) means that the broken table of contents that was properly made in Google Docs is not translated properly into Open Document Format.  If you try to update the index, it shows nothing. It is not suprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data. As noted above, LibreOffice Writer does work using the<code>.docx</code> output from Google Docs.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Limping along with Octopress and Catalina macOS]]></title>
@@ -1476,23 +1550,6 @@ worry about that in the past but I know many others have.</p>
 </code></pre>
 
 <p>It is great to have this working again.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Exploring stately for Ruby]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2013/01/19/exploring-stately-for-ruby/"/>
-    <updated>2013-01-19T01:24:00-06:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2013/01/19/exploring-stately-for-ruby</id>
-    <content type="html"><![CDATA[<p>As someone who has built a hardware-based Morse Code sending system, I am very interested in state machines and their implementation.</p>
-
-<p>I recently found a new ruby gem <a href="https://github.com/rtwomey/stately">stately</a> which seemed interesting.  Like many packages, the documentation initially seemed confusing so a bit of exploring seemed appropriate.  This note documents the little exploring that I did (mostly so I can return to it should I want to use this gem in an application.  The two examples left when the dust settled are given in this <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074">gist</a>.</p>
-
-<p>My first attempt was to build a counter.  I had a bit of problem getting the syntax right and when I retreated to the document&rsquo;s examples,  I found they were incomplete.  My first successful attempt (from a syntax point of view was stately_demo_bad (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_bad-rb">gist</a>).</p>
-
-<p>It did not work because the method associated with defining all the details of the state machine appears to change the scope of some of the code into other internally defined classes yielding very unexpected behavior.</p>
-
-<p>Moving everything to method (messages) inside the state machine seems to be the expected (and allowable) approach yielding stately_demo_good (see the <a href="https://gist.github.com/dgreen/d08cbdf7e52ed2cf0074#file-stately_demo_good-rb">gist</a>).</p>
 ]]></content>
   </entry>
   
