@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-06-10T10:00:50-05:00</updated>
+  <updated>2020-06-10T10:07:04-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -45,7 +45,7 @@
 <li>MacOS Catalina 10.15.4</li>
 <li>Microsoft Word 16.37 (from a Microsoft 365 subscription)</li>
 <li>Microsoft Word365 (onlinee)</li>
-<li>LibreOffice 6.4.4.2</li>
+<li><del>LibreOffice 6.4.4.2</del></li>
 <li>Pages 10.0 (6748)</li>
 </ul>
 
@@ -63,17 +63,6 @@
 <p><img src="https://glimmer.gwizlabs.net/images/word-pdf.png" title="'Using Word's File → SaveAs...'" ></p>
 
 <p>Note that one can use the online version of Word also using the &ldquo;File → Save As → Download as PDF&rdquo; option.</p>
-
-<!--
-### Using LibreOffice
-
-Open the downloaded `.docx` file in LibreOffice (Writer). Choose *File → Export As → Export As PDF...* and then choose to export the bookmarks. The graphic shows the other options that I selected but not all of them may be necessary.
-
-
-<img src="https://glimmer.gwizlabs.net/images/libreoffice-pdf.png" title="'Using LibreOffice Writer's File → Export As → Export as PDF...'" >
-
-&#8211;>
-
 
 <h3>Using Pages</h3>
 
@@ -95,7 +84,7 @@ Open the downloaded `.docx` file in LibreOffice (Writer). Choose *File → Expor
 
 <blockquote><p><em>File → Down → Open Document Format (odf)</em>: does not export a proper Table of Contents index structure</p></blockquote>
 
-<p>This limitation (at least part of this is a bug IMO) means that the Table of Contents, made correctly in Google Docs, is not translated into Open Document Format correctly.  If you try to update the index, it shows nothing. It is not surprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data.  LibreOffice Writer does work when using the<code>.docx</code> output file after opening and saving it in Microsoft Word but that is less useful.</p>
+<p>This limitation (at least part of this is a bug IMO) means that the Table of Contents, made correctly in Google Docs, is not translated into Open Document Format correctly.  If you try to update the index, it shows nothing. It is not surprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data.  LibreOffice Writer does work when using the <code>.docx</code> output file after opening and saving it in Microsoft Word but that is less useful.</p>
 ]]></content>
   </entry>
   
