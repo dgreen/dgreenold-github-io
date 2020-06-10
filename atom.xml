@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-06-10T09:58:37-05:00</updated>
+  <updated>2020-06-10T10:00:50-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -18,7 +18,7 @@
     <link href="https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/"/>
     <updated>2020-05-25T11:28:00-05:00</updated>
     <id>https://glimmer.gwizlabs.net/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs</id>
-    <content type="html"><![CDATA[<p>Updated: 10 June 2020 removed LibreOffice as a part of the minimal solution, comments about Word Online</p>
+    <content type="html"><![CDATA[<p><strong>Updated:</strong> 10 June 2020 removed LibreOffice, comments about Word Online</p>
 
 <p>This post focuses on ensuring that the Table of Contents, as set up using Google Docs index, are transferred into the bookmark metadata of the PDF file.  This can not be done by simplifying downloading a Google Doc as a PDF. One must export to a <code>.docx</code> file and use Word, <del>Writer,</del> or Pages to produce the PDF file using the correct options for each program.</p>
 
