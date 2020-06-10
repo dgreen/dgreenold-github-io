@@ -9,7 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="This post focuses on ensuring that the Table of Contents, as set up using Google Docs index, are transferred into the bookmark metadata of the PDF &hellip;">
+  <meta name="description" content="Updated: 10 June 2020 removed LibreOffice as a part of the minimal solution, comments about Word Online This post focuses on ensuring that the Table &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,7 +93,9 @@
   </header>
 
 
-<div class="entry-content"><p>This post focuses on ensuring that the Table of Contents, as set up using Google Docs index, are transferred into the bookmark metadata of the PDF file.  This can not be done by simplifying downloading a Google Doc as a PDF. One must export to a <code>.docx</code> file and use Word, Writer, or Pages to produce the PDF file using the correct options for each program.</p>
+<div class="entry-content"><p>Updated: 10 June 2020 removed LibreOffice as a part of the minimal solution, comments about Word Online</p>
+
+<p>This post focuses on ensuring that the Table of Contents, as set up using Google Docs index, are transferred into the bookmark metadata of the PDF file.  This can not be done by simplifying downloading a Google Doc as a PDF. One must export to a <code>.docx</code> file and use Word, <del>Writer,</del> or Pages to produce the PDF file using the correct options for each program.</p>
 
 <p>Using macOS Preview as the PDF reader, we want the left sidebar when one selects Table of Contents to show the Table of Contents as bookmarks that allow quick access to the page where the content is.</p>
 
@@ -117,6 +119,7 @@
 <ul>
 <li>MacOS Catalina 10.15.4</li>
 <li>Microsoft Word 16.37 (from a Microsoft 365 subscription)</li>
+<li>Microsoft Word365 (onlinee)</li>
 <li>LibreOffice 6.4.4.2</li>
 <li>Pages 10.0 (6748)</li>
 </ul>
@@ -134,11 +137,18 @@
 
 <p><img src="/images/word-pdf.png" title="'Using Word's File → SaveAs...'" ></p>
 
-<h3>Using LibreOffice</h3>
+<p>Note that one can use the online version of Word also using the &ldquo;File → Save As → Download as PDF&rdquo; option.</p>
 
-<p>Open the downloaded <code>.docx</code> file in LibreOffice (Writer). Choose <em>File → Export As → Export As PDF&hellip;</em> and then choose to export the bookmarks. The graphic shows the other options that I selected but not all of them may be necessary.</p>
+<!--
+### Using LibreOffice
 
-<p><img src="/images/libreoffice-pdf.png" title="'Using LibreOffice Writer's File → Export As → Export as PDF...'" ></p>
+Open the downloaded `.docx` file in LibreOffice (Writer). Choose *File → Export As → Export As PDF...* and then choose to export the bookmarks. The graphic shows the other options that I selected but not all of them may be necessary.
+
+
+<img src="/images/libreoffice-pdf.png" title="'Using LibreOffice Writer's File → Export As → Export as PDF...'" >
+
+&#8211;>
+
 
 <h3>Using Pages</h3>
 
@@ -160,7 +170,7 @@
 
 <blockquote><p><em>File → Down → Open Document Format (odf)</em>: does not export a proper Table of Contents index structure</p></blockquote>
 
-<p>This limitation (at least part of this is a bug IMO) means that the Table of Contents, made correctly in Google Docs, is not translated into Open Document Format correctly.  If you try to update the index, it shows nothing. It is not surprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data. As noted above, LibreOffice Writer does work when using the<code>.docx</code> output file from Google Docs.</p>
+<p>This limitation (at least part of this is a bug IMO) means that the Table of Contents, made correctly in Google Docs, is not translated into Open Document Format correctly.  If you try to update the index, it shows nothing. It is not surprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data.  LibreOffice Writer does work when using the<code>.docx</code> output file after opening and saving it in Microsoft Word but that is less useful.</p>
 </div>
 
 
