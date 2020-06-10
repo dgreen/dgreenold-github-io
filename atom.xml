@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-06-10T10:35:20-05:00</updated>
+  <updated>2020-06-10T10:37:41-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -63,6 +63,10 @@
 <p><img src="https://glimmer.gwizlabs.net/images/word-pdf.png" title="'Using Word's File → SaveAs...'" ></p>
 
 <p>Note that one can use the online version of Word also using the <em>File → Save As → Download as PDF</em> option.</p>
+
+<h3><del>Using LibreOffice Writer</del></h3>
+
+<blockquote><p>(removed)</p></blockquote>
 
 <h3>Using Pages</h3>
 
