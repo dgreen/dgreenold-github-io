@@ -6,7 +6,9 @@ comments: true
 categories: 
 ---
 
-This post focuses on ensuring that the Table of Contents, as set up using Google Docs index, are transferred into the bookmark metadata of the PDF file.  This can not be done by simplifying downloading a Google Doc as a PDF. One must export to a `.docx` file and use Word, Writer, or Pages to produce the PDF file using the correct options for each program.
+**Updated:** 10 June 2020 removed LibreOffice as tool, comments about Word Online
+
+This post focuses on ensuring that the Table of Contents, as set up using Google Docs index, are transferred into the bookmark metadata of the PDF file. This can not be done by simplifying downloading a Google Doc as a PDF. One must export to a `.docx` file and use Word, ~~Writer,~~ or Pages to produce the PDF file using the correct options for each program.
 
 Using macOS Preview as the PDF reader, we want the left sidebar when one selects Table of Contents to show the Table of Contents as bookmarks that allow quick access to the page where the content is.
 
@@ -16,7 +18,7 @@ Using macOS Preview as the PDF reader, we want the left sidebar when one selects
 
 ## Background
 
-I have chosen Google Docs to maintain the IEEE Region 3 Operations Manual. IEEE is a GSuite organization, and I feel that using GoogleDocs had the best potential for promoting collaboration on documents. Additionally, it provides a cloud-based approach for ensuring the source content is available over time. One issue that arises from this choice is the reduced feature set in Google Docs as compared to Microsoft Word, LibreOffice Writer, and Apple Pages.  Google Docs is growing to support more features over time, and the others (especially Microsoft and Apple) are trying to ensure consistent feature sets across all platforms (desktop, smartphone, web) -- the gap is closing.
+I have chosen Google Docs to maintain the IEEE Region 3 Operations Manual. IEEE is a GSuite organization, and I feel that using GoogleDocs had the best potential for promoting collaboration on documents. Additionally, it provides a cloud-based approach for ensuring the source content is available over time. One issue that arises from this choice is the reduced feature set in Google Docs as compared to Microsoft Word, LibreOffice Writer, and Apple Pages. Google Docs is growing to support more features over time, and the others (especially Microsoft and Apple) are trying to ensure consistent feature sets across all platforms (desktop, smartphone, web) -- the gap is closing.
 
 ## Process that works
 
@@ -24,14 +26,15 @@ TLDR;
 
 > Google Doc → download as .docx → use word processor with bookmark/accessibility options → PDF
 
-The process that works is to download the file from Google Docs as a `.docx` file.  Then using Word, Writer, or Pages open the file and then export it to PDF choosing to use the accessibility options. My computer is a MacBook Pro 13 2018 and is presently running
+The process that works is to download the file from Google Docs as a `.docx` file. Then using Word, Writer, or Pages open the file and then export it to PDF choosing to use the accessibility options. My computer is a MacBook Pro 13 2018 and is presently running
 
 * MacOS Catalina 10.15.4
 * Microsoft Word 16.37 (from a Microsoft 365 subscription)
-* LibreOffice 6.4.4.2
+* Microsoft Word365 (onlinee)
+* ~~LibreOffice 6.4.4.2~~
 * Pages 10.0 (6748)
 
-The result we are seeking is to have the table of contents information inserted and maintained in Google Docs.  It should not only appear in the PDF page but also appear in the metadata of the PDF file so that users can quickly jump to those sections.
+The result we are seeking is to have the table of contents information inserted and maintained in Google Docs. It should not only appear in the PDF page but also appear in the metadata of the PDF file so that users can quickly jump to those sections.
 
 After using the heading styles in your document to denote the structure, insert the table of contents in the appropriate part of your document using the menu option *Insert → Table of Contents*. Choose to show numbers rather than links if you wish to support printed versions of the PDF. Make sure you are adding page numbers to your page (use the menu option *Insert → Page Numbers*). The table of contents should now be visible in the document. Right-clicking on the table of contents allows you the option to refresh the table of contents after document changes. You should also be able to click on an entry and select the link to jump to that portion of the document for editing.
 
@@ -43,11 +46,11 @@ Open the downloaded `.docx` file in Word. Choose *File → Save As...* and then 
 
 {% img /images/word-pdf.png 'Using Word's File → SaveAs...' %}
 
-### Using LibreOffice
+Note that one can use the online version of Word also using the *File → Save As → Download as PDF* option.
 
-Open the downloaded `.docx` file in LibreOffice (Writer). Choose *File → Export As → Export As PDF...* and then choose to export the bookmarks. The graphic shows the other options that I selected but not all of them may be necessary.
+### ~~Using LibreOffice Writer~~
 
-{% img /images/libreoffice-pdf.png 'Using LibreOffice Writer's File → Export As → Export as PDF...' %}
+> (removed)
 
 ### Using Pages
 
@@ -57,7 +60,7 @@ Open the downloaded `.docx` file in Pages. Choose *File → Export To → PDF...
 
 ## Issues with Google Docs export
 
-The most desirable workflow is for Google Docs to add the bookmarks from the Table of Contents to the PDF file or create the document in one of the tools (Word, Writer, or Pages) that will generate the desired PDF. Alas, this is not possible today.  Looking at the Google Support forums, it is clear this is a desired feature, so hopefully, it will appear one day.
+The most desirable workflow is for Google Docs to add the bookmarks from the Table of Contents to the PDF file or create the document in one of the tools (Word, Writer, or Pages) that will generate the desired PDF. Alas, this is not possible today. Looking at the Google Support forums, it is clear this is a desired feature, so hopefully, it will appear one day.
 
 In working towards a process to produce a PDF with bookmarks for the Table of Contents, I ran into two limitations in Google Docs. The working around the first limitation
 
@@ -69,4 +72,4 @@ I discovered an additional problem:
 
 > *File → Down → Open Document Format (odf)*: does not export a proper Table of Contents index structure
 
-This limitation (at least part of this is a bug IMO) means that the Table of Contents, made correctly in Google Docs, is not translated into Open Document Format correctly.  If you try to update the index, it shows nothing. It is not surprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data. As noted above, LibreOffice Writer does work when using the`.docx` output file from Google Docs.
+This limitation (at least part of this is a bug IMO) means that the Table of Contents, made correctly in Google Docs, is not translated into Open Document Format correctly. If you try to update the index, it shows nothing. It is not surprising then that it is not available for LibreOffice Writer to export the Table of Contents information as bookmark data. LibreOffice Writer does work when using the `.docx` output file after opening and saving it in Microsoft Word but that is less useful.
