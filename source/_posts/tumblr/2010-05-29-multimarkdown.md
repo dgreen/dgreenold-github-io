@@ -31,8 +31,7 @@ _MultiMarkdown_ pages looks like
     Format:       complete
     LaTeX XSLT:   article.xslt
 
-    [UAB][1] -> [ENG][2] -> [ [ECE][3] / [ECE Intranet][4] ] -> [ [DGreen][5]
-/
+    [UAB][1] -> [ENG][2] -> [ [ECE][3] / [ECE Intranet][4] ] -> [ [DGreen][5] /
     [DGreen Intranet][6] ] -> [EE448/548][7] -> TITLE
 
     * * *
@@ -40,17 +39,13 @@ _MultiMarkdown_ pages looks like
     TITLE
     =====
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum
-facilisis
-    justo, eget tempor ligula accumsan nec. Proin dignissim fermentum
-scelerisque.
-    Donec scelerisque vehicula dui ac imperdiet. Integer est dolor, varius
-dapibus
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum facilisis
+    justo, eget tempor ligula accumsan nec. Proin dignissim fermentum scelerisque.
+    Donec scelerisque vehicula dui ac imperdiet. Integer est dolor, varius dapibus
     ultricies a, facilisis sed tortor.
 
     Fusce quis orci turpis, eget fringilla arcu.
-    Quisque a ligula a tellus commodo gravida dapibus nec massa. Fusce eu urna
-lacus,
+    Quisque a ligula a tellus commodo gravida dapibus nec massa. Fusce eu urna lacus,
     ac molestie odio.
 
 * * *
