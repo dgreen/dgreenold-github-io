@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using localstorage between Browser Windows - Glimmer</title>
+  <meta name="author" content="David Green">
+
+  
+  <meta name="description" content="Overview There are several ways to communicate between browser windows Server conversation (async, network delays)
+localstorage (sync) &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Glimmer" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Glimmer</a></h1>
+  
+    <h2>Faint insights into (mostly) the worlds of automation and productivity</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:glimmer.gwizlabs.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using Localstorage Between Browser Windows</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2020-12-26T16:10:00-06:00" pubdate data-updated="true">Dec 26<span>th</span>, 2020</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Overview</h2>
+
+<p>There are several ways to communicate between browser windows</p>
+
+<ul>
+<li>Server conversation (async, network delays)</li>
+<li><code>localstorage</code> (sync)</li>
+<li><code>BroadcastChannel</code> (most modern, does not appear to be supported in Safari)</li>
+<li><code>IndexedDB</code> (async)</li>
+</ul>
+
+
+<p>It looks like <code>localstorage</code> will do for the current application’s purposes of launching another window to do some work and then report back a limited amount of information and closing.</p>
+
+<h2>Structure</h2>
+
+<p>The remote client window uses <code>localstorage.setItem(key,value)</code> to talk back to main window.  Both <code>key</code> and <code>value</code> must be strings.  <code>JSON.stringify(object)</code> may help.</p>
+
+<p>Main window uses <code>window.addEventListener("storage", storageEventHandler, false)</code> to register the function <code>storageEventHandler(evt)</code> to be notified when the storage is modified.  The main window can then examine <code>evt.key</code> to get the key of the item in local storage that changed and <code>evt.newValue</code> to get the new value of the changed item.  Alternately, if only one key is in involved, the main window can use <code>localStorage.getItem(key)</code>.</p>
+
+<h2>Demo Code</h2>
+
+<p>The demo must run in a server context not file:// and the browser windows should not be in “private” mode.</p>
+
+<h3>Simulation of main window (launch this, then hit “read” link to launch client)</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;body&gt;
+</span><span class='line'>  &lt;h1&gt;Web localStorage (read)&lt;/h1&gt;
+</span><span class='line'>  &lt;p&gt;&lt;a href="client.html" target="_blank"&gt;Load Client&lt;/a&gt;&lt;/p&gt;
+</span><span class='line'>  &lt;h1&gt;&lt;span id='theString'&gt;&lt;/span&gt;&lt;/h1&gt;
+</span><span class='line'>&lt;/body&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="scriptRead.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Body of HTML page</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"use strict";
+</span><span class='line'>
+</span><span class='line'>window.addEventListener("storage", storageEventHandler, false);
+</span><span class='line'>const answerFieldSpan = document.getElementById("theString");
+</span><span class='line'>
+</span><span class='line'>function storageEventHandler(evt) {
+</span><span class='line'>  // let theString = localStorage.getItem("theString");
+</span><span class='line'>  // answerFieldSpan.innerText = theString;
+</span><span class='line'>
+</span><span class='line'>  answerFieldSpan.innerText = `${evt.key} : ${evt.newValue}`;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScript</p>
+
+<h3>Simulation of client window (launched by main window or manually)</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;body&gt;
+</span><span class='line'>  &lt;h1&gt;Graphic Page Writing Back via Local Storage&lt;/h1&gt;
+</span><span class='line'>  &lt;form action=""&gt;&lt;/form&gt;
+</span><span class='line'>  &lt;label for="the-string"&gt;String to store:&lt;/label&gt;
+</span><span class='line'>  &lt;input type="text" name="saveValue" id="the-string"&gt;
+</span><span class='line'>  &lt;button id='save'&gt;Save&lt;/button&gt;
+</span><span class='line'>&lt;/body&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="scriptSet.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Body of HTML page</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"use strict";
+</span><span class='line'>
+</span><span class='line'>let theString = "stop";
+</span><span class='line'>let check;
+</span><span class='line'>
+</span><span class='line'>const saveButton = document.getElementById("save");
+</span><span class='line'>const theStringField = document.getElementById("the-string");
+</span><span class='line'>
+</span><span class='line'>saveButton.onclick = (ev) =&gt; {
+</span><span class='line'>  theString = theStringField.value;
+</span><span class='line'>  localStorage.setItem("theString", theString);
+</span><span class='line'>  check = localStorage.getItem("theString");
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScript</p>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/webstorage.html">HTML Standard</a> (webstorage)</li>
+<li><a href="https://thewebdev.info/2020/04/03/use-localstorage-to-store-data-on-the-browser/">How To Use LocalStorage to Store Data in the Browser &ndash; The Web Dev</a></li>
+<li><a href="https://web.dev/storage-for-the-web/">Storage for the web</a></li>
+<li><a href="https://michalzalecki.com/why-using-localStorage-directly-is-a-bad-idea/">Why using localStorage directly is a bad idea &ndash; Michal Zalecki</a></li>
+<li><a href="https://jonathanmh.com/use-ios-safari-localstorage-sessionstorage-private-mode/">How to use iOS Safari localStorage and sessionStorage in Private Mode &ndash; JonathanMH</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API">Broadcast Channel API &ndash; Web APIs | MDN</a></li>
+<li><a href="https://stackoverflow.com/questions/28230845/communication-between-tabs-or-windows">Communication between tabs or windows &ndash; Stack Overflow</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Green</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2020-12-26T16:10:00-06:00" pubdate data-updated="true">Dec 26<span>th</span>, 2020</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows/" data-via="dgreeo" data-counturl="https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/" title="Previous Post: Making BookMarked PDFs from Google Docs">&laquo; Making BookMarked PDFs from Google Docs</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2020/12/26/using-localstorage-between-browser-windows/">Using Localstorage Between Browser Windows</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/">Making BookMarked PDFs From Google Docs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/">Limping Along With Octopress and Catalina macOS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dgreen',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2020 - David Green -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'faintinsights';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows/';
+        var disqus_url = 'https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

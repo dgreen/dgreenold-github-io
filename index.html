@@ -9,7 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Updated: 10 June 2020 removed LibreOffice as tool, comments about Word Online This post focuses on ensuring that the Table of Contents, as set up &hellip;">
+  <meta name="description" content="Overview There are several ways to communicate between browser windows Server conversation (async, network delays)
+localstorage (sync) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,180 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2020/12/26/using-localstorage-between-browser-windows/">Using Localstorage Between Browser Windows</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2020-12-26T16:10:00-06:00" pubdate data-updated="true">Dec 26<span>th</span>, 2020</time>
+        
+         | <a href="/blog/2020/12/26/using-localstorage-between-browser-windows/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Overview</h2>
+
+<p>There are several ways to communicate between browser windows</p>
+
+<ul>
+<li>Server conversation (async, network delays)</li>
+<li><code>localstorage</code> (sync)</li>
+<li><code>BroadcastChannel</code> (most modern, does not appear to be supported in Safari)</li>
+<li><code>IndexedDB</code> (async)</li>
+</ul>
+
+
+<p>It looks like <code>localstorage</code> will do for the current application’s purposes of launching another window to do some work and then report back a limited amount of information and closing.</p>
+
+<h2>Structure</h2>
+
+<p>The remote client window uses <code>localstorage.setItem(key,value)</code> to talk back to main window.  Both <code>key</code> and <code>value</code> must be strings.  <code>JSON.stringify(object)</code> may help.</p>
+
+<p>Main window uses <code>window.addEventListener("storage", storageEventHandler, false)</code> to register the function <code>storageEventHandler(evt)</code> to be notified when the storage is modified.  The main window can then examine <code>evt.key</code> to get the key of the item in local storage that changed and <code>evt.newValue</code> to get the new value of the changed item.  Alternately, if only one key is in involved, the main window can use <code>localStorage.getItem(key)</code>.</p>
+
+<h2>Demo Code</h2>
+
+<p>The demo must run in a server context not file:// and the browser windows should not be in “private” mode.</p>
+
+<h3>Simulation of main window (launch this, then hit “read” link to launch client)</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;body&gt;
+</span><span class='line'>  &lt;h1&gt;Web localStorage (read)&lt;/h1&gt;
+</span><span class='line'>  &lt;p&gt;&lt;a href="client.html" target="_blank"&gt;Load Client&lt;/a&gt;&lt;/p&gt;
+</span><span class='line'>  &lt;h1&gt;&lt;span id='theString'&gt;&lt;/span&gt;&lt;/h1&gt;
+</span><span class='line'>&lt;/body&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="scriptRead.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Body of HTML page</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"use strict";
+</span><span class='line'>
+</span><span class='line'>window.addEventListener("storage", storageEventHandler, false);
+</span><span class='line'>const answerFieldSpan = document.getElementById("theString");
+</span><span class='line'>
+</span><span class='line'>function storageEventHandler(evt) {
+</span><span class='line'>  // let theString = localStorage.getItem("theString");
+</span><span class='line'>  // answerFieldSpan.innerText = theString;
+</span><span class='line'>
+</span><span class='line'>  answerFieldSpan.innerText = `${evt.key} : ${evt.newValue}`;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScript</p>
+
+<h3>Simulation of client window (launched by main window or manually)</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;body&gt;
+</span><span class='line'>  &lt;h1&gt;Graphic Page Writing Back via Local Storage&lt;/h1&gt;
+</span><span class='line'>  &lt;form action=""&gt;&lt;/form&gt;
+</span><span class='line'>  &lt;label for="the-string"&gt;String to store:&lt;/label&gt;
+</span><span class='line'>  &lt;input type="text" name="saveValue" id="the-string"&gt;
+</span><span class='line'>  &lt;button id='save'&gt;Save&lt;/button&gt;
+</span><span class='line'>&lt;/body&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="scriptSet.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Body of HTML page</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"use strict";
+</span><span class='line'>
+</span><span class='line'>let theString = "stop";
+</span><span class='line'>let check;
+</span><span class='line'>
+</span><span class='line'>const saveButton = document.getElementById("save");
+</span><span class='line'>const theStringField = document.getElementById("the-string");
+</span><span class='line'>
+</span><span class='line'>saveButton.onclick = (ev) =&gt; {
+</span><span class='line'>  theString = theStringField.value;
+</span><span class='line'>  localStorage.setItem("theString", theString);
+</span><span class='line'>  check = localStorage.getItem("theString");
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScript</p>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/webstorage.html">HTML Standard</a> (webstorage)</li>
+<li><a href="https://thewebdev.info/2020/04/03/use-localstorage-to-store-data-on-the-browser/">How To Use LocalStorage to Store Data in the Browser &ndash; The Web Dev</a></li>
+<li><a href="https://web.dev/storage-for-the-web/">Storage for the web</a></li>
+<li><a href="https://michalzalecki.com/why-using-localStorage-directly-is-a-bad-idea/">Why using localStorage directly is a bad idea &ndash; Michal Zalecki</a></li>
+<li><a href="https://jonathanmh.com/use-ios-safari-localstorage-sessionstorage-private-mode/">How to use iOS Safari localStorage and sessionStorage in Private Mode &ndash; JonathanMH</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API">Broadcast Channel API &ndash; Web APIs | MDN</a></li>
+<li><a href="https://stackoverflow.com/questions/28230845/communication-between-tabs-or-windows">Communication between tabs or windows &ndash; Stack Overflow</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -932,193 +1107,6 @@ hopefully preserved the important behaviors they wished to document.  The new co
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/21/creating-a-line-segment-graphic/">Creating a Line Segment Graphic</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-09-21T21:23:00-05:00" pubdate data-updated="true">Sep 21<span>st</span>, 2015</time>
-        
-         | <a href="/blog/2015/09/21/creating-a-line-segment-graphic/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The following code</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
-</span><span class='line'><span class="cm"> * File: CreateSimplePlot.java</span>
-</span><span class='line'><span class="cm"> * Author: David Green &lt;dgreen@uab.edu&gt;</span>
-</span><span class='line'><span class="cm"> * Vers: 1.1.0 09/21/2015 dgg - change from Etch-A-Sketch to Plotter</span>
-</span><span class='line'><span class="cm"> * Vers: 1.0.0 09/10/2014 dgg - initial coding</span>
-</span><span class='line'><span class="cm"> *</span>
-</span><span class='line'><span class="cm"> * Credits:  (if any for sections of code)</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.imageio.ImageIO</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * Code from:  http://www.java2s.com/Code/Java/2D-Graphics-GUI/DrawanImageandsavetopng.htm</span>
-</span><span class='line'><span class="cm"> * (modifications by ...)</span>
-</span><span class='line'><span class="cm"> * @author David Green &lt;dgreen@uab.edu&gt;</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateSimplePlot</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kt">double</span> <span class="n">t</span><span class="o">;</span>       <span class="c1">// time</span>
-</span><span class='line'>    <span class="kt">double</span> <span class="n">oldT</span><span class="o">;</span>    <span class="c1">// old time</span>
-</span><span class='line'>    <span class="kt">double</span> <span class="n">deltaT</span><span class="o">;</span>  <span class="c1">// time increment</span>
-</span><span class='line'>    <span class="kt">double</span> <span class="n">y</span><span class="o">;</span>       <span class="c1">// plot value</span>
-</span><span class='line'>    <span class="kt">double</span> <span class="n">oldY</span><span class="o">;</span>    <span class="c1">// old plot value</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">700</span><span class="o">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed</span>
-</span><span class='line'>      <span class="c1">// into integer pixels</span>
-</span><span class='line'>      <span class="n">BufferedImage</span> <span class="n">bi</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_ARGB</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">Graphics2D</span> <span class="n">ig2</span> <span class="o">=</span> <span class="n">bi</span><span class="o">.</span><span class="na">createGraphics</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// make full image white</span>
-</span><span class='line'>      <span class="n">ig2</span><span class="o">.</span><span class="na">fillRect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">700</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// draw black lines</span>
-</span><span class='line'>      <span class="n">ig2</span><span class="o">.</span><span class="na">setPaint</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">oldT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.;</span>
-</span><span class='line'>      <span class="n">oldY</span> <span class="o">=</span> <span class="n">plotFunction</span><span class="o">(</span><span class="n">oldT</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">deltaT</span> <span class="o">=</span> <span class="mi">5</span><span class="o">.;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">deltaT</span><span class="o">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">700</span><span class="o">.;</span> <span class="n">t</span> <span class="o">+=</span> <span class="n">deltaT</span> <span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">y</span> <span class="o">=</span> <span class="mf">250.0</span> <span class="o">+</span> <span class="mf">200.0</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">200</span><span class="o">.)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">);</span>
-</span><span class='line'>        <span class="n">ig2</span><span class="o">.</span><span class="na">drawLine</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">oldT</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">oldY</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">t</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">y</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">oldY</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">oldT</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// write the resulting file</span>
-</span><span class='line'>      <span class="n">ImageIO</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">bi</span><span class="o">,</span> <span class="s">&quot;PNG&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;plot.png&quot;</span><span class="o">));</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ie</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Exception raised &quot;</span> <span class="o">+</span> <span class="n">ie</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">plotFunction</span><span class="o">(</span><span class="kt">double</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mf">250.0</span> <span class="o">+</span> <span class="mf">200.0</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">200</span><span class="o">.)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>produces</p>
-
-<p><img src="/images/plot.png" alt="Figure 1. Sinusoid example plot" /></p>
-
-<p>as a PNG graphic file.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1134,6 +1122,10 @@ hopefully preserved the important behaviors they wished to document.  The new co
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/12/26/using-localstorage-between-browser-windows/">Using Localstorage Between Browser Windows</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/">Making BookMarked PDFs From Google Docs</a>
       </li>
     
@@ -1147,10 +1139,6 @@ hopefully preserved the important behaviors they wished to document.  The new co
     
       <li class="post">
         <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/11/19/finding-java-and-netbeans/">Finding Java and NetBeans</a>
       </li>
     
   </ul>

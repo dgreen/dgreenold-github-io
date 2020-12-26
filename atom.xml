@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-07-31T17:37:18-05:00</updated>
+  <updated>2020-12-26T16:21:32-06:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,151 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using localstorage between Browser Windows]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows/"/>
+    <updated>2020-12-26T16:10:00-06:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2020/12/26/using-localstorage-between-browser-windows</id>
+    <content type="html"><![CDATA[<h2>Overview</h2>
+
+<p>There are several ways to communicate between browser windows</p>
+
+<ul>
+<li>Server conversation (async, network delays)</li>
+<li><code>localstorage</code> (sync)</li>
+<li><code>BroadcastChannel</code> (most modern, does not appear to be supported in Safari)</li>
+<li><code>IndexedDB</code> (async)</li>
+</ul>
+
+
+<p>It looks like <code>localstorage</code> will do for the current application’s purposes of launching another window to do some work and then report back a limited amount of information and closing.</p>
+
+<h2>Structure</h2>
+
+<p>The remote client window uses <code>localstorage.setItem(key,value)</code> to talk back to main window.  Both <code>key</code> and <code>value</code> must be strings.  <code>JSON.stringify(object)</code> may help.</p>
+
+<p>Main window uses <code>window.addEventListener("storage", storageEventHandler, false)</code> to register the function <code>storageEventHandler(evt)</code> to be notified when the storage is modified.  The main window can then examine <code>evt.key</code> to get the key of the item in local storage that changed and <code>evt.newValue</code> to get the new value of the changed item.  Alternately, if only one key is in involved, the main window can use <code>localStorage.getItem(key)</code>.</p>
+
+<h2>Demo Code</h2>
+
+<p>The demo must run in a server context not file:// and the browser windows should not be in “private” mode.</p>
+
+<h3>Simulation of main window (launch this, then hit “read” link to launch client)</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;body&gt;
+</span><span class='line'>  &lt;h1&gt;Web localStorage (read)&lt;/h1&gt;
+</span><span class='line'>  &lt;p&gt;&lt;a href="client.html" target="_blank"&gt;Load Client&lt;/a&gt;&lt;/p&gt;
+</span><span class='line'>  &lt;h1&gt;&lt;span id='theString'&gt;&lt;/span&gt;&lt;/h1&gt;
+</span><span class='line'>&lt;/body&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="scriptRead.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Body of HTML page</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"use strict";
+</span><span class='line'>
+</span><span class='line'>window.addEventListener("storage", storageEventHandler, false);
+</span><span class='line'>const answerFieldSpan = document.getElementById("theString");
+</span><span class='line'>
+</span><span class='line'>function storageEventHandler(evt) {
+</span><span class='line'>  // let theString = localStorage.getItem("theString");
+</span><span class='line'>  // answerFieldSpan.innerText = theString;
+</span><span class='line'>
+</span><span class='line'>  answerFieldSpan.innerText = `${evt.key} : ${evt.newValue}`;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScript</p>
+
+<h3>Simulation of client window (launched by main window or manually)</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;body&gt;
+</span><span class='line'>  &lt;h1&gt;Graphic Page Writing Back via Local Storage&lt;/h1&gt;
+</span><span class='line'>  &lt;form action=""&gt;&lt;/form&gt;
+</span><span class='line'>  &lt;label for="the-string"&gt;String to store:&lt;/label&gt;
+</span><span class='line'>  &lt;input type="text" name="saveValue" id="the-string"&gt;
+</span><span class='line'>  &lt;button id='save'&gt;Save&lt;/button&gt;
+</span><span class='line'>&lt;/body&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="scriptSet.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Body of HTML page</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"use strict";
+</span><span class='line'>
+</span><span class='line'>let theString = "stop";
+</span><span class='line'>let check;
+</span><span class='line'>
+</span><span class='line'>const saveButton = document.getElementById("save");
+</span><span class='line'>const theStringField = document.getElementById("the-string");
+</span><span class='line'>
+</span><span class='line'>saveButton.onclick = (ev) =&gt; {
+</span><span class='line'>  theString = theStringField.value;
+</span><span class='line'>  localStorage.setItem("theString", theString);
+</span><span class='line'>  check = localStorage.getItem("theString");
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScript</p>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/webstorage.html">HTML Standard</a> (webstorage)</li>
+<li><a href="https://thewebdev.info/2020/04/03/use-localstorage-to-store-data-on-the-browser/">How To Use LocalStorage to Store Data in the Browser &ndash; The Web Dev</a></li>
+<li><a href="https://web.dev/storage-for-the-web/">Storage for the web</a></li>
+<li><a href="https://michalzalecki.com/why-using-localStorage-directly-is-a-bad-idea/">Why using localStorage directly is a bad idea &ndash; Michal Zalecki</a></li>
+<li><a href="https://jonathanmh.com/use-ios-safari-localstorage-sessionstorage-private-mode/">How to use iOS Safari localStorage and sessionStorage in Private Mode &ndash; JonathanMH</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API">Broadcast Channel API &ndash; Web APIs | MDN</a></li>
+<li><a href="https://stackoverflow.com/questions/28230845/communication-between-tabs-or-windows">Communication between tabs or windows &ndash; Stack Overflow</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Making BookMarked PDFs from Google Docs]]></title>
@@ -1537,24 +1682,6 @@ either approach.)  This was a bit hard to retreat to.  I had to</p>
 <p>Most &ldquo;irritating thing&rdquo; is to put <code>bundle exec</code> in front of all rake commands
 as Octopress is not using more current code.  I have not generally had to
 worry about that in the past but I know many others have.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Safe Boot is back (in OS X10.8.3) with FileVault]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault/"/>
-    <updated>2013-04-14T02:01:00-05:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2013/04/14/safe-boot-is-back-in-os-x10-dot-8-3-with-filevault</id>
-    <content type="html"><![CDATA[<p>Safe booting for FileVault users is now possible again in OS X 10.8.3.  As always, you hold down the (left) shift key right after the chime when booting.  You are next taken to the unlock/login screen where you must authenticate by one of the accounts that will unlock the disk.  I hold the shift key down right after the &ldquo;return&rdquo; key is hit.  Then you will see the gray progress bar implying booting in safe mode.  After a while (probably after the fschk and other things are done but the progress bar only makes it about 40% across), it will go to the spinner for a while, then just the Apple, and then back to the unlock/login screen but you will notice a red &ldquo;<span style="color:red">Safe Boot</span>&rdquo; in the upper right hand corner.  After logging in again, one gets to the operating level of Safe Boot.  You will notice (as always) that your &ldquo;start at login&rdquo; items won&rsquo;t be loading &mdash; one of the features of Safe Boot.</p>
-
-<p>On my old Mac Mini, things are pretty slow in Safe Boot.  It  must be disk intensive as my SSD-based MacBook Pro is much faster.</p>
-
-<p>Since safe boot is the safe way to fix some things like</p>
-
-<pre><code>Sandboxd: ... mdworker(..) deny mach-lookup com.apple.ls.boxd
-</code></pre>
-
-<p>It is great to have this working again.</p>
 ]]></content>
   </entry>
   
