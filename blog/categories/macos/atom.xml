@@ -4,7 +4,7 @@
   <title><![CDATA[Category: macos | Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/blog/categories/macos/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-12-26T16:21:32-06:00</updated>
+  <updated>2020-12-29T11:29:42-06:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Open Selection by highlighted URL]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2020/12/29/open-by-highlighted-url/"/>
+    <updated>2020-12-29T11:07:00-06:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2020/12/29/open-by-highlighted-url</id>
+    <content type="html"><![CDATA[<p>In Evernote 10, I have lost the ability to include general URLs as linked items.  The links already in a note still work but Evernote 10 does not allow the insertion of new links. While not perfect, Keyboard Maestro on macOS can mitigate some of the missing behavior for Mac users.</p>
+
+<p>I chose to add a shortcut ⌃⌥⌘O (O for open) to open the highlighted text treating it as a URL.  It easily accomplished with Keyboard Maestro.</p>
+
+<p><img src="/images/kb-cntl-opt-cmd-o.png" alt="Keyboard Maestro Command" /></p>
+
+<p>This has made things much more bearable. I still hope Evernote will reconsider their decision on URLs since I think both macOS and Windows (at least) support this type of behavior and having the URL visible in the note distracts from the readability of the note.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Limping along with Octopress and Catalina macOS]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-12-26T16:21:32-06:00</updated>
+  <updated>2020-12-29T11:29:42-06:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Open Selection by highlighted URL]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2020/12/29/open-by-highlighted-url/"/>
+    <updated>2020-12-29T11:07:00-06:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2020/12/29/open-by-highlighted-url</id>
+    <content type="html"><![CDATA[<p>In Evernote 10, I have lost the ability to include general URLs as linked items.  The links already in a note still work but Evernote 10 does not allow the insertion of new links. While not perfect, Keyboard Maestro on macOS can mitigate some of the missing behavior for Mac users.</p>
+
+<p>I chose to add a shortcut ⌃⌥⌘O (O for open) to open the highlighted text treating it as a URL.  It easily accomplished with Keyboard Maestro.</p>
+
+<p><img src="https://glimmer.gwizlabs.net/images/kb-cntl-opt-cmd-o.png" alt="Keyboard Maestro Command" /></p>
+
+<p>This has made things much more bearable. I still hope Evernote will reconsider their decision on URLs since I think both macOS and Windows (at least) support this type of behavior and having the URL visible in the note distracts from the readability of the note.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using localstorage between Browser Windows]]></title>
@@ -1639,49 +1654,6 @@ The paths specified by the user are at the end of the system paths.</p>
 
     C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Users\dgreen\bin
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Tumbling out!]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2013/05/27/Tumbling-out/"/>
-    <updated>2013-05-27T18:02:45-05:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2013/05/27/Tumbling-out</id>
-    <content type="html"><![CDATA[<p>In a long overdue action, I have moved the glimmer blog out of Tumblr.  I had
-been wanting to use <a href="http://fletcherpenney.net/multimarkdown/">(Multi-)Markdown</a> more in blogging to continue my
-focusing on the format.  I also had a student tell me he could not access the
-Tumblr website at work due to its other content.  Tumblr was/is an easy to use
-site but my purposes and those of other users don&rsquo;t seem to match.  I had been
-looking at Jekyll for a while and considering what to try when I discovered
-that GitHub supported web hosting with some support for Jekyll.  Finding the
-<a href="http://jekyllrb.com/docs/migrations/">Jekyll importer</a> that would do most of the heavy lifting for
-moving the site, I took the plunge.</p>
-
-<p>Over about 4 hours, I was able to do fixups of the files that the importer
-brought over.  I also changed Jekyll to use Kramdown instead of Maruku based
-on  this <a href="http://natedickson.com/blog/2013/04/09/mostly-multimarkdown-blogging-in-octopress/">hint</a> originally from <a href="http://brettterpstra.com">Brett Terpstra</a>.</p>
-
-<p>After a bit more exploring, I discovered Octopress which wraps Jekyll with
-additional conveniences (even though it uses an older version of Jekyll).  I
-was able to copy the raw Jekyll work into the <a href="http://octopress.org/" title="Octopress">Octopress</a> copy.</p>
-
-<p>After trying things out, I also made the decision to host against my Github
-Account rather than a project (although both Jekyll and Octopress can handle
-either approach.)  This was a bit hard to retreat to.  I had to</p>
-
-<ol>
-<li> Re-run scripts</li>
-<li> Edit .git/config</li>
-<li> Edit Rakefile</li>
-<li> Edit _config</li>
-</ol>
-
-
-<p>but I think I got it.</p>
-
-<p>Most &ldquo;irritating thing&rdquo; is to put <code>bundle exec</code> in front of all rake commands
-as Octopress is not using more current code.  I have not generally had to
-worry about that in the past but I know many others have.</p>
 ]]></content>
   </entry>
   

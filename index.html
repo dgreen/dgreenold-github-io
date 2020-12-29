@@ -9,8 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Overview There are several ways to communicate between browser windows Server conversation (async, network delays)
-localstorage (sync) &hellip;">
+  <meta name="description" content="In Evernote 10, I have lost the ability to include general URLs as linked items. The links already in a note still work but Evernote 10 does not &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,50 @@ localstorage (sync) &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2020/12/29/open-by-highlighted-url/">Open Selection by Highlighted URL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2020-12-29T11:07:00-06:00" pubdate data-updated="true">Dec 29<span>th</span>, 2020</time>
+        
+         | <a href="/blog/2020/12/29/open-by-highlighted-url/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Evernote 10, I have lost the ability to include general URLs as linked items.  The links already in a note still work but Evernote 10 does not allow the insertion of new links. While not perfect, Keyboard Maestro on macOS can mitigate some of the missing behavior for Mac users.</p>
+
+<p>I chose to add a shortcut ⌃⌥⌘O (O for open) to open the highlighted text treating it as a URL.  It easily accomplished with Keyboard Maestro.</p>
+
+<p><img src="/images/kb-cntl-opt-cmd-o.png" alt="Keyboard Maestro Command" /></p>
+
+<p>This has made things much more bearable. I still hope Evernote will reconsider their decision on URLs since I think both macOS and Windows (at least) support this type of behavior and having the URL visible in the note distracts from the readability of the note.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -846,267 +889,6 @@ We placed the code into <a href="code">Github</a>.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/12/10/java-sound-update-2/">Java Sound Update 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-12-10T20:22:00-06:00" pubdate data-updated="true">Dec 10<span>th</span>, 2015</time>
-        
-         | <a href="/blog/2015/12/10/java-sound-update-2/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This is an update to a prior <a href="https://dgreenteach.org/blog/2014/10/23/java-sound-update/">article</a>.</p>
-
-<p>UAB EE Students Andrew Peturis, Chaselyn Langley and other team members produced an interesting
-GUI Application for children to associate sounds with images.  In the course of doing this, they
-wished to expand the control of the audio beyond my original example.  They discovered a bit of
-behavior that was not (at least clearly) documented in the JAVA API.</p>
-
-<p>They modified the original demo substantially for their application and supplied a limited
-version of it to me as an update to benefit future classes (as well as the broader Internete
-Community).  I merged their two classes into one focused only on the sound system behaviour and
-hopefully preserved the important behaviors they wished to document.  The new code is show below.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/*</span>
-</span><span class='line'><span class="cm"> * File: Sound.java</span>
-</span><span class='line'><span class="cm"> * Authors: Andrew Peturis, Chaselyn Langley, David Green</span>
-</span><span class='line'><span class="cm"> * Vers: 1.1.0 12/10/2015 dgg - update example to standalone</span>
-</span><span class='line'><span class="cm"> * Vers: 1.0.0 10/20/2015 agp - initial coding</span>
-</span><span class='line'><span class="cm"> *</span>
-</span><span class='line'><span class="cm"> * Credits:  Team SoundBox - EE333 Fall 2015</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.AudioSystem</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.Clip</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.LineUnavailableException</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">javax.sound.sampled.UnsupportedAudioFileException</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Sound</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">sound</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="n">Clip</span> <span class="n">clip</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isPlaying</span><span class="o">;</span>  <span class="c1">// Sound loaded up and has started playing (may be paused)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Don&#39;t allow default constructor</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="nf">Sound</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="nf">Sound</span><span class="o">(</span><span class="n">String</span> <span class="n">sound</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">sound</span> <span class="o">=</span> <span class="n">sound</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">isPlaying</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Play a sound using javax.sound and Clip interface</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">play</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>            <span class="k">if</span> <span class="o">(!</span><span class="n">isPlaying</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="c1">// Create a clip to hold a sound</span>
-</span><span class='line'>                <span class="n">clip</span> <span class="o">=</span> <span class="n">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
-</span><span class='line'>                <span class="n">clip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">sound</span><span class="o">)));</span>
-</span><span class='line'>                <span class="n">isPlaying</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>            <span class="c1">// Play the audio clip with the audioplayer class</span>
-</span><span class='line'>            <span class="n">clip</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span><span class='line'>        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">LineUnavailableException</span> <span class="o">|</span> <span class="n">UnsupportedAudioFileException</span> <span class="o">|</span> <span class="n">IOException</span> <span class="n">e</span> <span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Things did not go well&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Continue a stopped sound</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">resume</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">isPlaying</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">clip</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Pause a playing sound</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pause</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">// clip.stop() will only pause the sound and still leave the sound in the line</span>
-</span><span class='line'>        <span class="c1">// waiting to be continued. It does not actually clear the line so a new action could be performed.</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">isPlaying</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">clip</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Stop a sound from playing and clear out the line to play another sound if need be.</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">isPlaying</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">pause</span><span class="o">();</span>
-</span><span class='line'>            <span class="c1">// clip.close(); will clear out the line and allow a new sound to play. clip.flush() was not </span>
-</span><span class='line'>            <span class="c1">// used because it can only flush out a line of data already performed.</span>
-</span><span class='line'>            <span class="n">clip</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</span><span class='line'>            <span class="n">isPlaying</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Small demo program</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">Sound</span> <span class="n">sound</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Sound</span><span class="o">(</span><span class="s">&quot;predator.wav&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Playing for 1 second&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>     <span class="c1">// let it play a second</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">pause</span><span class="o">();</span>          <span class="c1">// pause</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Pausing for 5 seconds&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>     <span class="c1">// continue playing</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Playing for 1 second&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">resume</span><span class="o">();</span>
-</span><span class='line'>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>      <span class="c1">// play have a second</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Ending, resuming which should silently fail&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">end</span><span class="o">();</span>            <span class="c1">// End sound</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">resume</span><span class="o">();</span>         <span class="c1">// Should be silent</span>
-</span><span class='line'>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>     <span class="c1">// Wait 5 seconds</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Playing again for 5 seconds&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>           <span class="c1">// Should start again</span>
-</span><span class='line'>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">sound</span><span class="o">.</span><span class="na">end</span><span class="o">();</span>
-</span><span class='line'>        <span class="o">}</span> <span class="k">catch</span><span class="o">(</span> <span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="c1">// just fall to end</span>
-</span><span class='line'>            <span class="c1">// System.exit(0);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Update February 2020</h3>
-
-<p>Changed my web site server link.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1122,6 +904,10 @@ hopefully preserved the important behaviors they wished to document.  The new co
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/12/29/open-by-highlighted-url/">Open Selection by Highlighted URL</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/12/26/using-localstorage-between-browser-windows/">Using Localstorage Between Browser Windows</a>
       </li>
     
@@ -1135,10 +921,6 @@ hopefully preserved the important behaviors they wished to document.  The new co
     
       <li class="post">
         <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a>
       </li>
     
   </ul>
