@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="In a long overdue action, I have moved the glimmer blog out of Tumblr. I had
-been wanting to use (Multi-)Markdown more in blogging to continue my &hellip;">
+  <meta name="description" content="Does it have to be this hard? Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
+search path for command line usage, the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,69 @@ been wanting to use (Multi-)Markdown more in blogging to continue my &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/">Adding to a Non-privileged Users Path in Windows 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-05T15:35:00-05:00" pubdate data-updated="true">Jun 5<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Does it have to be this hard?</p>
+
+<p>Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
+search path for command line usage, the command <code>setx</code> is what you are
+looking for.  While it can be used to modify the system search path, users
+don&rsquo;t have permission to do that in many enterprise deployments.
+The paths specified by the user are at the end of the system paths.</p>
+
+<p>To see the existing path</p>
+
+<pre><code>    echo %path%
+
+    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
+</code></pre>
+
+<p>To put C:\Users\dgreen\bin on the path, use</p>
+
+<pre><code>    setx path C:\Users\dgreen\bin
+</code></pre>
+
+<p>Once you start a new CMD session, you can see the impact of your changes.</p>
+
+<pre><code>    echo %path%
+
+    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Users\dgreen\bin
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -617,7 +680,7 @@ $(document).ready -&gt;
 
   <div class="entry-content"><p>I was trying out the EPUB export of <a href="http://flyingmeat.com/voodoopad/">VoodooPad</a> and figured out I had to
 make a cover page in the tool as well as a collection. I then filled out the
-metadata including author information (David Green <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#117;&#x73;&#101;&#x72;&#x69;&#x64;&#64;&#115;&#x69;&#116;&#101;&#46;&#99;&#111;&#109;">&#x75;&#x73;&#x65;&#x72;&#x69;&#x64;&#64;&#x73;&#x69;&#x74;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a>) and then
+metadata including author information (David Green <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x75;&#x73;&#101;&#114;&#x69;&#100;&#64;&#115;&#105;&#x74;&#101;&#46;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#x65;&#x72;&#x69;&#100;&#64;&#115;&#x69;&#x74;&#101;&#46;&#x63;&#111;&#109;</a>) and then
 saved with an .epub extension.</p>
 
 <p>Things ran fine but when I moved it over to the iPad as an iBook file, I was
@@ -717,126 +780,6 @@ typography.<p></p></blockquote>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/21/adjusting-the-mac-os-x-path/">Adjusting the Mac OS X Path</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-21T00:00:00-06:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
-        
-         | <a href="/blog/2012/01/21/adjusting-the-mac-os-x-path/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <strong>path</strong> is an environmental variable that tells the command line (shell)
-processor where to look for programs (commands) to run when they are entered
-on the command line without any directory information. The shell will look for
-the command in all the directories listed in the path variable.</p>
-
-<p>In OS X, the active path can be shown when in the terminal window by typing
-<code>echo $PATH</code> command on the command line (where <code>[user@system ~]$</code> is the
-command line prompt and the text right before the &ldquo;]&rdquo; is the present working
-directory (pwd). If it is &ldquo;~&rdquo; then it is the home directory of the user,
-typically something like /Users/user (for a user named user).</p>
-
-<pre><code> [user@system ~]$ echo $PATH
-</code></pre>
-
-<p>The path in OS X is maintained in several places:</p>
-
-<ul>
-<li>.bash_profile</li>
-<li>.bashrc</li>
-<li>system versions of the above</li>
-<li>.MacOSX/environment.plist</li>
-</ul>
-
-
-<p>There a lot of references for the first three since this is roughly the same
-as Linux/Unix assuming both systems are using the bash terminal shell. An
-example is in <a href="http://www.tech-recipes.com/rx/2621/os_x_change_path_environment_variable/">Tech-Recipes</a>.</p>
-
-<p>.MacOSX/environment.plist is obviously specialized to OS X, and this path
-modification is seen by the GUI as well as command line programs run in the
-terminal window. If the directory does not exist, you can make it at the
-terminal prompt:</p>
-
-<pre><code>[user@system ~]$ mkdir .MacOSX
-</code></pre>
-
-<p>Today, the file, if it exists, may be stored in binary rather than in text
-form:</p>
-
-<pre><code>[user@system ~]$ cd .MacOSX
-[user@system .MacOSX]$ more environment.plist
-"environment.plist" may be a binary file.  See it anyway?
-</code></pre>
-
-<p>is indicative of the file being binary. The command <code>plutil</code> can convert this
-binary file to text oriented:</p>
-
-<pre><code>[user@system .MacOSX]$ plutil -convert xml1 environment.plist
-</code></pre>
-
-<p>at this point, you can edit it carefully to contain your path. It must be a
-complete collection where each path is separated by a &ldquo;:&rdquo; and the file must
-obey XML rules. Mine looks like:</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-    &lt;key&gt;PATH&lt;/key&gt;
-    &lt;string&gt;/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin&lt;/string&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code></pre>
-
-<p>You can either edit the file by hand with your favorite text editor, or if you
-have Xcode installed, there is a tool to edit the file in a structured manner.
-The tool may be able to work without conversion from binary to xml.</p>
-
-<p>After editing the file, you may wish to convert it back to binary (although I
-don&rsquo;t think it is necessary) by</p>
-
-<pre><code>[user@system .MacOSX]$ plutil -convert binary1 environment.plist
-</code></pre>
-
-<p>After changing this file, you will have to either logout or reboot so that all
-the OS X parts associated with your login will use this new path.</p>
-
-<hr />
-
-<h3>Short note for other OSes</h3>
-
-<p>The JAVA folks offer this <a href="http://java.com/en/download/help/path.xml">short article</a> for other operating systems such
-as various versions of Windows, Linux, and Unix.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -854,6 +797,10 @@ as various versions of Windows, Linux, and Unix.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/16/dark-sky-weather-app/">Dark Sky - Weather App</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/12/29/open-by-highlighted-url/">Open Selection by Highlighted URL</a>
       </li>
     
@@ -867,10 +814,6 @@ as various versions of Windows, Linux, and Unix.</p>
     
       <li class="post">
         <a href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/">Limping Along With Octopress and Catalina macOS</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/10/17/configuring-coolbeans-2019-dot-6/">Configuring CoolBeans 2019.6</a>
       </li>
     
   </ul>
@@ -913,7 +856,7 @@ as various versions of Windows, Linux, and Unix.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - David Green -
+  Copyright &copy; 2021 - David Green -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

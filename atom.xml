@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2020-12-29T11:29:42-06:00</updated>
+  <updated>2021-02-17T00:44:45-06:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dark Sky - Weather App]]></title>
+    <link href="https://glimmer.gwizlabs.net/blog/2021/02/16/dark-sky-weather-app/"/>
+    <updated>2021-02-16T23:40:00-06:00</updated>
+    <id>https://glimmer.gwizlabs.net/blog/2021/02/16/dark-sky-weather-app</id>
+    <content type="html"><![CDATA[<p>Like many, I have started looking at the additional detail on data privacy on my iOS apps.  I was shocked to see that my Weather App was tracking my Health &amp; Fitness in ddition to more reasonable information such as location.  And, it was sharing this information with other companies websites according to their self-reporting.  I decided to look for alternatives.</p>
+
+<p>I found Dark Sky &mdash; an unusual name for a weather app but it reported only linking identifiers and location to me and not sharing that with other companies.  It had recently become an Apple app as well.</p>
+
+<p>It, of course, was different from the App I had been using and the preinstalled Apple Weather App.  I have grown to like it over the last week as I figured how to find the things I wanted to see.</p>
+
+<p><img class="left" src="https://glimmer.gwizlabs.net/images/20210216-darksky-main.jpeg" width="180" title="&#34;Dark Sky's Main Screen&#34;" alt="&#34;Dark Sky's Main Screen&#34;"></p>
+
+<h2>Dark Sky&rsquo;s Main Screen</h2>
+
+<p>The Dark Sky main screen has present temperature including &ldquo;Feels Like&rdquo; and an icon, any warnings, a small map, rain (or snow), and cloud forecast for the next several hours as a graph down the page.  At the top is the location which can be selected (as it is this example) or driven by the present location.  Hitting the magnifying glass lets one choose other locations.  Saved locations can be accessed by swiping right or left on the main screen.</p>
+
+<div style="clear: both;"></div>
+
+
+<p><img class="right" src="https://glimmer.gwizlabs.net/images/20210216-darksky-week.jpeg" width="180" title="&#34;Dark Sky's Upcoming Forecast&#34;" alt="&#34;Dark Sky's Upcoming Forecast&#34;"></p>
+
+<h2>Dark Sky&rsquo;s Upcoming Forecast</h2>
+
+<p>Scrolling down this screen gets you to the forecast for the next 7 days which includes the same information in a compact form.  Any of the days may be tapped to expand them to look like the present day detail.  Note towards the bottom is a &ldquo;TIME MACHINE&rdquo; link which will allow one to see forward or back in time.</p>
+
+<div style="clear: both;"></div>
+
+
+<p><img class="left" src="https://glimmer.gwizlabs.net/images/20210216-darksky-radar.jpeg" width="180" title="&#34;Dark Sky's Radar View&#34;" alt="&#34;Dark Sky's Radar View&#34;"></p>
+
+<h2>Dark Sky&rsquo;s Radar View</h2>
+
+<p>One can tap on the map of the main screen or on the Map at the bottom of screen to see the precipation or temperature map for the current area.  At the bottom is a player control that one see the history of the last three and a half hours and the prediction for the next half hour play out on the screen.</p>
+
+<div style="clear: both;"></div>
+
+
+<p><img class="right" src="https://glimmer.gwizlabs.net/images/20210216-darksky-world.jpeg" width="180" title="&#34;Dark Sky's Radar View (zoomed out)&#34;" alt="&#34;Dark Sky's Radar View (zoomed out)&#34;"></p>
+
+<h2>Dark Sky&rsquo;s Radar View (zoomed out)</h2>
+
+<p>Using the pinch (or unpinch if that is the opposite), one can adjust the zoom level of the map.  As you can see, it is possible to get a world view of the weather.  One can also drag to move what area the map is showing which turns into spinning the globe when one is at zoomed out far enough to get the world view.</p>
+
+<div style="clear: both;"></div>
+
+
+<p>All in all, it was successful migration in terms of features as well as privacy.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Open Selection by highlighted URL]]></title>
@@ -1620,40 +1671,6 @@ VM.</p>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Adding to a non-privileged users path in Windows 7]]></title>
-    <link href="https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7/"/>
-    <updated>2013-06-05T15:35:00-05:00</updated>
-    <id>https://glimmer.gwizlabs.net/blog/2013/06/05/adding-to-a-non-privileged-users-path-in-windows-7</id>
-    <content type="html"><![CDATA[<p>Does it have to be this hard?</p>
-
-<p>Anyway, if you are looking for how to add to a non-privileged user&rsquo;s
-search path for command line usage, the command <code>setx</code> is what you are
-looking for.  While it can be used to modify the system search path, users
-don&rsquo;t have permission to do that in many enterprise deployments.
-The paths specified by the user are at the end of the system paths.</p>
-
-<p>To see the existing path</p>
-
-<pre><code>    echo %path%
-
-    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
-</code></pre>
-
-<p>To put C:\Users\dgreen\bin on the path, use</p>
-
-<pre><code>    setx path C:\Users\dgreen\bin
-</code></pre>
-
-<p>Once you start a new CMD session, you can see the impact of your changes.</p>
-
-<pre><code>    echo %path%
-
-    C:\Ruby193\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Users\dgreen\bin
-</code></pre>
 ]]></content>
   </entry>
   
