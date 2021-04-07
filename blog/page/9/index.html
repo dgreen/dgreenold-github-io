@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Nathan Myhrvolds Intellectual Ventures Using Over 1,000 Shell Companies To
-Hide Patent Shakedown | Techdirt From Techdirt by Mike Masnick.  Another &hellip;">
+  <meta name="description" content="ongoing by Tim Bray · Giving Up On Patents Another author who feels the Patent system is broke.
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,46 @@ Hide Patent Shakedown | Techdirt From Techdirt by Mike Masnick.  Another &helli
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/25/ongoing-by-tim-bray--giving-up-on-patents/">Ongoing by Tim Bray · Giving Up on Patents</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-25T00:00:00-06:00" pubdate data-updated="true">Feb 25<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/02/25/ongoing-by-tim-bray--giving-up-on-patents/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.tbray.org/ongoing/When/201x/2010/02/22/Patent-Fail">ongoing by Tim Bray · Giving Up On Patents</a></p>
+
+<blockquote><p>Another author who feels the Patent system is broke.</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -543,111 +583,6 @@ merged from. This page describes things at <a href="http://blogs.open.collab.net
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/">Configuring NetBeans to Produce Custom Documentation Header</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-24T00:00:00-05:00" pubdate data-updated="true">Sep 24<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/09/24/configuring-netbeans-to-produce-custom-documentation-header/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Instructors and projects usually have documentation standards.  The <a href="https://dgreenteach.org/DGreen/java_ex/JavaDocStyle.html">standards
-I supply my students</a> are an abbreviated version of what a project team
-might use.</p>
-
-<p>NetBeans can be customized to help.  In this note, I will limit my comments to
-creating the header of the file.  By example, I require:</p>
-
-<pre><code>/*
- * File: FileName.java
- * Author:  Student name, &lt;official student e-mail&gt;
- * Assignment: Project 2 EE333 Fall 2006
- * Vers: 1.0.0 09/01/2006 dgg - initial coding
- *
- * Credits:  (if any for sections of code)
- */
-</code></pre>
-
-<p>Thru the menu option Tools | Templates, one can &ldquo;open in editor&rdquo; the selection
-&ldquo;User.properties&rdquo; which is under &ldquo;User Configuration Properties&rdquo; in the
-scrollable tree-oriented selection control.</p>
-
-<p>There one can define a couple &ldquo;variables&rdquo; that are useful:</p>
-
-<pre><code>user=Full name &lt;emailAddress&gt;
-initials=dgg
-course=EE333 Fall 2009
-</code></pre>
-
-<p>Then one can save this, and in the same area, select &ldquo;Java Class&rdquo; under &ldquo;Java&rdquo;
-and adjust things so the template contains</p>
-
-<pre><code>/*
- * File: ${name}.java
- * Author: ${user}
- * Assignment:  ${project.displayName} - ${course}
- * Vers: 1.0.0 ${date?date?string("MM/dd/yyyy")} ${initials} - initial coding
- *
- * Credits:  (if any for sections of code)
- */
-
-&lt;#if package?? &amp;&amp; package != ""&gt;
-package ${package};
-&lt;/#if&gt;
-/**
- *
- */
-public class ${name} {
-
-}
-</code></pre>
-
-<p>Of course, if one is doing work for multiple classes, another approach besides
-&ldquo;$(course)&rdquo; might be appropriate.</p>
-
-<p>For more information consult <a href="http://wiki.netbeans.org/FaqTemplateVariables">FaqTemplateVariables</a> (variables in the
-template) and <a href="http://wiki.netbeans.org/FaqFreeMarker">FaqFreeMarker</a> (coding in template).</p>
-
-<hr />
-
-<h3>Update January 2013</h3>
-
-<p>In NetBeans 7.2.1, the variables are now reachable with the &ldquo;Settings&rdquo; button in the Templates dialog.</p>
-
-<p>One may also wish to look at the license support in the default template and include it in your template.</p>
-
-<h3>Update February 2020</h3>
-
-<p>Changed my web site server link.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -665,6 +600,10 @@ template) and <a href="http://wiki.netbeans.org/FaqFreeMarker">FaqFreeMarker</a>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/04/06/big-surs-finder-copy-change-broke-my-keyboard-maestro-macro/">Big Sur&#8217;s Finder Copy Change Broke My Keyboard Maestro Macro</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2021/02/16/dark-sky-weather-app/">Dark Sky - Weather App</a>
       </li>
     
@@ -678,10 +617,6 @@ template) and <a href="http://wiki.netbeans.org/FaqFreeMarker">FaqFreeMarker</a>
     
       <li class="post">
         <a href="/blog/2020/05/25/making-bookmarked-pdfs-from-google-docs/">Making BookMarked PDFs From Google Docs</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/16/limping-along-with-octopress-and-catalina-macos/">Limping Along With Octopress and Catalina macOS</a>
       </li>
     
   </ul>
