@@ -4,7 +4,7 @@
   <title><![CDATA[Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2021-07-13T22:43:59-05:00</updated>
+  <updated>2021-07-13T22:44:52-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -91,6 +91,57 @@
 <p>assuming that Java has been set up to run at the command line (or you are using the terminal inside NetBeans.)</p>
 
 <p><strong>Note</strong> that the target directory is erased as part of the clean process of &ldquo;Run &#9654; Clean and Build Main Project&rdquo; so you will need to close anything that has files in that space open before re-running the clean process.</p>
+
+<h2>Maven Shade plugin</h2>
+
+<p>In a <a href="https://www.baeldung.com/executable-jar-with-maven">baeldung article</a>, other solutions for making executable jar files are discussed.  The Maven Shade Plugin allows one to include dependent jar files inside the executable jar although you still need the JDK/JRE installed on the execution machine.</p>
+
+<p>To use this approach, you edit the <code>pom.xml</code> as above but include the following instead</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>shade<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;shadedArtifactAttached&gt;</span>true<span class="nt">&lt;/shadedArtifactAttached&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;transformers&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;transformer</span> <span class="na">implementation=</span>
+</span><span class='line'>                      <span class="s">&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;mainClass&gt;</span>MAIN CLASS GOES HERE<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/transformer&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/transformers&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and insert the full name with package (but not .class) of the class contains the main method inside the <mainClass> container.</p>
 ]]></content>
   </entry>
   

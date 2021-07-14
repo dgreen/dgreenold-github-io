@@ -4,7 +4,7 @@
   <title><![CDATA[Category: NetBeans | Glimmer]]></title>
   <link href="https://glimmer.gwizlabs.net/blog/categories/netbeans/atom.xml" rel="self"/>
   <link href="https://glimmer.gwizlabs.net/"/>
-  <updated>2021-07-13T22:43:59-05:00</updated>
+  <updated>2021-07-13T22:44:52-05:00</updated>
   <id>https://glimmer.gwizlabs.net/</id>
   <author>
     <name><![CDATA[David Green]]></name>
@@ -76,6 +76,39 @@ java -jar habits-1.0-SNAPSHOT.jar
 <p>assuming that Java has been set up to run at the command line (or you are using the terminal inside NetBeans.)</p>
 
 <p><strong>Note</strong> that the target directory is erased as part of the clean process of &ldquo;Run &#9654; Clean and Build Main Project&rdquo; so you will need to close anything that has files in that space open before re-running the clean process.</p>
+
+<h2>Maven Shade plugin</h2>
+
+<p>In a <a href="https://www.baeldung.com/executable-jar-with-maven">baeldung article</a>, other solutions for making executable jar files are discussed.  The Maven Shade Plugin allows one to include dependent jar files inside the executable jar although you still need the JDK/JRE installed on the execution machine.</p>
+
+<p>To use this approach, you edit the <code>pom.xml</code> as above but include the following instead</p>
+
+<p>```xml
+<plugin></p>
+
+<pre><code>&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+&lt;executions&gt;
+    &lt;execution&gt;
+        &lt;goals&gt;
+            &lt;goal&gt;shade&lt;/goal&gt;
+        &lt;/goals&gt;
+        &lt;configuration&gt;
+            &lt;shadedArtifactAttached&gt;true&lt;/shadedArtifactAttached&gt;
+            &lt;transformers&gt;
+                &lt;transformer implementation=
+                  "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+                    &lt;mainClass&gt;MAIN CLASS GOES HERE&lt;/mainClass&gt;
+            &lt;/transformer&gt;
+        &lt;/transformers&gt;
+    &lt;/configuration&gt;
+    &lt;/execution&gt;
+&lt;/executions&gt;
+</code></pre>
+
+<p></plugin>
+```
+and insert the full name with package (but not .class) of the class contains the main method inside the <mainClass> container.</p>
 ]]></content>
   </entry>
   
