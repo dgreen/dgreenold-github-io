@@ -9,7 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="ongoing by Tim Bray · Giving Up On Patents Another author who feels the Patent system is broke.
+  <meta name="description" content="How to make Subversion ignore files: svn propset svn:ignore &mdash;How to … Make Subversion ignore files and folders « Hungry for
+Knowledge
 ">
   
 
@@ -66,6 +67,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/03/12/how-to-make-subversion-ignore-files--svn-propset-svnignore/">How to Make Subversion Ignore Files: Svn Propset Svn:ignore</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-12T00:00:00-06:00" pubdate data-updated="true">Mar 12<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/03/12/how-to-make-subversion-ignore-files--svn-propset-svnignore/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>How to make Subversion ignore files: svn propset svn:ignore</p></blockquote>
+
+<p>&mdash;<a href="http://sdesmedt.wordpress.com/2006/12/10/how-to-make-subversion-ignore-files-and-folders/">How to … Make Subversion ignore files and folders « Hungry for
+Knowledge</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -505,77 +547,6 @@ Public Radio (mine is <a href="http://www.wbhm.org/">WBHM</a>) and Public TV (mi
 that <a href="http://wikimediafoundation.org/wiki/Appeal/en">Wikipedia needs support for its continuing operation</a>.  I don&rsquo;t know
 about you but like the other two resources, I have benefited greatly from this
 Internet resource and I feel it is worth supporting.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/27/merging-with-svn-16/">Merging With Svn 1.6</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-27T00:00:00-05:00" pubdate data-updated="true">Sep 27<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/09/27/merging-with-svn-16/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Lots of work has been done by the Subversion team (probably in response to
-Git).  One can now do a merge from a project branch back into the main trunk
-rather easy:</p>
-
-<p><code>svn merge ^/tags/version-1.6.1/</code></p>
-
-<p>will merge changes in 1.6.1 not in the trunk.  The ^ is relative remote
-addressing.</p>
-
-<p><strong>Update:</strong></p>
-
-<p>Another example:</p>
-
-<p><code>svn merge --dry-run --revision 944:945 ^/trunk/oumgt/</code></p>
-
-<p>will show you the actions that would be taken if one asked to merge revision
-945 from the trunk/oumgt/ space into the present present space.</p>
-
-<p><strong>Update 2:</strong></p>
-
-<p>Related example:</p>
-
-<p><code>svn merge --dry-run ^/trunk/oumgt/</code></p>
-
-<p>will show you the actions that would be taken if one wishes to apply all
-revisions in trunk/oumgt/ space but not in the present present space.</p>
-
-<p><strong>Update 3:</strong></p>
-
-<p>SVN is still limited in how it can track changes and moving things back and
-forth will eventually cause trouble. In short, one should decide to mostly
-merge in one direction. The approved way to merge in the opposite direction is
-to do a &ldquo;&mdash;reintegrate&rdquo; merge after which one should no longer use the branch
-merged from. This page describes things at <a href="http://blogs.open.collab.net/svn/2008/07/subversion-merg.html">SVN 1.5</a></p>
 </div>
   
   

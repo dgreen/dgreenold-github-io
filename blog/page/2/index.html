@@ -9,7 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Here is a hint that I was not able to find quickly in Google nor in the EverNote help. Enter &ldquo;Reminders&rdquo; into the Search Bar and then &hellip;">
+  <meta name="description" content="In his article Absolute Success is Luck. Relative Success is Hard Work., James Clear provides a pair of stories about how luck (including the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success &#8211; Hard Work And-or Luck?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-09-29T09:39:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2018</time>
+        
+         | <a href="/blog/2018/09/29/success-hard-work-and-or-luck/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In his article <em><a href="https://jamesclear.com/luck-vs-hard-work">Absolute Success is Luck. Relative Success is Hard Work.</a></em>, James Clear provides a pair of stories about how luck (including the circumstances one is born into) and hard work both play a role in success.  He concludes that luck controls absolute success and hard work controls relative success.</p>
+
+<p>Later in the article, he has an engineeering/science way of conveying his idea:</p>
+
+<blockquote><p>Imagine you can map success on a graph. Success is measured on the Y-axis. Time is measured on the X-axis. And when you are born, the ball you pluck out of Buffett&rsquo;s Ovarian Lottery determines the y-intercept. Those who are born lucky start higher on the graph. Those who are born into tougher circumstances start lower.</p>
+
+<p>Here&rsquo;s the key: You can only control the slope of your success, not your initial position.</p></blockquote>
+
+<p>There are more gems as well as several good stories in the article and I highly recommend you read it.</p>
+
+<p>He closes noting that one can not control luck but can control the hard work input.  I would qualify this to note that it has to be correctly focused hard work.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1012,208 +1060,6 @@ the root password to the MySQL server is blank.  This configuration, of
 course, is NO security and is only useful when on a closed system.  One should
 research how to configure things more  securely for anything that will be
 Internet (or even LAN) visible.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/">Make a New Rails 3.2 App in the VM Environment</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-06T15:38:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/06/06/make-a-new-rails-3-dot-2-app-in-the-vm-environment/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>After <a href="/blog/2013/06/06/using-bitnamis-rubystack-on-virtualbox-linux-with-vagrant/">installing the VM on the computer</a>, one can make a new Rails
-App by the following process:</p>
-
-<ul>
-<li>Go to the machine directory in your host machine using the command line</li>
-<li>Start up the VM if it is not running <code>vagrant up</code></li>
-<li>Connect to the machine <code>vagrant ssh</code></li>
-<li><p>First time only, tell git who you are</p>
-
-<pre><code>   git config --global user.email "you@example.com"
-   git config --global user.name "Your Name"
-</code></pre></li>
-<li><p>Change to the directory that is shared between the guest OS and the host OS <code>cd /vagrant</code></p></li>
-<li>Create a new Rails application <em>without</em> running bundler <code>rails new appname --skip-bundle</code></li>
-<li>Install git&rsquo;s tracking repository <code>git init appname</code></li>
-<li>Change to the application directory <code>cd appname</code></li>
-<li>Update <code>.gitignore</code> to skip tracking <code>database.yml</code> <strong>You can edit this on the host side rather than the OS side if you like your local editor better but use one that likes Unix line endings (i.e. NOT Notepad).</strong></li>
-</ul>
-
-
-<figure class='code'><figcaption><span>.gitignore </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># See http://help.github.com/ignore-files/ for more about ignoring files.
-</span><span class='line'>#
-</span><span class='line'># If you find yourself ignoring temporary files generated by your text editor
-</span><span class='line'># or operating system, you probably want to add a global ignore instead:
-</span><span class='line'>#   git config --global core.excludesfile ~/.gitignore_global
-</span><span class='line'>
-</span><span class='line'># Ignore bundler config
-</span><span class='line'>/.bundle
-</span><span class='line'>
-</span><span class='line'># Ignore the default SQLite database.
-</span><span class='line'>/db/*.sqlite3
-</span><span class='line'>
-</span><span class='line'># Ignore all logfiles and tempfiles.
-</span><span class='line'>/log/*.log
-</span><span class='line'>/tmp
-</span><span class='line'>
-</span><span class='line'># Ignore database.yml
-</span><span class='line'>/config/database.yml</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Move the code to check in to the staging area <code>git add .</code></li>
-<li>Commit the code the repository <code>git commit -m "Initial commit after ignoring database.yml"</code></li>
-<li>Make a copy of database.yml for archival <code>cp config/database.yml config/database-example.yml</code></li>
-<li>Modify the Gemfile to include thin, theracer, and quiet_assets gems.</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Bundle edge Rails instead:</span>
-</span><span class='line'><span class="c1"># gem &#39;rails&#39;, :git =&gt; &#39;git://github.com/rails/rails.git&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;quiet_assets&#39;</span><span class="p">,</span> <span class="ss">:group</span> <span class="o">=&gt;</span> <span class="ss">:development</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Gems used only for assets and not required</span>
-</span><span class='line'><span class="c1"># in production environments by default.</span>
-</span><span class='line'><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;~&gt; 3.2.3&#39;</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.1&#39;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># See https://github.com/sstephenson/execjs#readme for more supported runtimes</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;therubyracer&#39;</span><span class="p">,</span> <span class="ss">:platforms</span> <span class="o">=&gt;</span> <span class="ss">:ruby</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.0.3&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># To use ActiveModel has_secure_password</span>
-</span><span class='line'><span class="c1"># gem &#39;bcrypt-ruby&#39;, &#39;~&gt; 3.0.0&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># To use Jbuilder templates for JSON</span>
-</span><span class='line'><span class="c1"># gem &#39;jbuilder&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Use unicorn as the app server</span>
-</span><span class='line'><span class="c1"># gem &#39;unicorn&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Deploy with Capistrano</span>
-</span><span class='line'><span class="c1"># gem &#39;capistrano&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># To use debugger</span>
-</span><span class='line'><span class="c1"># gem &#39;debugger&#39;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Run bundle to lock in the gemfiles using the local version of the gems <code>bundle install --local</code></li>
-<li>Start up the Rails app <code>rails s</code></li>
-<li>On the host side, point the browser to <code>http://192.168.33.10:3000</code> and ensure that the base Rails &ldquo;Welcome aboard&rdquo; is visible.</li>
-</ul>
-
-
-<hr />
-
-<p>Updated 7 June 2013 after presentation to class &mdash; correcting two typos.</p>
 </div>
   
   

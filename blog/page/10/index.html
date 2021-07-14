@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="Instructors and projects usually have documentation standards.  The standards
-I supply my students are an abbreviated version of what a project team &hellip;">
+  <meta name="description" content="Lots of work has been done by the Subversion team (probably in response to
+Git).  One can now do a merge from a project branch back into the main &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,77 @@ I supply my students are an abbreviated version of what a project team &hellip;"
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/27/merging-with-svn-16/">Merging With Svn 1.6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-27T00:00:00-05:00" pubdate data-updated="true">Sep 27<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/09/27/merging-with-svn-16/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lots of work has been done by the Subversion team (probably in response to
+Git).  One can now do a merge from a project branch back into the main trunk
+rather easy:</p>
+
+<p><code>svn merge ^/tags/version-1.6.1/</code></p>
+
+<p>will merge changes in 1.6.1 not in the trunk.  The ^ is relative remote
+addressing.</p>
+
+<p><strong>Update:</strong></p>
+
+<p>Another example:</p>
+
+<p><code>svn merge --dry-run --revision 944:945 ^/trunk/oumgt/</code></p>
+
+<p>will show you the actions that would be taken if one asked to merge revision
+945 from the trunk/oumgt/ space into the present present space.</p>
+
+<p><strong>Update 2:</strong></p>
+
+<p>Related example:</p>
+
+<p><code>svn merge --dry-run ^/trunk/oumgt/</code></p>
+
+<p>will show you the actions that would be taken if one wishes to apply all
+revisions in trunk/oumgt/ space but not in the present present space.</p>
+
+<p><strong>Update 3:</strong></p>
+
+<p>SVN is still limited in how it can track changes and moving things back and
+forth will eventually cause trouble. In short, one should decide to mostly
+merge in one direction. The approved way to merge in the opposite direction is
+to do a &ldquo;&mdash;reintegrate&rdquo; merge after which one should no longer use the branch
+merged from. This page describes things at <a href="http://blogs.open.collab.net/svn/2008/07/subversion-merg.html">SVN 1.5</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -645,44 +716,6 @@ binary editor.</p>
 <h3>Update February 2020</h3>
 
 <p>Changed my web site server link.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/29/herding-cats-quote-of-the-day-well-done-is-better-than-well-said/">Herding Cats: Quote of the Day: Well Done Is Better Than Well Said</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-29T00:00:00-05:00" pubdate data-updated="true">Aug 29<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/08/29/herding-cats-quote-of-the-day-well-done-is-better-than-well-said/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://herdingcats.typepad.com/my_weblog/2009/08/quote-of-the-day-1.html">Herding Cats: Quote of the Day: Well Done is Better Than Well Said</a><br/></p>
 </div>
   
   

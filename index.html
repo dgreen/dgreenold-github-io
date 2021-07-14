@@ -637,6 +637,112 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2019/09/15/update-on-onward-to-maven/">Onward to Maven in Apache NetBeans</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2019-09-15T11:23:00-05:00" pubdate data-updated="true">Sep 15<span>th</span>, 2019</time>
+        
+         | <a href="/blog/2019/09/15/update-on-onward-to-maven/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
+
+<p>Another change made was changing the underlying preferred build automation from <a href="https://ant.apache.org">Apache Ant</a> to <a href="https://maven.apache.org">Apache Maven</a> for new projects.  This changes the file structure of the code as well as some details underneath.  NetBeans mostly allows the user to ignore this once the project is made.</p>
+
+<p>One area that is not yet polished (IMO) is the building of a <em>jar</em> file that can be run from the command line.  The menu process &ldquo;Run &#9654; Clean and Build Main Project&rdquo; will build a <em>jar</em> file but it won&rsquo;t configure the manifest so that</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar jarfile.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>works.</p>
+
+<p>The <a href="https://www.moreofless.co.uk/executable-jar-netbeans-maven-no-main-manifest-attribute/">solution was posted by Steve Claridge</a> is to modify the POM (Project Object Model) file.  It is under the Project Files folder in the Project View in NetBeans.  Load the <code>pom.xml</code> file into the NetBeans editor.</p>
+
+<p>Quoting from the article:</p>
+
+<blockquote><p>You need to add the following XML snippet to your pom.xml, it can go anywhere inside the <project> element, I usually put it after the <properties> element:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;archive&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;manifest&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;mainClass&gt;</span>MAIN CLASS GOES HERE<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;/manifest&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/archive&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Just replace <strong>MAIN CLASS GOES HERE</strong> with your main class (with it&rsquo;s package prefix), rebuild and your JAR is now runnable. If you are unsure what to put here, just copy the Main Class settings from the Run tab in your Netbeans Project Properties.</p></blockquote>
+
+<p>After you do this, you can use &ldquo;Run &#9654; Clean and Build Main Project&rdquo; in NetBeans to build the <em>jar</em> file.  By changing to the Files view (instead of the Project View), you can see the target directory.</p>
+
+<p>The name of the <em>jar</em> file will be dependent on your configuration, your project setup but in my habits project, it was <code>habits-1.0-SNAPSHOT.jar</code> which one can run from the terminal with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>java -jar habits-1.0-SNAPSHOT.jar
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>assuming that Java has been set up to run at the command line (or you are using the terminal inside NetBeans.)</p>
+
+<p><strong>Note</strong> that the target directory is erased as part of the clean process of &ldquo;Run &#9654; Clean and Build Main Project&rdquo; so you will need to close anything that has files in that space open before re-running the clean process.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2019/09/15/onward-to-maven/">Onward to Maven in Apache NetBeans</a></h1>
     
     
@@ -662,7 +768,9 @@
   </header>
 
 
-  <div class="entry-content"><p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
+  <div class="entry-content"><blockquote><p>An update to this article is <a href="/blog/2021-07-13-update-on-onward-to-maven/">available</a></p></blockquote>
+
+<p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Foundation License</a>.  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The <a href="https://coolbeans.xyz">CoolBeans project</a> packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.</p>
 
 <p>Another change made was changing the underlying preferred build automation from <a href="https://ant.apache.org">Apache Ant</a> to <a href="https://maven.apache.org">Apache Maven</a> for new projects.  This changes the file structure of the code as well as some details underneath.  NetBeans mostly allows the user to ignore this once the project is made.</p>
 
@@ -849,54 +957,6 @@ the two files noted as removable.</p>
 <p>I will try to remember to check the NetBeans 10vc3 to see if the issue still exists.</p>
 
 <p>In the JDK11, JavaFX will be removed from the JDK and become a standalone package to maintain and install.  Both NetBeans and Java are on multi-times a year release cycle making it challenging to keep up with things for a class baseline.  Hopefully, a stability point is soon.  I know many folks are working towards this goal.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2018/09/29/success-hard-work-and-or-luck/">Success &#8211; Hard Work And-or Luck?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2018-09-29T09:39:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2018</time>
-        
-         | <a href="/blog/2018/09/29/success-hard-work-and-or-luck/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In his article <em><a href="https://jamesclear.com/luck-vs-hard-work">Absolute Success is Luck. Relative Success is Hard Work.</a></em>, James Clear provides a pair of stories about how luck (including the circumstances one is born into) and hard work both play a role in success.  He concludes that luck controls absolute success and hard work controls relative success.</p>
-
-<p>Later in the article, he has an engineeering/science way of conveying his idea:</p>
-
-<blockquote><p>Imagine you can map success on a graph. Success is measured on the Y-axis. Time is measured on the X-axis. And when you are born, the ball you pluck out of Buffett&rsquo;s Ovarian Lottery determines the y-intercept. Those who are born lucky start higher on the graph. Those who are born into tougher circumstances start lower.</p>
-
-<p>Here&rsquo;s the key: You can only control the slope of your success, not your initial position.</p></blockquote>
-
-<p>There are more gems as well as several good stories in the article and I highly recommend you read it.</p>
-
-<p>He closes noting that one can not control luck but can control the hard work input.  I would qualify this to note that it has to be correctly focused hard work.</p>
 </div>
   
   

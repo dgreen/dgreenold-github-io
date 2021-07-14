@@ -9,8 +9,8 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="For me, it it is adding an @IEEE.org as an alternate from: address in the
-iPhone mail client associated with a Google gmail account. One approach is &hellip;">
+  <meta name="description" content="Symlinks don&rsquo;t work well with Dropbox. They cause unexpected unrolling of the
+symlink on the clients that don&rsquo;t originate the symlink. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,62 @@ iPhone mail client associated with a Google gmail account. One approach is &hell
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/26/dropbox-and-symlinks/">Dropbox and Symlinks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-26T00:00:00-05:00" pubdate data-updated="true">Aug 26<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/26/dropbox-and-symlinks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Symlinks don&rsquo;t work well with Dropbox. They cause unexpected unrolling of the
+symlink on the clients that don&rsquo;t originate the symlink.</p>
+
+<p>Symlinks (or what I am calling symlinks &mdash; symbolic links) are made on Unix
+like systems using</p>
+
+<pre><code>ln -s original-path  symlink_name
+</code></pre>
+
+<p>or GUI tools that do the equivalent.</p>
+
+<p>This works on the machine where the command is done but on the remote
+machines, they copy the original file referred to by the symlink. Of course,
+if the symlink is a directory it is a very large replication of content which
+one was probably trying to avoid by the original symlink.</p>
+
+<p>In defense of Dropbox&rsquo;s approach, Windows machines don&rsquo;t honor symlinks so
+without replication of the original content, there would be no access. And, of
+course, others think this is a <a href="http://wiki.dropbox.com/TipsAndTricks/SyncOtherFolders">feature</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -611,47 +667,6 @@ can bear to touch a computer at all &mdash; is guaranteed to have, and use.&#822
 <p><a href="http://www.codinghorror.com/blog/2010/04/so-youd-like-to-send-some-email-through-code.html">Coding Horror: So You&rsquo;d Like to Send Some Email (Through Code)</a></p>
 
 <p>(Good article on how to send e-mail that tries to signal validity.)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/12/how-to-make-subversion-ignore-files--svn-propset-svnignore/">How to Make Subversion Ignore Files: Svn Propset Svn:ignore</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-12T00:00:00-06:00" pubdate data-updated="true">Mar 12<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/03/12/how-to-make-subversion-ignore-files--svn-propset-svnignore/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>How to make Subversion ignore files: svn propset svn:ignore</p></blockquote>
-
-<p>&mdash;<a href="http://sdesmedt.wordpress.com/2006/12/10/how-to-make-subversion-ignore-files-and-folders/">How to … Make Subversion ignore files and folders « Hungry for
-Knowledge</a></p>
 </div>
   
   
