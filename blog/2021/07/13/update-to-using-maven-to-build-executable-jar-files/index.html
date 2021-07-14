@@ -9,8 +9,7 @@
   <meta name="author" content="David Green">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="This is an update to an earlier post. At the time of writing, Apache NetBeans is at version 12.4 and there are severl suppliers of JDKs. The latest &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,7 +93,79 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><p>This is an update to an <a href="/blog/2019/09/15/onward-to-maven/">earlier post</a>.</p>
+
+<p>At the time of writing, <a href="https://netbeans.apache.org"><em>Apache NetBeans</em></a> is at version 12.4 and there are severl suppliers of JDKs.  The latest LTS version is JDK 11 and the latest MTS is JDK15.</p>
+
+<p><a href="https://maven.apache.org">Apache Maven</a> remains the preferred build automation from for new projects.</p>
+
+<p>One area that is remains unpolished (IMO) is the building of a <em>jar</em> file that can be run from the command line.  The menu process &ldquo;Run &#9654; Clean and Build Main Project&rdquo; will build a <em>jar</em> file but it won&rsquo;t configure the manifest so that</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar jarfile.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>works even when the JDK (or JRE) is on the command line.</p>
+
+<p>The solution discussed in the earlier post involving the modification of POM (Project Object Model) file is still viable.  It is under the Project Files folder in the Project View in NetBeans.  Load the <code>pom.xml</code> file into the NetBeans editor.</p>
+
+<p>Quoting from the <a href="https://www.moreofless.co.uk/executable-jar-netbeans-maven-no-main-manifest-attribute/">source article</a>:</p>
+
+<blockquote><p>You need to add the following XML snippet to your pom.xml, it can go anywhere inside the <project> element, I usually put it after the <properties> element:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;archive&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;manifest&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;mainClass&gt;</span>MAIN CLASS GOES HERE<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;/manifest&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/archive&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Just replace <strong>MAIN CLASS GOES HERE</strong> with your main class (with it&rsquo;s package prefix), rebuild and your JAR is now runnable. If you are unsure what to put here, just copy the Main Class settings from the Run tab in your Netbeans Project Properties.</p></blockquote>
+
+<p>The version number above has been updated to 3.2.0 matching the latest version of the maven-jar-plugin.</p>
+
+<p>After you do this, you can use &ldquo;Run &#9654; Clean and Build Main Project&rdquo; in NetBeans to build the <em>jar</em> file.  By changing to the Files view (instead of the Project View), you can see the target directory.</p>
+
+<p>The name of the <em>jar</em> file will be dependent on your configuration, your project setup but in my habits project, it was <code>habits-1.0-SNAPSHOT.jar</code> which one can run from the terminal with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>java -jar habits-1.0-SNAPSHOT.jar
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>assuming that Java has been set up to run at the command line (or you are using the terminal inside NetBeans.)</p>
+
+<p><strong>Note</strong> that the target directory is erased as part of the clean process of &ldquo;Run &#9654; Clean and Build Main Project&rdquo; so you will need to close anything that has files in that space open before re-running the clean process.</p>
 </div>
 
 
@@ -119,6 +190,12 @@
 
 <time datetime="2021-07-13T22:26:00-05:00" pubdate data-updated="true">Jul 13<span>th</span>, 2021</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/netbeans/'>NetBeans</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/maven/'>maven</a>
+  
+</span>
 
 
     </p>
