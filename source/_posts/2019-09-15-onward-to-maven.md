@@ -6,6 +6,8 @@ comments: true
 categories: java NetBeans CoolBeans maven
 ---
 
+> An update to this article is [available](/blog/2021/07/13/update-to-using-maven-to-build-executable-jar-files/)
+
 At the time of writing, [*Apache NetBeans*][apacheNetBeans] is at version 11.1 and about 90% moved from Oracle to Apache.   As a project of the Apache Foundation, all source code must be licensed under the [Apache Foundation License][license].  Of course, not all open source is licensed that way (and it was not the open source license used by Oracle) so there are some challenges to putting together large systems.  The [CoolBeans project][CoolBeans] packages NetBeans, the JDK, OpenJavaFx and other components to create an integrated product that is easier to get up and running with.  I will use NetBeans as the tool in the remainder of the post.
 
 Another change made was changing the underlying preferred build automation from [Apache Ant][] to [Apache Maven][] for new projects.  This changes the file structure of the code as well as some details underneath.  NetBeans mostly allows the user to ignore this once the project is made.
