@@ -24,7 +24,7 @@ The solution discussed in the earlier post involving the modification of POM (Pr
 
 Quoting from the [source article][solution]:
 
-> You need to add the following XML snippet to your pom.xml, it can go anywhere inside the <project> element, I usually put it after the <properties> element:
+> You need to add the following XML snippet to your pom.xml, it can go anywhere inside the `<project>` element, I usually put it after the `<properties>` element:
 
 ```xml
     <build>
