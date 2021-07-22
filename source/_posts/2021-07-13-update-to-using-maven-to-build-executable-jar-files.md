@@ -8,7 +8,7 @@ categories: java NetBeans maven
 
 This is an update to an [earlier post](/blog/2019/09/15/onward-to-maven/).
 
-At the time of writing, [*Apache NetBeans*][apacheNetBeans] is at version 12.4 and there are severl suppliers of JDKs.  The latest LTS version is JDK 11 and the latest MTS is JDK15.
+At the time of writing, [*Apache NetBeans*][apacheNetBeans] is at version 12.4 and there are several suppliers of JDKs.  The latest LTS (Long Term Support) version is JDK 11 and the latest MTS (Medium Term Support) is JDK15.
 
 [Apache Maven][] remains the preferred build automation from for new projects.
 
